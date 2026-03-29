@@ -1,8 +1,5 @@
 package CodeForces;
-
-import java.util.ArrayList;
 import java.util.*;
-
 /*
  * Problem: A. Panoramix's Prediction
  * Platform: Codeforces
@@ -22,12 +19,8 @@ import java.util.*;
  */
 public class A_Panoramixs_Prediction {
 
-    public static void panoramixPrediction(int n, int m) {
-        if(sieve(n, m)){
-            System.out.println("YES");
-        } else{
-            System.out.println("NO");
-        }
+    public static String panoramixPrediction(int n, int m) {
+        return sieve(n, m) ? "YES" : "NO";
     }
 
     static boolean sieve(int n, int m) {
@@ -40,12 +33,14 @@ public class A_Panoramixs_Prediction {
             }
         }
         List<Integer> list = new ArrayList<>();
-        for(int i = 0; i < isPrime.length; i++){
-            if(isPrime[i] == true){
+        for (int i = 0; i <= m; i++) {
+            if (isPrime[i]) {
                 list.add(i);
             }
         }
 
+        // Check if m is in the list (is prime) and n is the prime right before it
+        if (list.size() < 2) return false;
         return (list.get(list.size() - 1) == m && list.get(list.size() - 2) == n);
     }
 

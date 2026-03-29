@@ -1,4 +1,4 @@
-package COdechef;
+package CodeChef;
 import java.io.*;
 import java.util.*;
 
