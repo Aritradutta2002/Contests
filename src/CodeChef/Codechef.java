@@ -1,3 +1,4 @@
+package CodeChef;
 /*
  * Author  : Aritra Dutta
  * Target  : Codeforces Expert / CSES
@@ -18,7 +19,6 @@ public class Codechef {
     public static void main (String[] args) throws java.lang.Exception {
         br = new BufferedReader(new InputStreamReader(System.in));
         out = new PrintWriter(new BufferedOutputStream(System.out));
-        
         int t = nextInt();
         solve(t);
         

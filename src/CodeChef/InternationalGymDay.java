@@ -3,13 +3,10 @@ package CodeChef;
  *   Author  : Aritra Dutta
  *   Created : Wednesday, 11.09.2024  08:14 pm
  */
-
 import java.io.*;
 import static java.lang.System.out;
 import java.util.*;
-
 public class InternationalGymDay {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         PrintWriter out = new PrintWriter(System.out);
