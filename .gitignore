@@ -59,6 +59,9 @@ out/
 .settings
 .springBeans
 .sts4-cache
+
+# Shared build output
+build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/

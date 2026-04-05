@@ -1,5 +1,4 @@
 package LeetCode;
-
 /*
  * Author  : Aritra Dutta
  * Target  : Codeforces Expert / CSES

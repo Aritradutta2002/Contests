@@ -28,7 +28,7 @@ if ([string]::IsNullOrWhiteSpace($FilePath) -or -not (Test-Path -LiteralPath $Fi
 }
 
 # Compile the Java file
-$binPath = Join-Path $WorkspaceRoot "bin"
+$binPath = Join-Path $WorkspaceRoot "build"
 $srcPath = Join-Path $WorkspaceRoot "src"
 javac -d $binPath -sourcepath $srcPath "$FilePath"
 

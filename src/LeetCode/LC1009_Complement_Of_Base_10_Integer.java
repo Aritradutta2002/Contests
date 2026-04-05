@@ -8,13 +8,14 @@ package LeetCode;
 
 // @lc code=start
 class LC1009_Complement_Of_Base_10_Integer {
+
     public int bitwiseComplement(int n) {
         String str = Integer.toBinaryString(n);
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < str.length(); i++){
-            if(str.charAt(i) == '0'){
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '0') {
                 sb.append('1');
-            } else{
+            } else {
                 sb.append('0');
             }
         }
@@ -22,4 +23,3 @@ class LC1009_Complement_Of_Base_10_Integer {
     }
 }
 // @lc code=end
-

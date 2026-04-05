@@ -48,8 +48,25 @@ public class LC133_Clone_Graph {
     // -------------------------------------------------------------------------
     // LeetCode method (to be implemented)
     // -------------------------------------------------------------------------
-
-    
+    public Node cloneGraph(Node node) {
+        if (node == null) return null;
+        Map<Integer, Node> map = new HashMap<>();
+        Queue<Node> q = new LinkedList<>();
+        Node copy = new Node(node.val);
+        map.put(node.val, copy);
+        q.offer(node);
+        while (!q.isEmpty()) {
+            Node curr = q.poll();
+            for (Node neighbor : curr.neighbors) {
+                if (!map.containsKey(neighbor.val)) {
+                    map.put(neighbor.val, new Node(neighbor.val));
+                    q.offer(neighbor);
+                }
+                map.get(curr.val).neighbors.add(map.get(neighbor.val));
+            }
+        }
+        return copy;
+    }
     
     // -------------------------------------------------------------------------
     // Helper – build graph from adjacency list (1-indexed values)
