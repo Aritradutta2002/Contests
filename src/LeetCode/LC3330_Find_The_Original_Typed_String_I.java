@@ -17,7 +17,13 @@ public class LC3330_Find_The_Original_Typed_String_I {
     }
 
     public static int possibleStringCount(String word) {
-        return 0;
+        int count = 1;
+        for (int i = 1; i < word.length(); i++) {
+            if (word.charAt(i) == word.charAt(i - 1)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
 

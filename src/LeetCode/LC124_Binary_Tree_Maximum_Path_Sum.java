@@ -23,7 +23,18 @@ import java.util.*;
 public class LC124_Binary_Tree_Maximum_Path_Sum {
 
     public static int maxPathSum(TreeNode root) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        int[] maxSum = new int[]{Integer.MIN_VALUE};
+        dfs(root, maxSum);
+        return maxSum[0];
+    }
+
+    private static int dfs(TreeNode node, int[] maxSum) {
+        if (node == null) return 0;
+        int left = Math.max(0, dfs(node.left, maxSum));
+        int right = Math.max(0, dfs(node.right, maxSum));
+        int pathThroughNode = node.val + left + right;
+        maxSum[0] = Math.max(maxSum[0], pathThroughNode);
+        return node.val + Math.max(left, right);
     }
 
     static class TreeNode {

@@ -23,7 +23,17 @@ import java.util.*;
 public class LC3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y {
 
     public static int numberOfSubmatrices(char[][] grid) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        int rows = grid.length, cols = grid[0].length;
+        int[][][] pref = prefixCount(grid);
+        int count = 0;
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (pref[r][c][0] > 0 && pref[r][c][0] == pref[r][c][1]) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public static boolean isSameFreq(int i, int j, char[][] grid){

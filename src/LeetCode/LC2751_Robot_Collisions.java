@@ -19,7 +19,53 @@ import java.util.*;
  */
 public class LC2751_Robot_Collisions {
     public List<Integer> survivedRobotsHealths(int[] positions, int[] healths, String directions) {
-        
+        int n = positions.length;
+        Robot[] robots = new Robot[n];
+        for (int i = 0; i < n; i++) {
+            robots[i] = new Robot(positions[i], healths[i], directions.charAt(i), i);
+        }
+        Arrays.sort(robots, Comparator.comparingInt(r -> r.pos));
+
+        Stack<Robot> stack = new Stack<>();
+        for (Robot r : robots) {
+            if (stack.isEmpty() || r.dir == 'L') {
+                stack.push(r);
+            } else {
+                while (!stack.isEmpty() && stack.peek().dir == 'L') {
+                    Robot left = stack.pop();
+                    if (left.health < r.health) {
+                        r.health -= 1;
+                        if (left.health > 0) {
+                            left.health = 0;
+                            stack.push(left);
+                        }
+                    } else if (left.health > r.health) {
+                        left.health -= 1;
+                    } else {
+                        if (left.health > 0) left.health = 0;
+                    }
+                }
+                if (r.health > 0) stack.push(r);
+            }
+        }
+
+        while (!stack.isEmpty() && stack.peek().dir == 'L') stack.pop();
+
+        List<Integer> result = new ArrayList<>();
+        Robot[] remaining = stack.toArray(new Robot[0]);
+        Arrays.sort(remaining, Comparator.comparingInt(r -> r.idx));
+        for (Robot r : remaining) {
+            if (r.health > 0) result.add(r.health);
+        }
+        return result;
+    }
+
+    static class Robot {
+        int pos, health, idx;
+        char dir;
+        Robot(int pos, int health, char dir, int idx) {
+            this.pos = pos; this.health = health; this.dir = dir; this.idx = idx;
+        }
     }
 
     public static void main(String[] args) {
