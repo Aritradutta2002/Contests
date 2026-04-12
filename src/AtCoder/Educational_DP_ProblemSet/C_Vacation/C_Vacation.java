@@ -1,5 +1,4 @@
 package AtCoder.Educational_DP_ProblemSet.C_Vacation;
-
 import java.io.*;
 import java.util.*;
 

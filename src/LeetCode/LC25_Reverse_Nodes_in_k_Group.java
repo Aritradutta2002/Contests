@@ -1,5 +1,4 @@
 package LeetCode;
-
 import java.util.*;
 
 /*
@@ -25,8 +24,6 @@ public class LC25_Reverse_Nodes_in_k_Group {
 
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null || k == 1) return head;
-
-        // Count nodes to see if we have at least k nodes left
         ListNode temp = head;
         int count = 0;
         while (temp != null && count < k) {
@@ -34,15 +31,13 @@ public class LC25_Reverse_Nodes_in_k_Group {
             count++;
         }
 
-        // If we have at least k nodes, reverse them
         if (count == k) {
             ListNode reversedHead = reverse(head, k);
-            // Recursively call for the rest of the list
             head.next = reverseKGroup(temp, k);
             return reversedHead;
         }
 
-        return head; // Less than k nodes left
+        return head; 
     }
 
     private ListNode reverse(ListNode head, int k) {
