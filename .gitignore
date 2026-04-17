@@ -109,3 +109,9 @@ local.properties
 
 # Test output
 *.hprof
+
+# Kiro AI configuration
+.kiro/
+
+# GitHub workflows and instructions
+.github/
