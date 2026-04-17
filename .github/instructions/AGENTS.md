@@ -55,6 +55,10 @@ Provide project context and coding guidelines that AI should follow when generat
   - Test harness must output PASS/FAIL for each test case.
   - If method is unimplemented, print `SKIPPED` instead of crashing.
 
+## Testing Cleanup
+- When compiling or running Java files inside any problem folder, remove any generated `.class` files from those Java folders after testing.
+- Keep scaffold test cases inside the `main` method so they are easy to run and clean up with the compiled output.
+
 ## Response Behavior
 - Do not provide hints, algorithm explanation, or full solution unless user explicitly asks.
 - Compile and run once after scaffold creation.
