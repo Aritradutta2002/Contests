@@ -1,7 +1,5 @@
 package LeetCode;
-
 import java.util.*;
-
 /**
  * Two Sum II - Input Array Is Sorted
  * 
@@ -24,7 +22,20 @@ import java.util.*;
 class LC167_Two_Sum_II_Input_Array_Is_Sorted {
     
     public int[] twoSum(int[] numbers, int target) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int n = numbers.length;
+        int start = -1;
+        int end = -1;
+        for(int i = 0; i < n; i++){
+            int remaining = target - numbers[i];
+            if(map.containsKey(numbers[i])){
+                start = i;
+                end = map.get(numbers[i]);
+                return new int[]{start, end};
+            }
+            map.put(remaining, i);
+        }
+        return new int[]{start, end};
     }
     
     
@@ -41,6 +52,8 @@ class LC167_Two_Sum_II_Input_Array_Is_Sorted {
                 System.out.println("Test 1: PASS");
             } else {
                 System.out.println("Test 1: FAIL");
+                System.out.println("  Expected: " + java.util.Arrays.toString(expected1));
+                System.out.println("  Got:      " + java.util.Arrays.toString(result1));
             }
         } catch (UnsupportedOperationException e) {
             System.out.println("Test 1: SKIPPED");
@@ -55,6 +68,8 @@ class LC167_Two_Sum_II_Input_Array_Is_Sorted {
                 System.out.println("Test 2: PASS");
             } else {
                 System.out.println("Test 2: FAIL");
+                System.out.println("  Expected: " + java.util.Arrays.toString(expected2));
+                System.out.println("  Got:      " + java.util.Arrays.toString(result2));
             }
         } catch (UnsupportedOperationException e) {
             System.out.println("Test 2: SKIPPED");
@@ -69,12 +84,13 @@ class LC167_Two_Sum_II_Input_Array_Is_Sorted {
                 System.out.println("Test 3: PASS");
             } else {
                 System.out.println("Test 3: FAIL");
+                System.out.println("  Expected: " + java.util.Arrays.toString(expected3));
+                System.out.println("  Got:      " + java.util.Arrays.toString(result3));
             }
         } catch (UnsupportedOperationException e) {
             System.out.println("Test 3: SKIPPED");
         }
     }
-    
     
     
     private static boolean arraysEqual(int[] a, int[] b) {
@@ -84,4 +100,5 @@ class LC167_Two_Sum_II_Input_Array_Is_Sorted {
         }
         return true;
     }
+
 }
