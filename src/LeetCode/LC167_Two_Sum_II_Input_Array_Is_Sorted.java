@@ -29,16 +29,14 @@ class LC167_Two_Sum_II_Input_Array_Is_Sorted {
         for(int i = 0; i < n; i++){
             int remaining = target - numbers[i];
             if(map.containsKey(numbers[i])){
-                start = i;
-                end = map.get(numbers[i]);
+                start = map.get(numbers[i])+1;
+                end = i + 1;
                 return new int[]{start, end};
             }
             map.put(remaining, i);
         }
         return new int[]{start, end};
     }
-    
-    
     
     public static void main(String[] args) {
         LC167_Two_Sum_II_Input_Array_Is_Sorted solution = new LC167_Two_Sum_II_Input_Array_Is_Sorted();
