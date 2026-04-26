@@ -53,6 +53,13 @@ When the user provides a LeetCode problem number, title, or URL, generate the Ja
 1. If exact file already exists, update it only if user asks to modify/replace it.
 2. If user asks for another version/approach, create suffixed variants (`_A`, `_B`, etc.).
 
+## Instruction File Handling
+1. `agent.md` is an instruction/reference file, not a solution output file.
+2. When the user asks to create or solve a LeetCode problem, write or update only the target Java file under `src/LeetCode/` unless the user explicitly asks to modify `agent.md`.
+3. Do not say that the solution was written in or updated in `agent.md` when reporting normal problem-generation results.
+4. Use `agent.md` only to follow repository rules such as naming, file structure, and verification flow.
+5. If the user explicitly asks to change repository instructions, then update `agent.md` and report that separately from the solution file.
+
 ## Verification
 After generation:
 1. Compile and run using repo script when available:
@@ -65,3 +72,4 @@ Always report:
 2. Class name
 3. Compile status
 4. Run summary
+5. Mention `agent.md` only if it was explicitly requested to be modified in the current task.

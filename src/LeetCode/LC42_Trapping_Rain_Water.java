@@ -23,7 +23,7 @@ import java.util.*;
 class LC42_Trapping_Rain_Water {
 
     public int trap(int[] height) {
-        
+        return 0;
     }
 
 

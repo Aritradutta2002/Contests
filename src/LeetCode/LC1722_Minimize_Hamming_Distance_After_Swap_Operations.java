@@ -32,11 +32,8 @@ import java.util.*;
 public class LC1722_Minimize_Hamming_Distance_After_Swap_Operations {
 
     public int minimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {
-        
+        return 0;
     }
-
-
-
     public static void main(String[] args) {
         LC1722_Minimize_Hamming_Distance_After_Swap_Operations solution = new LC1722_Minimize_Hamming_Distance_After_Swap_Operations();
 
