@@ -54,7 +54,7 @@ When the user provides a LeetCode problem number, title, or URL, generate the Ja
 2. If user asks for another version/approach, create suffixed variants (`_A`, `_B`, etc.).
 
 ## Instruction File Handling
-1. `agent.md` is an instruction/reference file, not a solution output file.
+1. `agent.md` is an instruction/reference file, not a solution output file. Make Sure donot implement the main solution do the Leetcode style.
 2. When the user asks to create or solve a LeetCode problem, write or update only the target Java file under `src/LeetCode/` unless the user explicitly asks to modify `agent.md`.
 3. Do not say that the solution was written in or updated in `agent.md` when reporting normal problem-generation results.
 4. Use `agent.md` only to follow repository rules such as naming, file structure, and verification flow.
