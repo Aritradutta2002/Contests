@@ -38,16 +38,17 @@ When the user provides a LeetCode problem number, title, or URL, generate the Ja
 
 ## File Content Contract
 1. Start with:
-  - `package LeetCode;`
-  - `import java.util.*;`
+   - `package LeetCode;`
+   - `import java.util.*;`
 2. Include a top block comment with:
-  - problem number and title
-  - short description
-  - key constraints
-3. Add the LeetCode method signature(s).
+   - problem number and title
+   - short description
+   - key constraints
+3. Add the LeetCode method signature(s) as **empty stubs only**.
 4. Include a `main` method with at least 3 test cases (or placeholders if examples are unavailable).
-5. For unimplemented scaffolds, use:
-  - `throw new UnsupportedOperationException("Not implemented yet.");`
+5. Every LeetCode method must use:
+   - `throw new UnsupportedOperationException("Not implemented yet.");`
+6. **CRITICAL: The AI must NEVER implement the solution logic.** Only generate the scaffold (method signatures, class, comments, main with test placeholders). The user will write the solution code themselves.
 
 ## Existing File Behavior
 1. If exact file already exists, update it only if user asks to modify/replace it.
