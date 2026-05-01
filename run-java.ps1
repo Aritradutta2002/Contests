@@ -28,9 +28,9 @@ if ([string]::IsNullOrWhiteSpace($FilePath) -or -not (Test-Path -LiteralPath $Fi
 }
 
 # Compile the Java file
-$binPath = Join-Path $WorkspaceRoot "bin"
+$outPath = Join-Path $WorkspaceRoot "out"
 $srcPath = Join-Path $WorkspaceRoot "src"
-javac -d $binPath -sourcepath $srcPath "$FilePath"
+javac -d $outPath -sourcepath $srcPath "$FilePath"
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Compilation failed!" -ForegroundColor Red
@@ -48,7 +48,7 @@ $className = [System.IO.Path]::GetFileNameWithoutExtension($FilePath)
 if ($packageMatch.Success) {
     $packageName = $packageMatch.Groups[1].Value
     $fullClassName = "$packageName.$className"
-    java -cp $binPath $fullClassName
+    java -cp $outPath $fullClassName
 } else {
-    java -cp $binPath $className
+    java -cp $outPath $className
 }
