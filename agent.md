@@ -45,7 +45,7 @@ When the user provides a LeetCode problem number, title, or URL, generate the Ja
    - short description
    - key constraints
 3. Add the LeetCode method signature(s) as **empty stubs only**.
-4. Include a `main` method with at least 3 test cases (or placeholders if examples are unavailable).
+4. Include a `main` method with at least 3 test cases (or placeholders if examples are unavailable). The test cases should compare the actual output with the expected output and print "Pass" or "Fail" accordingly.
 5. Every LeetCode method must use:
    - `throw new UnsupportedOperationException("Not implemented yet.");`
 6. **CRITICAL: The AI must NEVER implement the solution logic.** Only generate the scaffold (method signatures, class, comments, main with test placeholders). The user will write the solution code themselves.
