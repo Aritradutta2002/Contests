@@ -1,17 +1,12 @@
 package LeetCode;
-
 import java.util.*;
-
 /**
  * LeetCode 2770: Maximum Number of Jumps to Reach the Last Index
  * 
- * Problem:
- * You are given a 0-indexed array nums of n integers and an integer target.
- * You are initially positioned at index 0. In one step, you can jump from index i 
- * to any index j such that 0 <= i < j < n and -target <= nums[j] - nums[i] <= target.
- * 
- * Return the maximum number of jumps you can make to reach index n - 1.
- * If there is no way to reach index n - 1, return -1.
+ * Short description:
+ * Find the maximum number of valid jumps from index 0 to index n - 1.
+ * A jump from i to j is valid when 0 <= i < j < n and
+ * -target <= nums[j] - nums[i] <= target.
  * 
  * Constraints:
  * - 2 <= nums.length == n <= 1000
@@ -25,50 +20,50 @@ import java.util.*;
  */
 
 public class LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index {
-    
+
     /**
-     * Find the maximum number of jumps to reach the last index.
-     * 
-     * @param nums array of integers
-     * @param target the maximum difference allowed for a jump
-     * @return maximum number of jumps to reach last index, or -1 if unreachable
+     * LeetCode method signature.
      */
     public int maximumJumps(int[] nums, int target) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1); // Initialize dp with -1 (unreachable)
+        dp[0] = 0; // Starting point, no jumps needed
+        for(int j = 1; j < n; j++) {
+            for(int i = 0; i < j; i++) {
+                if(dp[i] != -1 && Math.abs(nums[j] - nums[i]) <= target) {
+                    dp[j] = Math.max(dp[j], dp[i] + 1);
+                }
+            }
+        }
+        return dp[n - 1]; // Return the maximum jumps to reach the last index
     }
-    
+
     public static void main(String[] args) {
-        LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index solution = 
-            new LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index();
-        
-        // Test Case 1: Example from problem
-        // nums = [1,3,6,4,1,2], target = 2
-        // Expected: 3
-        // Explanation: Jump 0 -> 1 -> 3 -> 5, making 3 jumps total
-        int[] nums1 = {1, 3, 6, 4, 1, 2};
-        int target1 = 2;
-        int result1 = solution.maximumJumps(nums1, target1);
-        System.out.println("Test Case 1: " + (result1 == 3 ? "Pass" : "Fail") + 
-                         " (Expected: 3, Got: " + result1 + ")");
-        
-        // Test Case 2: Example from problem with larger target
-        // nums = [1,3,6,4,1,2], target = 3
-        // Expected: 5
-        // Explanation: Jump 0 -> 1 -> 2 -> 3 -> 4 -> 5, making 5 jumps
-        int[] nums2 = {1, 3, 6, 4, 1, 2};
-        int target2 = 3;
-        int result2 = solution.maximumJumps(nums2, target2);
-        System.out.println("Test Case 2: " + (result2 == 5 ? "Pass" : "Fail") + 
-                         " (Expected: 5, Got: " + result2 + ")");
-        
-        // Test Case 3: Example from problem where no path exists
-        // nums = [1,3,6,4,1,2], target = 0
-        // Expected: -1
-        // Explanation: Cannot jump since no element has difference <= 0 with nums[i]
-        int[] nums3 = {1, 3, 6, 4, 1, 2};
-        int target3 = 0;
-        int result3 = solution.maximumJumps(nums3, target3);
-        System.out.println("Test Case 3: " + (result3 == -1 ? "Pass" : "Fail") + 
-                         " (Expected: -1, Got: " + result3 + ")");
+        LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index solution = new LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index();
+
+        // Example 1: validates the basic reachable path with 3 jumps.
+        runTest(solution, new int[]{1, 3, 6, 4, 1, 2}, 2, 3, "Test Case 1");
+
+        // Example 2: validates the longest example path with 5 jumps.
+        runTest(solution, new int[]{1, 3, 6, 4, 1, 2}, 3, 5, "Test Case 2");
+
+        // Example 3: validates the unreachable case that returns -1.
+        runTest(solution, new int[]{1, 3, 6, 4, 1, 2}, 0, -1, "Test Case 3");
+    }
+
+    private static void runTest(LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index solution,
+                                int[] nums,
+                                int target,
+                                int expected,
+                                String label) {
+        try {
+            int actual = solution.maximumJumps(nums, target);
+            boolean passed = Objects.equals(actual, expected);
+            System.out.println(label + ": " + (passed ? "Pass" : "Fail") +
+                    " (Expected: " + expected + ", Got: " + actual + ")");
+        } catch (UnsupportedOperationException ex) {
+            System.out.println(label + ": Fail (Expected: " + expected + ", Got: Not implemented yet.)");
+        }
     }
 }

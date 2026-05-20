@@ -27,25 +27,40 @@ class LC64_Minimum_Path_Sum {
     public int minPathSum(int[][] grid) {
         int n = grid.length;
         int m = grid[0].length;
-        int[][] dp = new int[n][m];
 
-        dp[0][0] = grid[0][0];
+        // dist[i][j] = minimum path sum to reach cell (i,j)
+        int[][] dist = new int[n][m];
+        for (int[] row : dist) Arrays.fill(row, Integer.MAX_VALUE);
+        dist[0][0] = grid[0][0];
 
-        for (int j = 1; j < m; j++) {
-            dp[0][j] = dp[0][j - 1] + grid[0][j];
-        }
+        // Min-heap BFS (Dijkstra): entry = [accumulated cost, row, col]
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        pq.offer(new int[]{grid[0][0], 0, 0});
 
-        for (int i = 1; i < n; i++) {
-            dp[i][0] = dp[i - 1][0] + grid[i][0];
-        }
+        // Only move right (+0,+1) or down (+1,+0)
+        int[] dr = {1, 0};
+        int[] dc = {0, 1};
 
-        for (int i = 1; i < n; i++) {
-            for (int j = 1; j < m; j++) {
-                dp[i][j] = grid[i][j] + Math.min(dp[i - 1][j], dp[i][j - 1]);
+        while (!pq.isEmpty()) {
+            int[] curr = pq.poll();
+            int cost = curr[0], r = curr[1], c = curr[2];
+
+            if (cost > dist[r][c]) continue; // stale entry, skip
+
+            for (int d = 0; d < 2; d++) {
+                int nr = r + dr[d];
+                int nc = c + dc[d];
+                if (nr < n && nc < m) {
+                    int newCost = dist[r][c] + grid[nr][nc];
+                    if (newCost < dist[nr][nc]) {
+                        dist[nr][nc] = newCost;
+                        pq.offer(new int[]{newCost, nr, nc});
+                    }
+                }
             }
         }
 
-        return dp[n - 1][m - 1];
+        return dist[n - 1][m - 1];
     }
 
 
