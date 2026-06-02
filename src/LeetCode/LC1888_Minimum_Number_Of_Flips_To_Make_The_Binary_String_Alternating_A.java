@@ -15,7 +15,7 @@ class LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternating_A {
         int[] diff = new int[2 * n];
         for (int i = 0; i < 2 * n; i++) {
             int ch = s.charAt(i % n) - '0';
-            diff[i] = (i & 1) == 0 ? (0 ^ ch) : (1 ^ ch);
+            diff[i] = (i & 1) == 0 ? (ch) : (1 ^ ch);
         }
 
         // Sliding window of size n
