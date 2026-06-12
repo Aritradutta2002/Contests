@@ -29,7 +29,19 @@ if ([string]::IsNullOrWhiteSpace($FilePath) -or -not (Test-Path -LiteralPath $Fi
 
 # Compile the Java file
 $outPath = Join-Path $WorkspaceRoot "out"
-$srcPath = Join-Path $WorkspaceRoot "src"
+
+# Resolve the source directory dynamically
+$normalizedPath = $FilePath.Replace('\', '/')
+if ($normalizedPath.Contains("/src/main/java/")) {
+    $markerIndex = $normalizedPath.IndexOf("/src/main/java/")
+    $srcPath = $FilePath.Substring(0, $markerIndex + "/src/main/java".Length)
+} elseif ($normalizedPath.Contains("/src/test/java/")) {
+    $markerIndex = $normalizedPath.IndexOf("/src/test/java/")
+    $srcPath = $FilePath.Substring(0, $markerIndex + "/src/test/java".Length)
+} else {
+    $srcPath = Join-Path $WorkspaceRoot "src"
+}
+
 javac -d $outPath -sourcepath $srcPath "$FilePath"
 
 if ($LASTEXITCODE -ne 0) {
