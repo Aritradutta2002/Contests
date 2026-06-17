@@ -10,15 +10,6 @@ import java.io.*;
  *   Created On: Friday,27.06.2025 02:17 am
  */
 public class LC2311_Longest_Binary_Subsequence_Less_Than_Or_Equal_To_K {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        int k = sc.nextInt();
-        int result = longestSubsequence(s, k);
-
-        System.out.println(result);
-    }
-
     public static int longestSubsequence(String s, int k) {
         int sm = 0;
         int cnt = 0;

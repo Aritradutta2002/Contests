@@ -36,25 +36,12 @@ public class LC2839_Check_If_Strings_Can_Be_Made_Equal_With_Operations_I {
 
         return false;
     }
-
     public static String swap(char[] temp, int i, int j) {
         char t = temp[i];
         temp[i] = temp[j];
         temp[j] = t;
         return new String(temp);
     }
-
-    public static void main(String[] args) {
-        List<TestCase> tests = Arrays.asList(
-                new TestCase("abcd", "cdab", true),
-                new TestCase("abcd", "dacb", false),
-                new TestCase("abcd", "abcd", true));
-
-        for (int i = 0; i < tests.size(); i++) {
-            runTestCase(i + 1, tests.get(i));
-        }
-    }
-
     private static class TestCase {
         String s1;
         String s2;
@@ -66,7 +53,6 @@ public class LC2839_Check_If_Strings_Can_Be_Made_Equal_With_Operations_I {
             this.expected = expected;
         }
     }
-
     private static void runTestCase(int idx, TestCase tc) {
         try {
             boolean actual = canBeEqual(tc.s1, tc.s2);

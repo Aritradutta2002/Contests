@@ -3,17 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.Scanner;
 
 public class LC2342_Max_Sum_Pair_With_Equal_Sum_Digits {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int size = sc.nextInt();
-        int[] arr = new int[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = sc.nextInt();
-        }
-
-        System.out.println(maximumSum(arr));
-    }
-
     static public int maximumSum(int[] nums) {
         // HashMap<Integer, Integer> map = new HashMap<>();
         int[] map = new int[82];
@@ -38,7 +27,6 @@ public class LC2342_Max_Sum_Pair_With_Equal_Sum_Digits {
         return ans;
 
     }
-
     static public int getDigitSum(int n) {
         int sum = 0;
         while (n > 0) {

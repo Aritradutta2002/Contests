@@ -48,12 +48,4 @@ public class LC3666_Minimum_Operations_To_Equalize_Binary_String {
         }
 
         return -1;
-    }
-
-    public static void main(String[] args) {
-        LC3666_Minimum_Operations_To_Equalize_Binary_String sol = new LC3666_Minimum_Operations_To_Equalize_Binary_String();
-        System.out.println(sol.minOperations("110", 1)); // Output: 1
-        System.out.println(sol.minOperations("0101", 3)); // Output: 2
-        System.out.println(sol.minOperations("101", 2)); // Output: -1
-    }
-}
+    }}

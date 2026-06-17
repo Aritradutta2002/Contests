@@ -1,13 +1,6 @@
 package com.aritra.contests.leetcode;
 
 public class LC781_Rabbits_In_Forest {
-    public static void main(String[] args) {
-        int[] answers1 = { 1, 1, 2 };
-        int[] answers2 = { 10, 10, 10 };
-        System.out.println(numRabbits(answers1)); // Output: 5
-        System.out.println(numRabbits(answers2)); // Output: 11
-    }
-
     public static int numRabbits(int[] answers) {
         int ans = 0;
         int[] count = new int[1001];

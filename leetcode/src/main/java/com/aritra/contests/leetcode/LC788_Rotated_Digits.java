@@ -18,7 +18,6 @@ import java.util.*;
  * - 1 <= n <= 10^4
  */
 public class LC788_Rotated_Digits {
-
     public int rotatedDigits(int n) {
         int count = 0;
         for (int i = 2; i <= n; i++) {
@@ -28,7 +27,6 @@ public class LC788_Rotated_Digits {
         }
         return count;
     }
-
     public boolean isGood(int n) {
         int curr = n;
         boolean isValid = false;
@@ -43,38 +41,4 @@ public class LC788_Rotated_Digits {
             }
         }
         return isValid;
-    }
-
-    public static void main(String[] args) {
-        LC788_Rotated_Digits solution = new LC788_Rotated_Digits();
-
-        System.out.println("--- Test 788. Rotated Digits ---");
-
-        // Test Case 1
-        try {
-            int res1 = solution.rotatedDigits(10);
-            System.out.println("Test 1 (n=10): " + res1 + " -> " + (res1 == 4 ? "Pass" : "Fail"));
-            // Expected: 4
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 1: " + e.getMessage());
-        }
-
-        // Test Case 2
-        try {
-            int res2 = solution.rotatedDigits(1);
-            System.out.println("Test 2 (n=1): " + res2 + " -> " + (res2 == 0 ? "Pass" : "Fail"));
-            // Expected: 0
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 2: " + e.getMessage());
-        }
-
-        // Test Case 3
-        try {
-            int res3 = solution.rotatedDigits(2);
-            System.out.println("Test 3 (n=2): " + res3 + " -> " + (res3 == 1 ? "Pass" : "Fail"));
-            // Expected: 1
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 3: " + e.getMessage());
-        }
-    }
-}
+    }}

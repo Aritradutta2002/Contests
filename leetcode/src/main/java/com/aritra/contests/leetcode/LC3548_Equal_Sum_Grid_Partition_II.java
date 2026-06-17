@@ -18,7 +18,6 @@ public class LC3548_Equal_Sum_Grid_Partition_II {
     public boolean canPartitionGrid(int[][] grid) {
         return check(grid) || check(rotate(grid));
     }
-
     private boolean check(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -63,7 +62,6 @@ public class LC3548_Equal_Sum_Grid_Partition_II {
 
         return false;
     }
-
     private boolean canRemoveFromLowerOrRight(int[][] grid, int cut, int n, long diff) {
         int lowerRows = grid.length - cut - 1;
         if (lowerRows > 1 && n > 1) {
@@ -77,7 +75,6 @@ public class LC3548_Equal_Sum_Grid_Partition_II {
         }
         return false;
     }
-
     private boolean canRemoveFromUpperOrLeft(int[][] grid, int cut, int n, long diff) {
         int upperRows = cut + 1;
         if (upperRows > 1 && n > 1) {
@@ -91,7 +88,6 @@ public class LC3548_Equal_Sum_Grid_Partition_II {
         }
         return false;
     }
-
     private int[][] rotate(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -103,26 +99,6 @@ public class LC3548_Equal_Sum_Grid_Partition_II {
         }
         return rotated;
     }
-
-    public static void main(String[] args) {
-        LC3548_Equal_Sum_Grid_Partition_II solver = new LC3548_Equal_Sum_Grid_Partition_II();
-        Scanner sc = new Scanner(System.in);
-
-        // Test Case 1
-        int[][] grid1 = {{1, 4}, {2, 3}};
-        runTest(solver, 1, grid1, true);
-
-        // Test Case 2
-        int[][] grid2 = {{1, 2}, {3, 4}};
-        runTest(solver, 2, grid2, true);
-
-        // Test Case 3
-        int[][] grid3 = {{1, 2, 4}, {2, 3, 5}};
-        runTest(solver, 3, grid3, false);
-
-        sc.close();
-    }
-
     private static void runTest(LC3548_Equal_Sum_Grid_Partition_II solver, int testId, int[][] grid, boolean expected) {
         try {
             boolean result = solver.canPartitionGrid(grid);

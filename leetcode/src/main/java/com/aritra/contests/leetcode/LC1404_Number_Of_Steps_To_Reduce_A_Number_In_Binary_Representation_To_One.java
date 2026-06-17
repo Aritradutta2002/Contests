@@ -3,12 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.Scanner;
 
 public class LC1404_Number_Of_Steps_To_Reduce_A_Number_In_Binary_Representation_To_One {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        System.out.println(numSteps(s));
-    }
-
     public static int numSteps(String s) {
         int steps = 0;
         int carry = 0;

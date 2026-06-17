@@ -44,26 +44,6 @@ public class LC3740_Minimum_Distance_Between_Three_Equal_Elements_I {
 
         return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
     }
-
-    public static void main(String[] args) {
-        LC3740_Minimum_Distance_Between_Three_Equal_Elements_I solver = new LC3740_Minimum_Distance_Between_Three_Equal_Elements_I();
-
-        // Example 1
-        int[] nums1 = {1, 2, 1, 1, 3};
-        int expected1 = 6;
-        runTestCase(solver, 1, nums1, expected1);
-
-        // Example 2
-        int[] nums2 = {1, 1, 2, 3, 2, 1, 2};
-        int expected2 = 8;
-        runTestCase(solver, 2, nums2, expected2);
-
-        // Example 3
-        int[] nums3 = {1};
-        int expected3 = -1;
-        runTestCase(solver, 3, nums3, expected3);
-    }
-
     private static void runTestCase(LC3740_Minimum_Distance_Between_Three_Equal_Elements_I solver, int testCaseNum, int[] nums, int expected) {
         System.out.print("Test Case " + testCaseNum + ": ");
         try {

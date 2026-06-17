@@ -59,44 +59,4 @@ public class LC509_Fibonacci_Number {
 
         return sum;
     }
-
-    // ─── Test Harness ────────────────────────────────────────────────────
-    public static void main(String[] args) {
-        LC509_Fibonacci_Number sol = new LC509_Fibonacci_Number();
-
-        int testNum = 0;
-        int passed = 0;
-
-        // ── Official Sample Tests ────────────────────────────────────────
-        passed += runTest(sol, ++testNum, 2, 1);
-        passed += runTest(sol, ++testNum, 3, 2);
-        passed += runTest(sol, ++testNum, 4, 3);
-
-        // ── Extra Sanity Tests ───────────────────────────────────────────
-        passed += runTest(sol, ++testNum, 0, 0); // base case F(0) = 0
-        passed += runTest(sol, ++testNum, 1, 1); // base case F(1) = 1
-        passed += runTest(sol, ++testNum, 10, 55); // F(10) = 55
-
-        System.out.println("\n" + passed + " / " + testNum + " tests passed.");
-    }
-
-    private static int runTest(
-            LC509_Fibonacci_Number sol,
-            int testNum, int input, int expected) {
-
-        System.out.printf("Test %d: n = %d, expected = %d  =>  ", testNum, input, expected);
-        try {
-            int result = sol.fib(input);
-            if (result == expected) {
-                System.out.println("PASS");
-                return 1;
-            } else {
-                System.out.printf("FAIL (got %d)%n", result);
-                return 0;
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("SKIPPED");
-            return 0;
-        }
-    }
 }

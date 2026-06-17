@@ -15,7 +15,6 @@ import java.util.*;
  * - 0 <= grid[i][j] <= 10^9
  */
 public class LC3225_Maximum_Score_From_Grid_Operations {
-
     public long maximumScore(int[][] grid) {
         int n = grid.length;
         long[][] prefix = new long[n][n + 1];
@@ -55,33 +54,5 @@ public class LC3225_Maximum_Score_From_Grid_Operations {
             ans = Math.max(ans, score);
         }
         return ans;
-    }
-
-    public static void main(String[] args) {
-        LC3225_Maximum_Score_From_Grid_Operations solver = new LC3225_Maximum_Score_From_Grid_Operations();
-
-        int[][] grid1 = {
-            {0, 0, 0, 0, 0},
-            {0, 0, 3, 0, 0},
-            {0, 1, 0, 0, 0},
-            {5, 0, 0, 3, 0},
-            {0, 0, 0, 0, 2}
-        };
-        System.out.println("Test 1: " + solver.maximumScore(grid1) + " (expected 11)");
-
-        int[][] grid2 = {
-            {10, 9, 0, 0, 15},
-            {7, 1, 0, 8, 0},
-            {5, 20, 0, 11, 0},
-            {0, 0, 0, 1, 2},
-            {8, 12, 1, 10, 3}
-        };
-        System.out.println("Test 2: " + solver.maximumScore(grid2) + " (expected 94)");
-
-        int[][] grid3 = {
-            {1, 2},
-            {3, 4}
-        };
-        System.out.println("Test 3: " + solver.maximumScore(grid3) + " (expected 6)");
     }
 }

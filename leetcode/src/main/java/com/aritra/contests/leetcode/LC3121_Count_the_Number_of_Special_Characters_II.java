@@ -15,23 +15,6 @@ public class LC3121_Count_the_Number_of_Special_Characters_II {
     public int numberOfSpecialChars(String word) {
         return 0;
     }
-
-    public static void main(String[] args) {
-        LC3121_Count_the_Number_of_Special_Characters_II solver = new LC3121_Count_the_Number_of_Special_Characters_II();
-        Scanner sc = new Scanner(System.in);
-
-        // Test Case 1: "aaAbcBC" -> 3 (a, b, c are special)
-        runTest(solver, 1, "aaAbcBC", 3);
-
-        // Test Case 2: "abc" -> 0 (no uppercase letters)
-        runTest(solver, 2, "abc", 0);
-
-        // Test Case 3: "AbBCab" -> 0 (uppercase appears before lowercase for a and b)
-        runTest(solver, 3, "AbBCab", 0);
-
-        sc.close();
-    }
-
     private static void runTest(LC3121_Count_the_Number_of_Special_Characters_II solver, int testId, String word, int expected) {
         try {
             int result = solver.numberOfSpecialChars(word);

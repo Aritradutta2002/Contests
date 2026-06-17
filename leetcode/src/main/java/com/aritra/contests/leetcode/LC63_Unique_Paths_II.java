@@ -1,12 +1,6 @@
 package com.aritra.contests.leetcode;
+
 public class LC63_Unique_Paths_II {
-    public static void main(String[] args) {
-        int[][] obstacleGrid = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
-
-        int ans = uniquePathsWithObstacles(obstacleGrid);
-        System.out.println(ans); // Output: 2
-    }
-
     public static int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;

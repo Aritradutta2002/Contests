@@ -6,16 +6,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC1800_Maximum_Ascending_Subarray_Sum {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        System.out.println(maxAscendingSum(arr));
-    }
-
     static public int maxAscendingSum(int[] nums) {
         int sum = nums[0];
         int maxSum = nums[0];

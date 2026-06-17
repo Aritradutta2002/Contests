@@ -14,7 +14,6 @@ import java.util.*;
  * 0 <= lcp[i][j] <= n
  */
 public class LC2573_Find_The_String_With_LCP {
-
     public String findTheString(int[][] lcp) {
         int n = lcp.length;
         char[] word = new char[n];
@@ -57,43 +56,6 @@ public class LC2573_Find_The_String_With_LCP {
         return new String(word);
 
     }
-
-    public static void main(String[] args) {
-        LC2573_Find_The_String_With_LCP solver = new LC2573_Find_The_String_With_LCP();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(
-                        new int[][]{
-                                {4, 0, 2, 0},
-                                {0, 3, 0, 1},
-                                {2, 0, 2, 0},
-                                {0, 1, 0, 1}
-                        },
-                        "abab"
-                ),
-                new TestCase(
-                        new int[][]{
-                                {4, 2, 1, 0},
-                                {2, 3, 1, 0},
-                                {1, 1, 2, 0},
-                                {0, 0, 0, 1}
-                        },
-                    "aaab"
-                ),
-                new TestCase(
-                        new int[][]{
-                                {4, 3, 2, 1},
-                                {3, 3, 2, 1},
-                                {2, 2, 2, 1},
-                                {1, 1, 1, 1}
-                        },
-                        "aaaa"
-                )
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC2573_Find_The_String_With_LCP solver, TestCase[] tests) {
         int passed = 0;
 
@@ -127,11 +89,9 @@ public class LC2573_Find_The_String_With_LCP {
 
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static String quote(String value) {
         return "\"" + value + "\"";
     }
-
     private static class TestCase {
         int[][] lcp;
         String expected;

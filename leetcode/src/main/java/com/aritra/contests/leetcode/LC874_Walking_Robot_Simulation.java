@@ -56,26 +56,6 @@ public class LC874_Walking_Robot_Simulation {
         }
         return maxDist;
     }
-
-    public static void main(String[] args) {
-        LC874_Walking_Robot_Simulation solver = new LC874_Walking_Robot_Simulation();
-
-        // Test Case 1
-        int[] commands1 = {4, -1, 3};
-        int[][] obstacles1 = {};
-        runTest(solver, 1, commands1, obstacles1, 25);
-
-        // Test Case 2
-        int[] commands2 = {4, -1, 4, -2, 4};
-        int[][] obstacles2 = {{2, 4}};
-        runTest(solver, 2, commands2, obstacles2, 65);
-
-        // Test Case 3
-        int[] commands3 = {6, -1, -1, 6};
-        int[][] obstacles3 = {};
-        runTest(solver, 3, commands3, obstacles3, 36);
-    }
-
     private static void runTest(LC874_Walking_Robot_Simulation solver, int testId, int[] commands, int[][] obstacles, int expected) {
         try {
             int result = solver.robotSim(commands, obstacles);

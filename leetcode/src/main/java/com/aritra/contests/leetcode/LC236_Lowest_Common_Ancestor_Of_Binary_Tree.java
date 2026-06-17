@@ -17,18 +17,6 @@ public class LC236_Lowest_Common_Ancestor_Of_Binary_Tree {
             this.right = right;
         }
     }
-
-    public static void main(String[] args) {
-        // Scanner sc = new Scanner(System.in);
-        // Example usage:
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(1);
-        TreeNode p = root.left;
-        TreeNode q = root.right;
-        System.out.println(lowestCommonAncestor(root, p, q).val);
-    }
-
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;

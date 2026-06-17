@@ -38,20 +38,6 @@ public class LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index {
         }
         return dp[n - 1]; // Return the maximum jumps to reach the last index
     }
-
-    public static void main(String[] args) {
-        LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index solution = new LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index();
-
-        // Example 1: validates the basic reachable path with 3 jumps.
-        runTest(solution, new int[]{1, 3, 6, 4, 1, 2}, 2, 3, "Test Case 1");
-
-        // Example 2: validates the longest example path with 5 jumps.
-        runTest(solution, new int[]{1, 3, 6, 4, 1, 2}, 3, 5, "Test Case 2");
-
-        // Example 3: validates the unreachable case that returns -1.
-        runTest(solution, new int[]{1, 3, 6, 4, 1, 2}, 0, -1, "Test Case 3");
-    }
-
     private static void runTest(LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index solution,
                                 int[] nums,
                                 int target,

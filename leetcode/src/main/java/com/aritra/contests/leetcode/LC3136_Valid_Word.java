@@ -21,10 +21,6 @@ import java.io.*;
  */
 
 public class LC3136_Valid_Word {
-    public static void main(String[] args) {
-
-    }
-
     public static boolean isValid(String word) {
         int vowelCount = 0;
         int consonantCount = 0;

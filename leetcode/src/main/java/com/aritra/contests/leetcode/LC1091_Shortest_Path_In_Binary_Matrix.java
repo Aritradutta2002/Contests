@@ -27,7 +27,6 @@ import java.util.*;
  * int shortest clear path length, or -1
  */
 public class LC1091_Shortest_Path_In_Binary_Matrix {
-
     public static int[][] moves = {
         {-1, 0}, {1, 0}, {0, -1}, {0, 1},
         {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
@@ -36,8 +35,7 @@ public class LC1091_Shortest_Path_In_Binary_Matrix {
     public static int shortestPathBinaryMatrix(int[][] grid) {
         int n = grid.length;
 
-        
-        if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) return -1;
+if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) return -1;
 
         boolean[][] visited = new boolean[n][n];
         Queue<int[]> queue = new LinkedList<>();
@@ -63,7 +61,6 @@ public class LC1091_Shortest_Path_In_Binary_Matrix {
 
         return -1; 
     }
-
     private static int[][] copyGrid(int[][] grid) {
         int[][] copy = new int[grid.length][];
         for (int i = 0; i < grid.length; i++) {
@@ -71,29 +68,6 @@ public class LC1091_Shortest_Path_In_Binary_Matrix {
         }
         return copy;
     }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        scanner.close();
-
-        runTest("Example 1", new int[][] {
-            {0, 1},
-            {1, 0}
-        }, 2);
-
-        runTest("Example 2", new int[][] {
-            {0, 0, 0},
-            {1, 1, 0},
-            {1, 1, 0}
-        }, 4);
-
-        runTest("Example 3", new int[][] {
-            {1, 0, 0},
-            {1, 1, 0},
-            {1, 1, 0}
-        }, -1);
-    }
-
     private static void runTest(String testName, int[][] grid, int expected) {
         try {
             int actual = shortestPathBinaryMatrix(copyGrid(grid));

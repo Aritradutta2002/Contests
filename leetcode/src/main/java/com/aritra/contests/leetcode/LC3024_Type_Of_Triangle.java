@@ -4,13 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class LC3024_Type_Of_Triangle {
-    public static void main(String[] args) {
-        FastIO sc = new FastIO();
-        int n = sc.nextInt();
-        int[] nums = sc.readIntArray(n);
-        System.out.println(triangleType(nums));
-    }
-
     public static String triangleType(int[] nums) {
         if (nums.length != 3)
             return "none";
@@ -33,11 +26,9 @@ public class LC3024_Type_Of_Triangle {
 
         return "scalene";
     }
-
     public static String triangleType(int i, int i1, int i2) {
         return null;
     }
-
     static class FastIO extends PrintWriter {
         private InputStream stream;
         private byte[] buf = new byte[1 << 16];
@@ -46,18 +37,15 @@ public class LC3024_Type_Of_Triangle {
         public FastIO() {
             this(System.in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1)
                 throw new InputMismatchException();
             if (curChar >= numChars) {
@@ -72,8 +60,7 @@ public class LC3024_Type_Of_Triangle {
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -85,8 +72,7 @@ public class LC3024_Type_Of_Triangle {
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -98,8 +84,7 @@ public class LC3024_Type_Of_Triangle {
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c, sgn = 1, res = 0;
             do {
                 c = nextByte();
@@ -116,8 +101,7 @@ public class LC3024_Type_Of_Triangle {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             long sgn = 1, res = 0;
             do {
@@ -135,19 +119,16 @@ public class LC3024_Type_Of_Triangle {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return Double.parseDouble(next());
         }
-
-        public int[] readIntArray(int n) {
+    public int[] readIntArray(int n) {
             int[] arr = new int[n];
             for (int i = 0; i < n; i++)
                 arr[i] = nextInt();
             return arr;
         }
-
-        public void printArray(int[] arr) {
+    public void printArray(int[] arr) {
             for (int i = 0; i < arr.length; i++)
                 System.out.print(arr[i] + " ");
         }

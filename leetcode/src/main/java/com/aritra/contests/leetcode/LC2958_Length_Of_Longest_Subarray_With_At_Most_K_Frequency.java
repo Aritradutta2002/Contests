@@ -3,27 +3,6 @@ import java.util.*;
 @SuppressWarnings("unused")
 
 public class LC2958_Length_Of_Longest_Subarray_With_At_Most_K_Frequency {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-        arr[i] = sc.nextInt();
-        }
-        int k = sc.nextInt();
-        System.out.println(maxSubarrayLength(arr, k));
-        int[] arr1 = { 1, 2, 3, 1, 2, 3, 1, 2 };
-        int k1 = 2;
-        int[] arr2 = { 1, 2, 1, 2, 1, 2, 1, 2 };
-        int k2 = 1;
-        int[] arr3 = { 5, 5, 5, 5, 5, 5, 5 };
-        int k3 = 4;
-        System.out.println(maxSubarrayLength(arr1, k1));
-        System.out.println(maxSubarrayLength(arr2, k2));
-        System.out.println(maxSubarrayLength(arr3, k3));
-        sc.close();
-    }
-
     public static int maxSubarrayLength(int[] nums, int k) {
         int start = 0, maxLength = 0;
         Map<Integer, Integer> freq = new HashMap<>();

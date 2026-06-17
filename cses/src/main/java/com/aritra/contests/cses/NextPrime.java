@@ -3,16 +3,6 @@ package com.aritra.contests.cses;
 import java.util.*;
 
 public class NextPrime {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        for (int i = 0; i < t; i++) {
-            long n = sc.nextLong();
-            System.out.println(nextPrime(n));
-        }
-        sc.close();
-    }
-
     static long nextPrime(long n) {
         if (n < 2)
             return 2;
@@ -37,7 +27,6 @@ public class NextPrime {
 
         return next;
     }
-
     static boolean isPrime(long n) {
         if (n <= 1)
             return false;

@@ -3,18 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC1791_Find_Center_Of_Star_Graph {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] edges = new int[n - 1][2];
-        for (int i = 0; i < n - 1; i++) {
-            edges[i][0] = sc.nextInt();
-            edges[i][1] = sc.nextInt();
-        }
-        System.out.println(findCenter(edges));
-        sc.close();
-    }
-
     public static int findCenter(int[][] edges) {
         
         int a = edges[0][0];

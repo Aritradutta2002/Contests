@@ -42,26 +42,6 @@ public class LC542_01_Matrix {
         }
         return ans;
     }
-
-    public static void main(String[] args) {
-        LC542_01_Matrix solver = new LC542_01_Matrix();
-
-        // Test Case 1
-        int[][] mat1 = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
-        int[][] expected1 = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
-        runTest(solver, 1, mat1, expected1);
-
-        // Test Case 2
-        int[][] mat2 = { { 0, 0, 0 }, { 0, 1, 0 }, { 1, 1, 1 } };
-        int[][] expected2 = { { 0, 0, 0 }, { 0, 1, 0 }, { 1, 2, 1 } };
-        runTest(solver, 2, mat2, expected2);
-
-        // Test Case 3
-        int[][] mat3 = { { 0, 1, 0 }, { 1, 1, 1 }, { 0, 1, 0 } };
-        int[][] expected3 = { { 0, 1, 0 }, { 1, 2, 1 }, { 0, 1, 0 } };
-        runTest(solver, 3, mat3, expected3);
-    }
-
     private static void runTest(LC542_01_Matrix solver, int testId, int[][] mat, int[][] expected) {
         try {
             int[][] result = solver.updateMatrix(mat);

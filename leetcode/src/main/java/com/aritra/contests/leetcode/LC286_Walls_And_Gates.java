@@ -25,7 +25,6 @@ public class LC286_Walls_And_Gates {
     public void wallsAndGates(int[][] rooms) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
     private static int[][] copyGrid(int[][] g) {
         int[][] out = new int[g.length][];
         for (int i = 0; i < g.length; i++) {
@@ -33,22 +32,6 @@ public class LC286_Walls_And_Gates {
         }
         return out;
     }
-
-    public static void main(String[] args) {
-        LC286_Walls_And_Gates solver = new LC286_Walls_And_Gates();
-        final int INF = 2147483647;
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(
-                        new int[][]{{INF, -1, 0, INF}, {INF, INF, INF, -1}, {INF, -1, INF, -1}, {0, -1, INF, INF}},
-                        new int[][]{{3, -1, 0, 1}, {2, 2, 1, -1}, {1, -1, 2, -1}, {0, -1, 3, 4}}),
-                new TestCase(new int[][]{{-1}}, new int[][]{{-1}}),
-                new TestCase(new int[][]{{0}}, new int[][]{{0}})
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC286_Walls_And_Gates solver, TestCase[] tests) {
         int passed = 0;
         for (int i = 0; i < tests.length; i++) {
@@ -72,7 +55,6 @@ public class LC286_Walls_And_Gates {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int[][] rooms;
         final int[][] expected;

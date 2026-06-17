@@ -28,23 +28,6 @@ public class LC657_Robot_Return_To_Origin {
         }
         return ((countLR == 0) && (countUD == 0));
     }
-
-    public static void main(String[] args) {
-        LC657_Robot_Return_To_Origin solver = new LC657_Robot_Return_To_Origin();
-
-        // Test Case 1
-        String moves1 = "UD";
-        runTest(solver, 1, moves1, true);
-
-        // Test Case 2
-        String moves2 = "LL";
-        runTest(solver, 2, moves2, false);
-
-        // Test Case 3
-        String moves3 = "URDL";
-        runTest(solver, 3, moves3, true);
-    }
-
     private static void runTest(LC657_Robot_Return_To_Origin solver, int testId, String moves, boolean expected) {
         try {
             boolean result = solver.judgeCircle(moves);

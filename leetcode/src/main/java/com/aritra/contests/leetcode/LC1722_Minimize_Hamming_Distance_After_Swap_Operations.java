@@ -30,59 +30,7 @@ import java.util.*;
  * ai != bi
  */
 public class LC1722_Minimize_Hamming_Distance_After_Swap_Operations {
-
     public int minimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {
         return 0;
-    }
-    public static void main(String[] args) {
-        LC1722_Minimize_Hamming_Distance_After_Swap_Operations solution = new LC1722_Minimize_Hamming_Distance_After_Swap_Operations();
-
-        // Test Case 1
-        try {
-            int[] source = {1, 2, 3, 4};
-            int[] target = {2, 1, 4, 5};
-            int[][] allowedSwaps = {{0, 1}, {2, 3}};
-            int expected = 1;
-            int result = solution.minimumHammingDistance(source, target, allowedSwaps);
-            if (result == expected) {
-                System.out.println("Test 1: PASS");
-            } else {
-                System.out.println("Test 1: FAIL (Expected " + expected + ", got " + result + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 1: SKIPPED");
-        }
-
-        // Test Case 2
-        try {
-            int[] source = {1, 2, 3, 4};
-            int[] target = {1, 3, 2, 4};
-            int[][] allowedSwaps = {};
-            int expected = 2;
-            int result = solution.minimumHammingDistance(source, target, allowedSwaps);
-            if (result == expected) {
-                System.out.println("Test 2: PASS");
-            } else {
-                System.out.println("Test 2: FAIL (Expected " + expected + ", got " + result + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 2: SKIPPED");
-        }
-
-        // Test Case 3
-        try {
-            int[] source = {5, 1, 2, 4, 3};
-            int[] target = {1, 5, 4, 2, 3};
-            int[][] allowedSwaps = {{0, 4}, {4, 2}, {1, 3}, {1, 4}};
-            int expected = 0;
-            int result = solution.minimumHammingDistance(source, target, allowedSwaps);
-            if (result == expected) {
-                System.out.println("Test 3: PASS");
-            } else {
-                System.out.println("Test 3: FAIL (Expected " + expected + ", got " + result + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 3: SKIPPED");
-        }
     }
 }

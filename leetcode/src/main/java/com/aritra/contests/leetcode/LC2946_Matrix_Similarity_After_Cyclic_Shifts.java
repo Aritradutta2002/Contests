@@ -26,26 +26,6 @@ public class LC2946_Matrix_Similarity_After_Cyclic_Shifts {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        LC2946_Matrix_Similarity_After_Cyclic_Shifts solver = new LC2946_Matrix_Similarity_After_Cyclic_Shifts();
-        Scanner sc = new Scanner(System.in);
-
-        // Test Case 1
-        int[][] mat1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        runTest(solver, 1, mat1, 4, false);
-
-        // Test Case 2
-        int[][] mat2 = {{1, 2, 1, 2}, {5, 5, 5, 5}, {6, 3, 6, 3}};
-        runTest(solver, 2, mat2, 2, true);
-
-        // Test Case 3
-        int[][] mat3 = {{2, 2}, {2, 2}};
-        runTest(solver, 3, mat3, 3, true);
-
-        sc.close();
-    }
-
     private static void runTest(LC2946_Matrix_Similarity_After_Cyclic_Shifts solver, int testId, int[][] mat, int k, boolean expected) {
         try {
             boolean result = solver.areSimilar(mat, k);

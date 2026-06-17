@@ -3,13 +3,6 @@ import java.util.*;
 @SuppressWarnings("unused")
 
 public class LC3160_Find_The_Number_Of_Distinct_Colors_Among_The_Balls {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-
-        int [][] queries = new int[n][2];
-    }
-
     static public int[] queryResults(int limit, int[][] queries) {
         int n = queries.length;
 

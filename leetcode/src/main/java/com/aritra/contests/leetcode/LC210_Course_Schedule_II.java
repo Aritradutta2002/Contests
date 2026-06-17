@@ -27,7 +27,6 @@ public class LC210_Course_Schedule_II {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
     private static boolean isValidOrder(int[] order, int numCourses, int[][] prerequisites) {
         if (order.length != numCourses) {
             return false;
@@ -46,19 +45,6 @@ public class LC210_Course_Schedule_II {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        LC210_Course_Schedule_II solver = new LC210_Course_Schedule_II();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(2, new int[][]{{1, 0}}, true, new int[]{0, 1}),
-                new TestCase(4, new int[][]{{1, 0}, {2, 0}, {3, 1}, {3, 2}}, true, new int[]{0, 2, 1, 3}),
-                new TestCase(1, new int[][]{}, true, new int[]{0})
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC210_Course_Schedule_II solver, TestCase[] tests) {
         int passed = 0;
         for (int i = 0; i < tests.length; i++) {
@@ -83,7 +69,6 @@ public class LC210_Course_Schedule_II {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int numCourses;
         final int[][] prerequisites;

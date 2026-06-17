@@ -16,7 +16,6 @@ package com.aritra.contests.leetcode;
  * s[i] is either '0' or '1'.
  */
 public class LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternating_B {
-
     public int minFlips(String s) {
         int n = s.length();
         String doubled = s + s;
@@ -58,25 +57,6 @@ public class LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternatin
 
         return answer;
     }
-
-    public static void main(String[] args) {
-        LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternating_B solver = new LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternating_B();
-
-        TestCase[] tests = new TestCase[] {
-                // Official sample tests
-                new TestCase("111000", 2),
-                new TestCase("010", 0),
-                new TestCase("1110", 1),
-
-                // Extra sanity tests
-                new TestCase("0", 0),
-                new TestCase("1", 0),
-                new TestCase("101010", 0)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternating_B solver,
             TestCase[] tests) {
@@ -111,7 +91,6 @@ public class LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternatin
 
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         String s;
         int expected;

@@ -1,9 +1,5 @@
 package com.aritra.contests.leetcode;
 public class LC3174_Clear_Digits {
-    public static void main(String[] args) {
-        System.out.println(clearDigits("cb34")); // Output: "c"
-    }
-
     static public String clearDigits(String s) {
         StringBuilder sb = new StringBuilder();
 

@@ -7,36 +7,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class SumTwoValues {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int n = fs.nextInt();
-        int target = fs.nextInt();
-        long[] arr = new long[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = fs.nextLong();
-        }
-        int[] ans = { 0, 0 };
-        HashMap<Long, Integer> map = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            long curr = arr[i];
-            long remaining = target - curr;
-            if (map.containsKey(remaining)) {
-                ans[0] = map.get(remaining) + 1;
-                ans[1] = i + 1;
-                break;
-            }
-            map.put(arr[i], i);
-        }
-
-        if (ans[0] == 0 && ans[1] == 0) {
-            System.out.println("IMPOSSIBLE");
-        } else {
-            System.out.println(ans[0] + " " + ans[1]);
-        }
-        out.close();
-    }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -49,19 +19,15 @@ public class SumTwoValues {
         }
         Arrays.sort(a);
     }
-
     static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -70,7 +36,6 @@ public class SumTwoValues {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -82,11 +47,9 @@ public class SumTwoValues {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -95,7 +58,6 @@ public class SumTwoValues {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     static class FastScanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer("");

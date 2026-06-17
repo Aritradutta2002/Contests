@@ -80,38 +80,6 @@ public class LC3742_Maximum_Path_Score_in_a_Grid {
 
         return (maxScore == Integer.MIN_VALUE) ? -1 : maxScore;
     }
-
-    public static void main(String[] args) {
-        LC3742_Maximum_Path_Score_in_a_Grid solver = new LC3742_Maximum_Path_Score_in_a_Grid();
-
-        // Example 1
-        int[][] grid1 = {
-            {0, 1},
-            {2, 0}
-        };
-        int k1 = 2;
-        int expected1 = 2;
-        runTestCase(solver, 1, grid1, k1, expected1);
-
-        // Example 2
-        int[][] grid2 = {
-            {0, 1, 1},
-            {0, 2, 0}
-        };
-        int k2 = 1;
-        int expected2 = 2;
-        runTestCase(solver, 2, grid2, k2, expected2);
-
-        // Example 3
-        int[][] grid3 = {
-            {0, 1},
-            {1, 1}
-        };
-        int k3 = 0;
-        int expected3 = -1;
-        runTestCase(solver, 3, grid3, k3, expected3);
-    }
-
     private static void runTestCase(LC3742_Maximum_Path_Score_in_a_Grid solver, int testCaseNum, int[][] grid, int k, int expected) {
         System.out.print("Test Case " + testCaseNum + ": ");
         try {

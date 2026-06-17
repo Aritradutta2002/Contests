@@ -3,18 +3,6 @@ import java.util.*;
 @SuppressWarnings("unused")
 
 public class LC3066_Minimum_Operations_To_Exceed_Threshold_Value_II {
-    public static void main(String[] args) {
-        Scanner ip = new Scanner(System.in);
-        int size = ip.nextInt();
-        int nums [] = new int [size];
-        for(int i = 0; i < size; i++) {
-            nums[i] = ip.nextInt();
-        }
-        int k = ip.nextInt();
-
-        System.out.println(minOperations(nums, k));
-    }
-
     static public int minOperations(int[] nums, int k) {
         PriorityQueue<Long> pq = new PriorityQueue<>();
         int count = 0;

@@ -3,18 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC2226_Maximum_Candies_Allocated_To_K_Children {
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] candies = new int[n];
-        for (int i = 0; i < n; i++) {
-            candies[i] = sc.nextInt();
-        }
-        long k = sc.nextInt();
-
-        System.out.println(maximumCandies(candies, k));
-    }
-
     public static int maximumCandies(int[] candies, long k) {
         if (candies == null || candies.length == 0) {
             return 0;
@@ -46,7 +34,6 @@ public class LC2226_Maximum_Candies_Allocated_To_K_Children {
         }
         return result;
     }
-
     public static boolean canDistribute(int[] candies, int mid, long k) {
         long count = 0;
         for (int candy : candies) {

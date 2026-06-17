@@ -21,7 +21,6 @@ public class LC2553_Separate_The_Digits_In_An_Array {
         }
         return arr;
     }
-
     public static List<Integer> addToArray(int num) {
         List<Integer> list = new ArrayList<>();
         while (num > 0) {
@@ -32,16 +31,6 @@ public class LC2553_Separate_The_Digits_In_An_Array {
         Collections.reverse(list);
         return list;
     }
-
-    public static void main(String[] args) {
-        runTest(new int[] { 13, 25, 83, 77 }, new int[] { 1, 3, 2, 5, 8, 3, 7, 7 },
-                "Example 1: multiple two-digit numbers");
-        runTest(new int[] { 7, 1, 3, 9 }, new int[] { 7, 1, 3, 9 },
-                "Example 2: single-digit values remain unchanged");
-        runTest(new int[] { 123, 45, 6 }, new int[] { 1, 2, 3, 4, 5, 6 },
-                "Additional case: varying digit lengths");
-    }
-
     static void runTest(int[] nums, int[] expected, String description) {
         try {
             int[] actual = separateDigits(nums);
@@ -51,7 +40,6 @@ public class LC2553_Separate_The_Digits_In_An_Array {
             System.out.println("Fail - " + description);
         }
     }
-
     static Integer[] box(int[] values) {
         Integer[] boxed = new Integer[values.length];
         for (int i = 0; i < values.length; i++) {

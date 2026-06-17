@@ -1,53 +1,20 @@
 package com.aritra.contests.leetcode;
 
-/*
- * @lc app=leetcode id=113 lang=java
- *
- * [113] Path Sum II
- */
-
-// @lc code=start
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 import java.util.*;
+
+/*
+ * [113] Path Sum II
+ *
+ * Given the root of a binary tree and an integer targetSum, return all root-to-leaf
+ * paths where the sum of the node values in the path equals targetSum.
+ */
 class LC113_Path_Sum_II {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {}
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> ans = new ArrayList<>();
         dfs(root, targetSum, new ArrayList<>(), ans);
         return ans;
     }
-
     private void dfs(TreeNode node, int remainingSum, List<Integer> path, List<List<Integer>> ans) {
         if (node == null) {
             return;
@@ -65,5 +32,3 @@ class LC113_Path_Sum_II {
         path.remove(path.size() - 1);
     }
 }
-// @lc code=end
-

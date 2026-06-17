@@ -40,7 +40,6 @@ public class LC329_Longest_Increasing_Path_In_A_Matrix {
         }
         return longestPath;
     }
-
     public int dfs(int[][] matrix, int[][] memo, int n, int m, int i, int j) {
         if(memo[i][j] > 0) return memo[i][j];
         int path = 0;
@@ -68,19 +67,5 @@ public class LC329_Longest_Increasing_Path_In_A_Matrix {
         } catch (UnsupportedOperationException e) {
             System.out.println(label + ": SKIPPED");
         }
-    }
-
-    public static void main(String[] args) {
-        // Test 1: [[9,9,4],[6,6,8],[2,1,1]] -> 4
-        // path: 1 -> 2 -> 6 -> 9
-        runTest("Test 1", new int[][] { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } }, 4);
-
-        // Test 2: [[3,4,5],[3,2,6],[2,2,1]] -> 4
-        // path: 3 -> 4 -> 5 -> 6
-        runTest("Test 2", new int[][] { { 3, 4, 5 }, { 3, 2, 6 }, { 2, 2, 1 } }, 4);
-
-        // Test 3: [[1]] -> 1
-        // single cell
-        runTest("Test 3", new int[][] { { 1 } }, 1);
     }
 }

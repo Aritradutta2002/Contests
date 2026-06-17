@@ -26,19 +26,6 @@ public class LC261_Graph_Valid_Tree {
     public boolean validTree(int n, int[][] edges) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
-    public static void main(String[] args) {
-        LC261_Graph_Valid_Tree solver = new LC261_Graph_Valid_Tree();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(5, new int[][]{{0, 1}, {0, 2}, {0, 3}, {1, 4}}, true),
-                new TestCase(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {1, 3}, {1, 4}}, false),
-                new TestCase(4, new int[][]{{0, 1}, {2, 3}}, false)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC261_Graph_Valid_Tree solver, TestCase[] tests) {
         int passed = 0;
         for (int i = 0; i < tests.length; i++) {
@@ -60,7 +47,6 @@ public class LC261_Graph_Valid_Tree {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int n;
         final int[][] edges;

@@ -17,20 +17,6 @@ public class CoinCombinationsII {
     static final int MOD = 1_000_000_007;
     static final int MOD2 = 998244353;
     static final long INF = (long) 1e18;
-
-    public static void main(String[] args) throws IOException {
-        br = new BufferedReader(new InputStreamReader(System.in));
-        out = new PrintWriter(new BufferedOutputStream(System.out));
-        int n = nextInt();
-        int x = nextInt();
-        int[] coins = nextIntArray(n);
-        int[] dp = new int[x + 1];
-        System.out.println(solve(n, x, coins, dp));
-
-        out.flush();
-        out.close();
-    }
-
     static int solve(int n, int x, int[] coins, int[] dp) throws IOException {
         dp[0] = 1;
         for (int j = 0; j < n; j++) {
@@ -40,63 +26,50 @@ public class CoinCombinationsII {
         }
         return dp[x];
     }
-
-    // ========== FAST I/O ==========
     static String next() throws IOException {
         while (st == null || !st.hasMoreTokens())
             st = new StringTokenizer(br.readLine());
         return st.nextToken();
     }
-
     static int nextInt() throws IOException {
         return Integer.parseInt(next());
     }
-
     static long nextLong() throws IOException {
         return Long.parseLong(next());
     }
-
     static double nextDouble() throws IOException {
         return Double.parseDouble(next());
     }
-
     static String nextLine() throws IOException {
         return br.readLine();
     }
-
     static char nextChar() throws IOException {
         return next().charAt(0);
     }
-
-    // ========== ARRAY INPUT ==========
     static int[] nextIntArray(int n) throws IOException {
         int[] arr = new int[n];
         for (int i = 0; i < n; i++)
             arr[i] = nextInt();
         return arr;
     }
-
     static long[] nextLongArray(int n) throws IOException {
         long[] arr = new long[n];
         for (int i = 0; i < n; i++)
             arr[i] = nextLong();
         return arr;
     }
-
     static String[] nextStringArray(int n) throws IOException {
         String[] arr = new String[n];
         for (int i = 0; i < n; i++)
             arr[i] = next();
         return arr;
     }
-
     static double[] nextDoubleArray(int n) throws IOException {
         double[] arr = new double[n];
         for (int i = 0; i < n; i++)
             arr[i] = nextDouble();
         return arr;
     }
-
     static int[][] nextInt2DArray(int rows, int cols) throws IOException {
         int[][] arr = new int[rows][cols];
         for (int i = 0; i < rows; i++)
@@ -104,8 +77,6 @@ public class CoinCombinationsII {
                 arr[i][j] = nextInt();
         return arr;
     }
-
-    // ========== ARRAY OUTPUT ==========
     static void printArray(int[] arr) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
@@ -115,7 +86,6 @@ public class CoinCombinationsII {
         }
         out.println(sb);
     }
-
     static void printArray(long[] arr) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
@@ -125,7 +95,6 @@ public class CoinCombinationsII {
         }
         out.println(sb);
     }
-
     static void printArray(String[] arr) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
@@ -135,24 +104,18 @@ public class CoinCombinationsII {
         }
         out.println(sb);
     }
-
     static void yes() {
         out.println("YES");
     }
-
     static void no() {
         out.println("NO");
     }
-
-    // ========== UTILITY ==========
     static long gcd(long a, long b) {
         return b == 0 ? a : gcd(b, a % b);
     }
-
     static long lcm(long a, long b) {
         return a / gcd(a, b) * b;
     }
-
     static long modPow(long x, long y, long mod) {
         long res = 1;
         x %= mod;
@@ -164,11 +127,9 @@ public class CoinCombinationsII {
         }
         return res;
     }
-
     static long modInv(long a, long mod) {
         return modPow(a, mod - 2, mod);
     }
-
     static void shuffleSort(int[] arr) {
         for (int i = arr.length - 1; i > 0; i--) {
             int j = RNG.nextInt(i + 1);
@@ -178,7 +139,6 @@ public class CoinCombinationsII {
         }
         Arrays.sort(arr);
     }
-
     static void shuffleSort(long[] arr) {
         for (int i = arr.length - 1; i > 0; i--) {
             int j = RNG.nextInt(i + 1);
@@ -188,35 +148,30 @@ public class CoinCombinationsII {
         }
         Arrays.sort(arr);
     }
-
     static long sumArray(int[] arr) {
         long sum = 0;
         for (int val : arr)
             sum += val;
         return sum;
     }
-
     static long sumArray(long[] arr) {
         long sum = 0;
         for (long val : arr)
             sum += val;
         return sum;
     }
-
     static int minArray(int[] arr) {
         int min = Integer.MAX_VALUE;
         for (int val : arr)
             min = Math.min(min, val);
         return min;
     }
-
     static int maxArray(int[] arr) {
         int max = Integer.MIN_VALUE;
         for (int val : arr)
             max = Math.max(max, val);
         return max;
     }
-
     static int lowerBound(int[] arr, int key) {
         int left = 0, right = arr.length;
         while (left < right) {
@@ -228,7 +183,6 @@ public class CoinCombinationsII {
         }
         return left;
     }
-
     static int upperBound(int[] arr, int key) {
         int left = 0, right = arr.length;
         while (left < right) {
@@ -240,7 +194,6 @@ public class CoinCombinationsII {
         }
         return left;
     }
-
     static void debug(Object... obj) {
         System.err.println(Arrays.deepToString(obj));
     }

@@ -1,13 +1,10 @@
 package com.aritra.contests.leetcode;
 
 /*
- * @lc app=leetcode id=79 lang=java
- *
  * [79] Word Search
+ *
+ * Given an m x n grid of characters board and a string word, return true if word exists in the grid.
  */
-import java.util.*;
-
-// @lc code=start
 class LC79_Word_Search {
     public boolean exist(char[][] board, String word) {
         int n = board.length;
@@ -20,7 +17,6 @@ class LC79_Word_Search {
         }
         return false;
     }
-
     public static boolean dfs(char[][] board, String word, int r, int c, int idx){
         if(idx == word.length()) return true;
         if(r < 0 || r >= board.length || c < 0 || c >= board[0].length) return false;
@@ -34,5 +30,4 @@ class LC79_Word_Search {
         return found;
    }
 }
-// @lc code=end
 

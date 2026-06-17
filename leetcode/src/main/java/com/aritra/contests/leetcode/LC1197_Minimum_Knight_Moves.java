@@ -39,7 +39,6 @@ package com.aritra.contests.leetcode;
  * Explanation: Already at the target.
  */
 public class LC1197_Minimum_Knight_Moves {
-
     public static int minKnightMoves(int x, int y) {
         x = Math.abs(x);
         y = Math.abs(y);
@@ -60,15 +59,6 @@ public class LC1197_Minimum_Knight_Moves {
             return (y + x) / 3 + (y + x) % 3;
         }
     }
-
-    public static void main(String[] args) {
-        LC1197_Minimum_Knight_Moves solver = new LC1197_Minimum_Knight_Moves();
-
-        runTest(solver, 1, 2, 1, 1);
-        runTest(solver, 2, 5, 5, 4);
-        runTest(solver, 3, 0, 0, 0);
-    }
-
     private static void runTest(LC1197_Minimum_Knight_Moves solver, int testId, int x, int y, int expected) {
         try {
             int result = solver.minKnightMoves(x, y);

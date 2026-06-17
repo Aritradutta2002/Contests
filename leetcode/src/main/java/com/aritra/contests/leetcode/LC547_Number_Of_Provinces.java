@@ -1,5 +1,4 @@
 package com.aritra.contests.leetcode;
-import java.util.*;
 /*
  * LeetCode 547. Number of Provinces
  *
@@ -25,7 +24,6 @@ public class LC547_Number_Of_Provinces {
         int connectedComponent = countConnectedDFS(isConnected, n);
         return connectedComponent;
     }
-
     public int countConnectedDFS(int[][] connected, int n) {
         boolean[] visited = new boolean[n];
         int count = 0;
@@ -37,7 +35,6 @@ public class LC547_Number_Of_Provinces {
         }
         return count;
     }
-
     public void dfs(int node, boolean[] visited, int[][] connected){
         int n = connected.length;
         visited[node] = true;
@@ -45,78 +42,6 @@ public class LC547_Number_Of_Provinces {
             if(connected[node][neighbor] == 1 && !visited[neighbor]){
                 dfs(neighbor, visited, connected);
             }
-        }
-    }
-
-    public static void main(String[] args) {
-        LC547_Number_Of_Provinces solver = new LC547_Number_Of_Provinces();
-
-        TestCase[] tests = new TestCase[] {
-                new TestCase(
-                        new int[][] {
-                                { 1, 1, 0 },
-                                { 1, 1, 0 },
-                                { 0, 0, 1 }
-                        },
-                        2),
-                new TestCase(
-                        new int[][] {
-                                { 1, 0, 0 },
-                                { 0, 1, 0 },
-                                { 0, 0, 1 }
-                        },
-                        3),
-                new TestCase(
-                        new int[][] {
-                                { 1 }
-                        },
-                        1)
-        };
-
-        runAllTests(solver, tests);
-    }
-
-    private static void runAllTests(LC547_Number_Of_Provinces solver, TestCase[] tests) {
-        int passed = 0;
-        int skipped = 0;
-
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                int actual = solver.findCircleNum(tc.isConnected);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-
-                System.out.printf(
-                        "Test %d | isConnected=%s | expected=%d, actual=%d | %s%n",
-                        i + 1,
-                        Arrays.deepToString(tc.isConnected),
-                        tc.expected,
-                        actual,
-                        ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                skipped++;
-                System.out.printf(
-                        "Test %d | isConnected=%s | expected=%d | SKIPPED (%s)%n",
-                        i + 1,
-                        Arrays.deepToString(tc.isConnected),
-                        tc.expected,
-                        ex.getMessage());
-            }
-        }
-
-        System.out.printf("Summary: %d/%d passed, %d skipped.%n", passed, tests.length, skipped);
-    }
-
-    private static class TestCase {
-        int[][] isConnected;
-        int expected;
-
-        TestCase(int[][] isConnected, int expected) {
-            this.isConnected = isConnected;
-            this.expected = expected;
         }
     }
 }

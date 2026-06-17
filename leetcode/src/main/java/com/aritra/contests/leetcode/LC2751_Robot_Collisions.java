@@ -24,7 +24,6 @@ import java.util.*;
  * - All values in positions are distinct
  */
 public class LC2751_Robot_Collisions {
-
     public List<Integer> survivedRobotsHealths(int[] positions, int[] healths, String directions) {
         int n = positions.length;
         Integer[] indices = new Integer[n];
@@ -65,29 +64,6 @@ public class LC2751_Robot_Collisions {
         }
         return result;
     }
-
-    public static void main(String[] args) {
-        LC2751_Robot_Collisions solver = new LC2751_Robot_Collisions();
-
-        int[] pos1 = {5, 4, 3, 2, 1};
-        int[] health1 = {2, 17, 9, 15, 10};
-        String dir1 = "RRRRR";
-        List<Integer> expected1 = Arrays.asList(2, 17, 9, 15, 10);
-        runTest(solver, 1, pos1, health1, dir1, expected1);
-
-        int[] pos2 = {3, 5, 2, 6};
-        int[] health2 = {10, 10, 15, 12};
-        String dir2 = "RLRL";
-        List<Integer> expected2 = Arrays.asList(14);
-        runTest(solver, 2, pos2, health2, dir2, expected2);
-
-        int[] pos3 = {1, 2, 5, 6};
-        int[] health3 = {10, 10, 11, 11};
-        String dir3 = "RLRL";
-        List<Integer> expected3 = Collections.emptyList();
-        runTest(solver, 3, pos3, health3, dir3, expected3);
-    }
-
     private static void runTest(LC2751_Robot_Collisions solver, int testId, int[] positions, int[] healths, String directions, List<Integer> expected) {
         try {
             List<Integer> result = solver.survivedRobotsHealths(positions, healths, directions);

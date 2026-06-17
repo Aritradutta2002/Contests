@@ -23,7 +23,6 @@ import java.util.Arrays;
  */
 
 public class LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation {
-
     public boolean findRotation(int[][] mat, int[][] target) {
         int[][] cur = mat;
         for (int k = 0; k < 4; k++) {
@@ -34,7 +33,6 @@ public class LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation {
         }
         return false;
     }
-
     private static boolean same(int[][] a, int[][] b) {
         int n = a.length;
         for (int i = 0; i < n; i++) {
@@ -46,7 +44,6 @@ public class LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation {
         }
         return true;
     }
-
     private static int[][] rotate90Clockwise(int[][] in) {
         int n = in.length;
         int[][] out = new int[n][n];
@@ -57,35 +54,6 @@ public class LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation {
         }
         return out;
     }
-
-    public static void main(String[] args) {
-        LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation solver =
-                new LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(
-                        new int[][]{{0, 1}, {1, 0}},
-                        new int[][]{{1, 0}, {0, 1}},
-                        true),
-                new TestCase(
-                        new int[][]{{0, 1}, {1, 1}},
-                        new int[][]{{1, 0}, {0, 1}},
-                        false),
-                new TestCase(
-                        new int[][]{{0, 0, 0}, {0, 1, 0}, {1, 1, 1}},
-                        new int[][]{{1, 1, 1}, {0, 1, 0}, {0, 0, 0}},
-                        true),
-                new TestCase(new int[][]{{1}}, new int[][]{{1}}, true),
-                new TestCase(new int[][]{{0}}, new int[][]{{1}}, false),
-                new TestCase(
-                        new int[][]{{1, 0}, {0, 1}},
-                        new int[][]{{1, 0}, {0, 1}},
-                        true),
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation solver, TestCase[] tests) {
         int passed = 0;
@@ -119,7 +87,6 @@ public class LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation {
 
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int[][] mat;
         final int[][] target;

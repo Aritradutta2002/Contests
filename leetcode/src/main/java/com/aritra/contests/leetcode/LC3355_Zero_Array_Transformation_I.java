@@ -3,24 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC3355_Zero_Array_Transformation_I {
-
-    public static void main(String[] args) {
-        Scanner ip = new Scanner(System.in);
-        int size = ip.nextInt();
-        int nums[] = new int[size];
-        for (int i = 0; i < size; i++) {
-            nums[i] = ip.nextInt();
-        }
-        int queries = ip.nextInt();
-        int queriesArray[][] = new int[queries][2];
-        for (int i = 0; i < queries; i++) {
-            queriesArray[i][0] = ip.nextInt();
-            queriesArray[i][1] = ip.nextInt();
-        }
-
-        System.out.println(isZeroArray(nums, queriesArray));
-    }
-
     public static boolean isZeroArray(int[] nums, int[][] queries) {
         int[] deltaArray = new int[nums.length + 1];
         for (int[] query : queries) {

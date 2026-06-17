@@ -1,19 +1,6 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 public class LC2145_Count_The_Hidden_Sequences {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        int lower = sc.nextInt();
-        int upper = sc.nextInt();
-        int result = numberOfArrays(arr, lower, upper);
-        System.out.println(result);
-    }
-
     public static int numberOfArrays(int[] differences, int lower, int upper) {
         int n = differences.length;
         long[] prefixSum = new long[n + 1];

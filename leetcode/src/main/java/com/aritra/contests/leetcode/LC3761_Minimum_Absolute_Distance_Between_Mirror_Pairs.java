@@ -25,7 +25,6 @@ import java.util.*;
  * nums = [21,120] -> -1
  */
 public class LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs {
-
     public int minMirrorPairDistance(int[] nums) {
         int n = nums.length;
         int minimumDistance = n + 1;
@@ -40,7 +39,6 @@ public class LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs {
 
         return minimumDistance == n + 1 ? -1 : minimumDistance;
     }
-
     public int reverse(int n) {
         int x = 0;
         while (n > 0) {
@@ -49,19 +47,6 @@ public class LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs {
         }
         return x;
     }
-
-    public static void main(String[] args) {
-        LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs solver = new LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs();
-
-        TestCase[] tests = new TestCase[] {
-                new TestCase(new int[] { 12, 21, 45, 33, 54 }, 1),
-                new TestCase(new int[] { 120, 21 }, 1),
-                new TestCase(new int[] { 21, 120 }, -1)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs solver,
             TestCase[] tests) {
@@ -94,7 +79,6 @@ public class LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs {
 
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int[] nums;
         final int expected;

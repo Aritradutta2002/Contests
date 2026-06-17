@@ -51,43 +51,4 @@ public class LC2078_Two_Furthest_Houses_With_Different_Colors {
         
         return maxDist;
     }
-
-
-
-    public static void main(String[] args) {
-        LC2078_Two_Furthest_Houses_With_Different_Colors solution = new LC2078_Two_Furthest_Houses_With_Different_Colors();
-        
-        try {
-            int result1 = solution.maxDistance(new int[]{1, 1, 1, 6, 1, 1, 1});
-            if (result1 == 3) {
-                System.out.println("Test 1: PASS");
-            } else {
-                System.out.println("Test 1: FAIL (Expected: 3, Got: " + result1 + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 1: SKIPPED");
-        }
-
-        try {
-            int result2 = solution.maxDistance(new int[]{1, 8, 3, 8, 3});
-            if (result2 == 4) {
-                System.out.println("Test 2: PASS");
-            } else {
-                System.out.println("Test 2: FAIL (Expected: 4, Got: " + result2 + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 2: SKIPPED");
-        }
-
-        try {
-            int result3 = solution.maxDistance(new int[]{0, 1});
-            if (result3 == 1) {
-                System.out.println("Test 3: PASS");
-            } else {
-                System.out.println("Test 3: FAIL (Expected: 1, Got: " + result3 + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 3: SKIPPED");
-        }
-    }
 }

@@ -28,26 +28,4 @@ public class LC057_Insert_Interval {
     public int[][] insert(int[][] intervals, int[] newInterval) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
-    public static void main(String[] args) {
-        LC057_Insert_Interval solution = new LC057_Insert_Interval();
-        
-        // Test Case 1: Insert into empty intervals
-        int[][] intervals1 = {};
-        int[] newInterval1 = {5, 7};
-        int[][] result1 = solution.insert(intervals1, newInterval1);
-        System.out.println("Test Case 1: " + Arrays.deepToString(result1));
-        
-        // Test Case 2: Insert before first interval
-        int[][] intervals2 = {{1, 3}, {6, 9}};
-        int[] newInterval2 = {2, 5};
-        int[][] result2 = solution.insert(intervals2, newInterval2);
-        System.out.println("Test Case 2: " + Arrays.deepToString(result2));
-        
-        // Test Case 3: Insert after last interval
-        int[][] intervals3 = {{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
-        int[] newInterval3 = {4, 8};
-        int[][] result3 = solution.insert(intervals3, newInterval3);
-        System.out.println("Test Case 3: " + Arrays.deepToString(result3));
-    }
 }

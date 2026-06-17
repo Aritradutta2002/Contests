@@ -62,35 +62,10 @@ public class LC3488_Closest_Equal_Element_Queries {
         }
         return answer;
     }
-
     private int circularDistance(int a, int b, int n) {
         int direct = Math.abs(a - b);
         return Math.min(direct, n - direct);
     }
-    
-    
-    public static void main(String[] args) {
-        LC3488_Closest_Equal_Element_Queries solution = new LC3488_Closest_Equal_Element_Queries();
-        
-        // Test Case 1
-        int[] nums1 = {1, 3, 1, 4, 1, 3, 2};
-        int[] queries1 = {0, 3, 5};
-        int[] expected1 = {2, -1, 3};
-        testCase(solution, nums1, queries1, expected1, "Test Case 1");
-        
-        // Test Case 2
-        int[] nums2 = {1, 2, 3, 4};
-        int[] queries2 = {0, 1, 2, 3};
-        int[] expected2 = {-1, -1, -1, -1};
-        testCase(solution, nums2, queries2, expected2, "Test Case 2");
-        
-        // Test Case 3
-        int[] nums3 = {5, 5, 5};
-        int[] queries3 = {0, 1, 2};
-        int[] expected3 = {1, 1, 1};
-        testCase(solution, nums3, queries3, expected3, "Test Case 3");
-    }
-    
     private static void testCase(LC3488_Closest_Equal_Element_Queries solution, 
                                  int[] nums, int[] queries, int[] expected, String testName) {
         try {

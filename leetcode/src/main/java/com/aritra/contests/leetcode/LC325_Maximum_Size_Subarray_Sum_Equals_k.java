@@ -27,26 +27,6 @@ public class LC325_Maximum_Size_Subarray_Sum_Equals_k {
         }
         return maxLen;
     }
-
-    public static void main(String[] args) {
-        LC325_Maximum_Size_Subarray_Sum_Equals_k solver = new LC325_Maximum_Size_Subarray_Sum_Equals_k();
-        Scanner sc = new Scanner(System.in);
-
-        // Test Case 1
-        int[] nums1 = {1, -1, 5, -2, 3};
-        runTest(solver, 1, nums1, 3, 4);
-
-        // Test Case 2
-        int[] nums2 = {-2, -1, 2, 1};
-        runTest(solver, 2, nums2, 1, 2);
-
-        // Test Case 3
-        int[] nums3 = {1, 2, 3};
-        runTest(solver, 3, nums3, 7, 0);
-
-        sc.close();
-    }
-
     private static void runTest(LC325_Maximum_Size_Subarray_Sum_Equals_k solver, int testId, int[] nums, int k, int expected) {
         try {
             int result = solver.maxSubArrayLen(nums, k);

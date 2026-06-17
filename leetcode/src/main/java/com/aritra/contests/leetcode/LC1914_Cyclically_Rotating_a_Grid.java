@@ -54,27 +54,4 @@ public class LC1914_Cyclically_Rotating_a_Grid {
         return grid;        
     }
 
-    public static void main(String[] args) {
-        // Test case 1: official example 1
-        int[][] grid1 = {{40, 10}, {30, 20}};
-        int k1 = 1;
-        int[][] result1 = rotateGrid(grid1, k1);
-        int[][] expected1 = {{10, 20}, {40, 30}};
-        System.out.println("Test 1: " + (Arrays.deepEquals(result1, expected1) ? "Pass" : "Fail"));
-
-        // Test case 2: official example 2
-        int[][] grid2 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-        int k2 = 2;
-        int[][] result2 = rotateGrid(grid2, k2);
-        int[][] expected2 = {{3, 4, 8, 12}, {2, 11, 10, 16}, {1, 7, 6, 15}, {5, 9, 13, 14}};
-        System.out.println("Test 2: " + (Arrays.deepEquals(result2, expected2) ? "Pass" : "Fail"));
-
-        // Test case 3: larger k that wraps around the ring length
-        int[][] grid3 = {{1, 2}, {3, 4}};
-        int k3 = 5;
-        int[][] result3 = rotateGrid(grid3, k3);
-        int[][] expected3 = {{2, 4}, {1, 3}};
-        System.out.println("Test 3: " + (Arrays.deepEquals(result3, expected3) ? "Pass" : "Fail"));
-    }
-
 }

@@ -14,7 +14,6 @@ import java.util.*;
  * - 1 <= nums[i] <= 10^9
  */
 public class LC3660_Jump_Game_IX {
-
     public int[] maxValue(int[] nums) {
         int n = nums.length;
         int[] prefixMax = new int[n];
@@ -49,23 +48,6 @@ public class LC3660_Jump_Game_IX {
 
         return ans;
     }
-
-    public static void main(String[] args) {
-        LC3660_Jump_Game_IX solution = new LC3660_Jump_Game_IX();
-
-        int[] nums1 = { 2, 1, 3 };
-        int[] expected1 = { 2, 2, 3 };
-        testCase(solution, nums1, expected1, "Test 1");
-
-        int[] nums2 = { 2, 3, 1 };
-        int[] expected2 = { 3, 3, 3 };
-        testCase(solution, nums2, expected2, "Test 2");
-
-        int[] nums3 = { 5 };
-        int[] expected3 = { 5 };
-        testCase(solution, nums3, expected3, "Test 3");
-    }
-
     private static void testCase(LC3660_Jump_Game_IX solution, int[] nums, int[] expected, String testName) {
         try {
             int[] actual = solution.maxValue(nums);

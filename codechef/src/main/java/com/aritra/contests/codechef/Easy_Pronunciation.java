@@ -34,10 +34,6 @@ import java.io.*;
     static final int MOD = 1_000_000_007;
     static final int MOD2 = 998244353;
     static final long INF = (long) 4e18;
-    public static void main(String[] args) throws Exception {
-        int t = fs.nextInt();
-        while (t-->0) solve();
-    }
     static void solve() throws Exception {
         int n = nextInt();
         String s = next();
@@ -50,7 +46,6 @@ import java.io.*;
         }
         System.out.println(ans ? "YES" : "NO"); 
     }
-    
     static String next() throws IOException { return fs.next(); }
     static int nextInt() throws IOException { return fs.nextInt(); }
     static long nextLong() throws IOException { return fs.nextLong(); }
@@ -97,7 +92,7 @@ import java.io.*;
         private final byte[] buffer = new byte[1 << 16];
         private int ptr = 0, len = 0;
         FastScanner(InputStream is) { in = is; }
-        private int read() throws IOException { if (ptr >= len) { len = in.read(buffer); ptr = 0; if (len <= 0) return -1; } return buffer[ptr++]; }
+    private int read() throws IOException { if (ptr >= len) { len = in.read(buffer); ptr = 0; if (len <= 0) return -1; } return buffer[ptr++]; }
         String next() throws IOException { StringBuilder s = new StringBuilder(); int c; do c = read(); while (c <= ' ' && c != -1); while (c > ' ') { s.append((char) c); c = read(); } return s.toString(); }
         int nextInt() throws IOException { int c; do c = read(); while (c <= ' ' && c != -1); int sign = 1; if (c == '-') { sign = -1; c = read(); } int val = 0; while (c > ' ') { val = val * 10 + c - '0'; c = read(); } return val * sign; }
         long nextLong() throws IOException { int c; do c = read(); while (c <= ' ' && c != -1); int sign = 1; if (c == '-') { sign = -1; c = read(); } long val = 0; while (c > ' ') { val = val * 10 + c - '0'; c = read(); } return sign == 1 ? val : -val; }

@@ -6,37 +6,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class NumberSpiral {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int t = fs.nextInt();
-        while (t -- > 0) {
-            long x = fs.nextInt();
-            long y = fs.nextInt();
-            long z = Math.max(x, y);
-            long z2 = (z - 1) * (z - 1), ans = 0;
-
-            if(z % 2 == 0){
-                if(y == z){
-                    ans = z2 + x;
-                }
-                else{
-                    ans = z2 + (2 * z) - y;
-                }
-            }
-            else{
-                if(x == z){
-                    ans = z2 + y;
-                }
-                else{
-                    ans = z2 + (2 * z) - x;
-                }
-            }
-            out.println(ans);
-        }
-        out.close();
-    }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -49,19 +18,15 @@ public class NumberSpiral {
         }
         Arrays.sort(a);
     }
-
     static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -70,7 +35,6 @@ public class NumberSpiral {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -82,11 +46,9 @@ public class NumberSpiral {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -95,7 +57,6 @@ public class NumberSpiral {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     static class FastScanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer("");

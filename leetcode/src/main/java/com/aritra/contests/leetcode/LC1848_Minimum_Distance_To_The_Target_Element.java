@@ -22,7 +22,6 @@ import java.util.*;
  *   nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], target = 1, start = 0 -> 0
  */
 public class LC1848_Minimum_Distance_To_The_Target_Element {
-
     public int getMinDistance(int[] nums, int target, int start) {
         int minDiff = Integer.MAX_VALUE;
         for (int i = 0; i < nums.length; i++) {
@@ -32,20 +31,6 @@ public class LC1848_Minimum_Distance_To_The_Target_Element {
         }
         return minDiff;
     }
-
-    public static void main(String[] args) {
-        LC1848_Minimum_Distance_To_The_Target_Element solver =
-                new LC1848_Minimum_Distance_To_The_Target_Element();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(new int[]{1, 2, 3, 4, 5}, 5, 3, 1),
-                new TestCase(new int[]{1}, 1, 0, 0),
-                new TestCase(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 1, 0, 0)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC1848_Minimum_Distance_To_The_Target_Element solver,
             TestCase[] tests) {
@@ -83,7 +68,6 @@ public class LC1848_Minimum_Distance_To_The_Target_Element {
 
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int[] nums;
         final int target;

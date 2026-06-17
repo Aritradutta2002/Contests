@@ -24,7 +24,6 @@ import java.util.*;
  * - 1 <= landStartTime[i], landDuration[i], waterStartTime[j], waterDuration[j] <= 1000
  */
 public class LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I {
-
     public int earliestFinishTime(int[] landStartTime, int[] landDuration, int[] waterStartTime, int[] waterDuration) {
         int n = landStartTime.length;
         int m = waterStartTime.length;
@@ -44,25 +43,6 @@ public class LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I solver = new LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I();
-        runTest(solver, 1,
-                new int[] { 2, 8 }, new int[] { 4, 1 },
-                new int[] { 6 }, new int[] { 3 },
-                9);
-
-        runTest(solver, 2,
-                new int[] { 5 }, new int[] { 3 },
-                new int[] { 1 }, new int[] { 10 },
-                14);
-
-        runTest(solver, 3,
-                new int[] { 1 }, new int[] { 2 },
-                new int[] { 3 }, new int[] { 4 },
-                7);
-    }
-
     private static void runTest(LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I solver,
             int testId,
             int[] landStartTime, int[] landDuration,

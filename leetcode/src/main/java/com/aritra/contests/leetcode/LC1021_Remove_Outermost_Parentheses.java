@@ -5,12 +5,6 @@ import java.util.*;
 @SuppressWarnings("unused")
 
 public class LC1021_Remove_Outermost_Parentheses {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-        System.out.println(removeOuterParentheses(str));
-    }
-
     static public String removeOuterParentheses(String s) {
         StringBuilder res = new StringBuilder();
         int depth = 0;

@@ -18,7 +18,6 @@ import java.util.*;
  * - All the strings of list2 are unique.
  */
 public class LC599_Minimum_Index_Sum_of_Two_Lists {
-
     public String[] findRestaurant(String[] list1, String[] list2) {
         List<String> list = new ArrayList<>();
         int minimum = Integer.MAX_VALUE;
@@ -37,27 +36,4 @@ public class LC599_Minimum_Index_Sum_of_Two_Lists {
             }
         }
         return list.toArray(new String[0]);
-    }
-
-    public static void main(String[] args) {
-        LC599_Minimum_Index_Sum_of_Two_Lists solution = new LC599_Minimum_Index_Sum_of_Two_Lists();
-
-        // Test case 1
-        String[] list1_1 = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
-        String[] list2_1 = {"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
-        // Expected: ["Shogun"]
-        System.out.println("Test 1: " + Arrays.toString(solution.findRestaurant(list1_1, list2_1)));
-
-        // Test case 2
-        String[] list1_2 = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
-        String[] list2_2 = {"KFC", "Shogun", "Burger King"};
-        // Expected: ["Shogun"]
-        System.out.println("Test 2: " + Arrays.toString(solution.findRestaurant(list1_2, list2_2)));
-
-        // Test case 3
-        String[] list1_3 = {"happy", "sad", "good"};
-        String[] list2_3 = {"sad", "happy", "good"};
-        // Expected: ["sad", "happy"] or ["happy", "sad"]
-        System.out.println("Test 3: " + Arrays.toString(solution.findRestaurant(list1_3, list2_3)));
-    }
-}
+    }}

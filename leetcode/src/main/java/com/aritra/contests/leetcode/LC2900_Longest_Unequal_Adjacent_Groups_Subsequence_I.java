@@ -3,16 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC2900_Longest_Unequal_Adjacent_Groups_Subsequence_I {
-
-    public static void main(String[] args) {
-        int n = 4;
-        String[] words = {"a", "b", "c", "d"};
-        int[] groups = {1, 0, 1, 1};
-
-        List<String> result = getLongestSubsequence(words, groups);
-        System.out.println("Longest subsequence: " + result);
-    }
-
     public static List<String> getLongestSubsequence(String[] words, int[] groups) {
         int n = words.length;
         List<String> result = new ArrayList<>();

@@ -4,30 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class JosephusProblem {
-    public static void main(String[] args) {
-        FastIO io = new FastIO();
-        int n = io.nextInt();
-
-        int[] q = new int[2 * n];
-        for (int i = 0; i < n; i++)
-            q[i] = i + 1;
-
-        int head = 0;
-        int tail = n;
-        StringBuilder out = new StringBuilder(n * 3);
-
-        while (head < tail) {
-            q[tail++] = q[head++];
-            out.append(q[head++]).append(' ');
-        }
-
-        if (out.length() > 0)
-            out.setLength(out.length() - 1);
-        io.println(out.toString());
-        io.flush();
-        io.close();
-    }
-
     static class FastIO extends PrintWriter {
         private InputStream stream;
         private byte[] buf = new byte[1 << 16];
@@ -36,18 +12,15 @@ public class JosephusProblem {
         public FastIO() {
             this(System.in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1)
                 throw new InputMismatchException();
             if (curChar >= numChars) {
@@ -62,8 +35,7 @@ public class JosephusProblem {
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -75,8 +47,7 @@ public class JosephusProblem {
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -88,8 +59,7 @@ public class JosephusProblem {
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c;
             do {
                 c = nextByte();
@@ -108,8 +78,7 @@ public class JosephusProblem {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             do {
                 c = nextByte();
@@ -128,8 +97,7 @@ public class JosephusProblem {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return Double.parseDouble(next());
         }
     }

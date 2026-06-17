@@ -38,19 +38,6 @@ public class LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array {
 
         return found ? minDistance : -1;
     }
-
-    public static void main(String[] args) {
-        LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array solver = new LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array();
-
-        TestCase[] tests = new TestCase[] {
-                new TestCase(new String[] { "hello", "i", "am", "leetcode", "hello" }, "hello", 1, 1),
-                new TestCase(new String[] { "a", "b", "leetcode" }, "leetcode", 0, 1),
-                new TestCase(new String[] { "i", "eat", "leetcode" }, "ate", 0, -1)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array solver,
             TestCase[] tests) {
@@ -76,7 +63,6 @@ public class LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final String[] words;
         final String target;

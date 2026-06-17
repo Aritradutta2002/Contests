@@ -8,12 +8,6 @@ class SetSize {
     static final int MOD = 1_000_000_007;
     static final int MOD2 = 998244353;
     static final long INF = (long) 4e18;
-
-    public static void main(String[] args) throws Exception {
-        solve();
-        System.out.print(sb);
-    }
-
     static void solve() throws Exception {
         int n = nextInt();
         int q = nextInt();
@@ -37,7 +31,6 @@ class SetSize {
             sb.append(calculateSetSize(x, sortedGaps, prefixSums)).append('\n');
         }
     }
-
     private static int[] getUniqueSortedArray(int[] a) {
         Arrays.parallelSort(a);
         int k = 0;
@@ -48,7 +41,6 @@ class SetSize {
         }
         return Arrays.copyOf(a, k);
     }
-
     private static long[] getSortedGaps(int[] uniqueA) {
         int numGaps = uniqueA.length - 1;
         long[] gaps = new long[numGaps];
@@ -58,7 +50,6 @@ class SetSize {
         Arrays.sort(gaps);
         return gaps;
     }
-
     private static long[] getPrefixSums(long[] sortedGaps) {
         int n = sortedGaps.length;
         long[] p = new long[n + 1];
@@ -67,14 +58,11 @@ class SetSize {
         }
         return p;
     }
-
     private static long calculateSetSize(long x, long[] sortedGaps, long[] prefixSums) {
         int numGaps = sortedGaps.length;
         int idx = lowerBound(sortedGaps, x);
         return x + prefixSums[idx] + (long) (numGaps - idx) * x;
     }
-
-
     static String next() throws IOException { return fs.next(); }
     static int nextInt() throws IOException { return fs.nextInt(); }
     static long nextLong() throws IOException { return fs.nextLong(); }
@@ -121,7 +109,7 @@ class SetSize {
         private final byte[] buffer = new byte[1 << 16];
         private int ptr = 0, len = 0;
         FastScanner(InputStream is) { in = is; }
-        private int read() throws IOException { if (ptr >= len) { len = in.read(buffer); ptr = 0; if (len <= 0) return -1; } return buffer[ptr++]; }
+    private int read() throws IOException { if (ptr >= len) { len = in.read(buffer); ptr = 0; if (len <= 0) return -1; } return buffer[ptr++]; }
         String next() throws IOException { StringBuilder s = new StringBuilder(); int c; do c = read(); while (c <= ' ' && c != -1); while (c > ' ') { s.append((char) c); c = read(); } return s.toString(); }
         int nextInt() throws IOException { int c; do c = read(); while (c <= ' ' && c != -1); int sign = 1; if (c == '-') { sign = -1; c = read(); } int val = 0; while (c > ' ') { val = val * 10 + c - '0'; c = read(); } return val * sign; }
         long nextLong() throws IOException { int c; do c = read(); while (c <= ' ' && c != -1); int sign = 1; if (c == '-') { sign = -1; c = read(); } long val = 0; while (c > ' ') { val = val * 10 + c - '0'; c = read(); } return sign == 1 ? val : -val; }

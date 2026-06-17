@@ -3,30 +3,6 @@ import java.io.*;
 import java.util.*;
 
 public class MinimumDistinct {
-    
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder output = new StringBuilder();
-        
-        int T = Integer.parseInt(br.readLine().trim());
-        
-        while (T-- > 0) {
-            int N = Integer.parseInt(br.readLine().trim());
-            String[] parts = br.readLine().trim().split("\\s+");
-            int K = Integer.parseInt(br.readLine().trim());
-            
-            int[] arr = new int[N];
-            for (int i = 0; i < N; i++) {
-                arr[i] = Integer.parseInt(parts[i]);
-            }
-            
-            int result = solve(arr, K);
-            output.append(result).append("\n");
-        }
-        
-        System.out.print(output.toString());
-    }
-    
     private static int solve(int[] arr, int K) {
         // Count frequency of each element
         Map<Integer, Integer> freqMap = new HashMap<>();

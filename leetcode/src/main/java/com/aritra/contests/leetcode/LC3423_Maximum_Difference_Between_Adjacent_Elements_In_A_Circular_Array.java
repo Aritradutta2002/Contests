@@ -13,19 +13,6 @@ import static java.lang.System.out;
  *   Created On: Thursday,12.06.2025 07:52 pm
  */
 public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_Array {
-
-    public static void main(String[] args) throws Exception{
-        FastIO sc = new FastIO();
-        int n = sc.nextInt();
-        int[] nums = sc.readIntArray(n);
-        try{
-        System.out.println(maxAdjacentDistance(nums));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public static int maxAdjacentDistance(int[] nums) {
         int maxDiff = 0;
         int n = nums.length;
@@ -35,7 +22,6 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
         }
         return maxDiff;
     }
-
     static class FastIO extends PrintWriter {
         private InputStream stream;
         private byte[] buf = new byte[1 << 16];
@@ -44,18 +30,15 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
         public FastIO() {
             this(in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1) throw new InputMismatchException();
             if (curChar >= numChars) {
                 curChar = 0;
@@ -68,8 +51,7 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -81,8 +63,7 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -94,8 +75,7 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c;
             do {
                 c = nextByte();
@@ -113,8 +93,7 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             do {
                 c = nextByte();
@@ -132,12 +111,10 @@ public class LC3423_Maximum_Difference_Between_Adjacent_Elements_In_A_Circular_A
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return parseDouble(next());
         }
-
-        public int[] readIntArray(int n) {
+    public int[] readIntArray(int n) {
             int[] arr = new int[n];
             for (int i = 0; i < n; i++) {
                 arr[i] = nextInt();

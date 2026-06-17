@@ -27,7 +27,6 @@ public class LC417_Pacific_Atlantic_Water_Flow {
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
     private static Set<String> toCoordSet(List<List<Integer>> points) {
         Set<String> s = new HashSet<>();
         for (List<Integer> p : points) {
@@ -35,24 +34,6 @@ public class LC417_Pacific_Atlantic_Water_Flow {
         }
         return s;
     }
-
-    public static void main(String[] args) {
-        LC417_Pacific_Atlantic_Water_Flow solver = new LC417_Pacific_Atlantic_Water_Flow();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(
-                        new int[][]{{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}},
-                        Arrays.asList(
-                                Arrays.asList(0, 4), Arrays.asList(1, 3), Arrays.asList(1, 4),
-                                Arrays.asList(2, 2), Arrays.asList(3, 0), Arrays.asList(3, 1), Arrays.asList(4, 0))),
-                new TestCase(new int[][]{{1}}, Arrays.asList(Arrays.asList(0, 0))),
-                new TestCase(new int[][]{{1, 1}, {1, 1}},
-                        Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1), Arrays.asList(1, 0), Arrays.asList(1, 1)))
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC417_Pacific_Atlantic_Water_Flow solver, TestCase[] tests) {
         int passed = 0;
         for (int i = 0; i < tests.length; i++) {
@@ -74,7 +55,6 @@ public class LC417_Pacific_Atlantic_Water_Flow {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int[][] heights;
         final List<List<Integer>> expected;

@@ -13,20 +13,6 @@ import java.util.*;
 import java.math.*;
 
 public class LC2558_Take_Gifts_From_The_Richest_Pile {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int n = fs.nextInt();
-        int[] arr = fs.nextInts(n);
-        int k = fs.nextInt();
-
-        out.println(pickGifts(arr, k));
-
-        print(pickGifts(arr, k));
-
-        out.close();
-    }
-
     static public int[] pickGifts(int[] gifts, int k) {
         int[] reverse = Arrays.stream(gifts).boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue)
                 .toArray();
@@ -36,7 +22,6 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         }
         return reverse;
     }
-
     static int sumArray(int[] arr) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -65,7 +50,6 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         }
         return true;
     }
-
     static void ruffleSort(int[] a) {
         int n = a.length;// shuffle, then sort
         for (int i = 0; i < n; i++) {
@@ -75,7 +59,6 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         }
         Arrays.sort(a);
     }
-
     public static long gcd(long a, long b) {
         while (b != 0) {
             long temp = b;
@@ -84,26 +67,21 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         }
         return a;
     }
-
     public static void print(int[] arr) {
         // for debugging only
         for (int x : arr)
             out.print(x + " ");
         out.println();
     }
-
     public static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     public static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long calPow(long base, long exponent) {
         if (exponent == 0) {
             return 1;
@@ -119,7 +97,6 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
             return (((temp * temp) % mod) * base) % mod;
         }
     }
-
     public static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -128,7 +105,6 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -140,11 +116,9 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     public static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     public static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -153,7 +127,6 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     public static class FastScanner {
         private int BS = 1 << 16;
         private char NC = (char) 0;
@@ -166,16 +139,14 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
         public FastScanner() {
             in = new BufferedInputStream(System.in, BS);
         }
-
-        public FastScanner(String s) {
+    public FastScanner(String s) {
             try {
                 in = new BufferedInputStream(new FileInputStream(new File(s)), BS);
             } catch (Exception e) {
                 in = new BufferedInputStream(System.in, BS);
             }
         }
-
-        private char getChar() {
+    private char getChar() {
             while (bId == size) {
                 try {
                     size = in.read(buf);
@@ -188,28 +159,24 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
             }
             return (char) buf[bId++];
         }
-
-        public int nextInt() {
+    public int nextInt() {
             return (int) nextLong();
         }
-
-        public int[] nextInts(int N) {
+    public int[] nextInts(int N) {
             int[] res = new int[N];
             for (int i = 0; i < N; i++) {
                 res[i] = (int) nextLong();
             }
             return res;
         }
-
-        public long[] nextLongs(int N) {
+    public long[] nextLongs(int N) {
             long[] res = new long[N];
             for (int i = 0; i < N; i++) {
                 res[i] = nextLong();
             }
             return res;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             cnt = 1;
             boolean neg = false;
             if (c == NC)
@@ -225,21 +192,18 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
             }
             return neg ? -res : res;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             double cur = nextLong();
             return c != '.' ? cur : cur + nextLong() / cnt;
         }
-
-        public double[] nextDoubles(int N) {
+    public double[] nextDoubles(int N) {
             double[] res = new double[N];
             for (int i = 0; i < N; i++) {
                 res[i] = nextDouble();
             }
             return res;
         }
-
-        public String next() {
+    public String next() {
             StringBuilder res = new StringBuilder();
             while (c <= 32)
                 c = getChar();
@@ -249,8 +213,7 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
             }
             return res.toString();
         }
-
-        public String nextLine() {
+    public String nextLine() {
             StringBuilder res = new StringBuilder();
             while (c <= 32)
                 c = getChar();
@@ -260,8 +223,7 @@ public class LC2558_Take_Gifts_From_The_Richest_Pile {
             }
             return res.toString();
         }
-
-        public boolean hasNext() {
+    public boolean hasNext() {
             if (c > 32)
                 return true;
             while (true) {

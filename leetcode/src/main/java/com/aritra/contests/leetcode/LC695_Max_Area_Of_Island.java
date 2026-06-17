@@ -22,7 +22,6 @@ import java.util.*;
  * grid[i][j] is either 0 or 1.
  */
 public class LC695_Max_Area_Of_Island {
-
     private int[] dx = { -1, 1, 0, 0 };
     private int[] dy = { 0, 0, -1, 1 };
 
@@ -39,7 +38,6 @@ public class LC695_Max_Area_Of_Island {
         }
         return maxSize;
     }
-
     public int bfs(int r, int c, int[][] grid, boolean[][] visited) {
         int count = 1;
         int n = grid.length, m = grid[0].length;
@@ -64,57 +62,5 @@ public class LC695_Max_Area_Of_Island {
             }
         }
         return count;
-    }
-
-    public static void main(String[] args) {
-        LC695_Max_Area_Of_Island solution = new LC695_Max_Area_Of_Island();
-
-        int[][][] grids = {
-                {
-                        { 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-                        { 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
-                        { 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0 },
-                        { 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-                        { 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 }
-                },
-                {
-                        { 0, 0, 0, 0, 0, 0, 0, 0 }
-                },
-                {
-                        { 1, 1, 1 },
-                        { 1, 1, 1 },
-                        { 1, 1, 1 }
-                }
-        };
-
-        int[] expected = { 6, 0, 9 };
-
-        for (int i = 0; i < grids.length; i++) {
-            System.out.printf("Test Case %d:\n", i + 1);
-            System.out.print("Input: grid = [");
-            for (int k = 0; k < grids[i].length; k++) {
-                System.out.print(Arrays.toString(grids[i][k]));
-                if (k < grids[i].length - 1)
-                    System.out.print(",");
-            }
-            System.out.println("]");
-            System.out.println("Expected: " + expected[i]);
-            try {
-                int result = solution.maxAreaOfIsland(grids[i]);
-                System.out.println("Actual: " + result);
-                if (result == expected[i]) {
-                    System.out.println("Result: PASS\n");
-                } else {
-                    System.out.println("Result: FAIL\n");
-                }
-            } catch (UnsupportedOperationException e) {
-                System.out.println("Result: SKIPPED (Not implemented yet)\n");
-            } catch (Exception e) {
-                System.out.println("Result: FAIL (Exception: " + e.getMessage() + ")\n");
-            }
-        }
     }
 }

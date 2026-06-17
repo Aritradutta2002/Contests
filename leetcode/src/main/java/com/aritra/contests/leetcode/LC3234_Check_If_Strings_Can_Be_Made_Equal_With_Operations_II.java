@@ -38,31 +38,6 @@ public class LC3234_Check_If_Strings_Can_Be_Made_Equal_With_Operations_II {
 
         return even1.equals(even2) && odd1.equals(odd2);
     }
-
-    public static void main(String[] args) {
-        LC3234_Check_If_Strings_Can_Be_Made_Equal_With_Operations_II solver = new LC3234_Check_If_Strings_Can_Be_Made_Equal_With_Operations_II();
-
-        // Test Case 1
-        String s1_1 = "abcdba";
-        String s2_1 = "cabdab";
-        runTest(solver, 1, s1_1, s2_1, true);
-
-        // Test Case 2
-        String s1_2 = "abe";
-        String s2_2 = "bea";
-        runTest(solver, 2, s1_2, s2_2, false);
-
-        // Test Case 3
-        String s1_3 = "abcde";
-        String s2_3 = "abcde";
-        runTest(solver, 3, s1_3, s2_3, true);
-
-        // Test Case 4 (failing case)
-        String s1_4 = "kvwdssgl";
-        String s2_4 = "wskxsdgv";
-        runTest(solver, 4, s1_4, s2_4, false);
-    }
-
     private static void runTest(LC3234_Check_If_Strings_Can_Be_Made_Equal_With_Operations_II solver, int testId, String s1, String s2, boolean expected) {
         try {
             boolean result = solver.checkStrings(s1, s2);

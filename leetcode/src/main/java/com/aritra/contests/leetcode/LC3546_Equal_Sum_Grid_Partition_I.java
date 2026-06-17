@@ -75,27 +75,6 @@ public class LC3546_Equal_Sum_Grid_Partition_I {
 
         return false;
     }
-
-    public static void main(String[] args) {
-        LC3546_Equal_Sum_Grid_Partition_I solver = new LC3546_Equal_Sum_Grid_Partition_I();
-
-        int[][] grid1 = {{1, 2}, {2, 1}};
-        int[][] grid2 = {{7, 3}, {2, 6}};
-        int[][] grid3 = {{4, 5}, {6, 7}};
-
-        // Approach #1: Linear Scan
-        System.out.println("=== Approach #1: Linear Scan ===");
-        runTest(solver, 1, grid1, true, 1);
-        runTest(solver, 2, grid2, true, 1);
-        runTest(solver, 3, grid3, false, 1);
-
-        // Approach #2: Binary Search
-        System.out.println("=== Approach #2: Binary Search ===");
-        runTest(solver, 1, grid1, true, 2);
-        runTest(solver, 2, grid2, true, 2);
-        runTest(solver, 3, grid3, false, 2);
-    }
-
     private static void runTest(LC3546_Equal_Sum_Grid_Partition_I solver, int testId, int[][] grid, boolean expected, int approach) {
         try {
             boolean result = approach == 1 ? solver.canPartitionGrid(grid) : solver.canPartitionGrid_BS(grid);

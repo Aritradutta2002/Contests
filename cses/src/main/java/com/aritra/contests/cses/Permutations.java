@@ -7,33 +7,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class Permutations {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int n = fs.nextInt();
-
-        if (n == 2 || n == 3) {
-            out.println("NO SOLUTION");
-        }
-
-        else if (n % 2 == 0) {
-            for (int i = 2; i <= n; i += 2) {
-                out.print(i + " ");
-            }
-            for (int i = 1; i < n; i += 2) {
-                out.print(i + " ");
-            }
-        } else {
-            for (int i = n - 1; i > 0; i -= 2) {
-                out.print(i + " ");
-            }
-            for (int i = n; i > 0; i -= 2) {
-                out.print(i + " ");
-            }
-        }
-        out.close();
-    }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -46,19 +19,15 @@ public class Permutations {
         }
         Arrays.sort(a);
     }
-
     static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -67,7 +36,6 @@ public class Permutations {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -79,11 +47,9 @@ public class Permutations {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -92,7 +58,6 @@ public class Permutations {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     static class FastScanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer("");

@@ -7,32 +7,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class MaximumSubarraySum {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int n = fs.nextInt();
-        long[] arr = new long[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = fs.nextLong();
-        }
-        long currentSum = arr[0];
-        long maxSum = arr[0];
-
-        for (int i = 1; i < n; i++) {
-            if (currentSum > 0) {
-                currentSum += arr[i];
-            } else if (currentSum < 0) {
-                currentSum = arr[i];
-            }
-            if (currentSum > maxSum) {
-                maxSum = currentSum;
-            }
-        }
-        System.out.println(maxSum);
-
-        out.close();
-    }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -45,19 +19,15 @@ public class MaximumSubarraySum {
         }
         Arrays.sort(a);
     }
-
     static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -66,7 +36,6 @@ public class MaximumSubarraySum {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -78,11 +47,9 @@ public class MaximumSubarraySum {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -91,7 +58,6 @@ public class MaximumSubarraySum {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     static class FastScanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer("");

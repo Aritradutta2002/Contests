@@ -2,7 +2,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC322_Coin_Change {
-
     public static int coinChange(int[] coins, int amount) {
         int n = coins.length;
         int[] dp = new int[amount + 1];
@@ -16,9 +15,5 @@ public class LC322_Coin_Change {
             }
         }
         return dp[amount] > amount ? -1 : dp[amount];
-    }
-
-    public static void main(String[] args) {
-        
     }
 }

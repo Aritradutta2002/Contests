@@ -26,7 +26,6 @@ import java.util.*;
  */
 
 public class LC1582_Special_Positions_In_A_Binary_Matrix {
-
     public int numSpecial(int[][] mat) {
         int m = mat.length;
         int n = mat[0].length;
@@ -54,29 +53,5 @@ public class LC1582_Special_Positions_In_A_Binary_Matrix {
         }
 
         return count;
-    }
-
-    public static void main(String[] args) {
-        LC1582_Special_Positions_In_A_Binary_Matrix sol = new LC1582_Special_Positions_In_A_Binary_Matrix();
-
-        int[][][] inputs = {
-                { { 1, 0, 0 }, { 0, 0, 1 }, { 1, 0, 0 } },
-                { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } },
-                { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } },
-                { { 1 } },
-                { { 0, 0, 1, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 1, 0, 0 } },
-        };
-
-        int[] expected = { 1, 3, 0, 1, 2 };
-
-        for (int t = 0; t < inputs.length; t++) {
-            try {
-                int result = sol.numSpecial(inputs[t]);
-                String status = result == expected[t] ? "PASS" : "FAIL";
-                System.out.printf("Test %d: %s (expected=%d, got=%d)%n", t + 1, status, expected[t], result);
-            } catch (UnsupportedOperationException e) {
-                System.out.printf("Test %d: SKIPPED%n", t + 1);
-            }
-        }
     }
 }

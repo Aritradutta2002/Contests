@@ -81,28 +81,7 @@ public class LC3129_Find_All_Possible_Stable_Binary_Arrays_IB {
 
         return (int) ((dp[zero][one][0] + dp[zero][one][1]) % mod);
     }
-
-    // ─── Test Harness ────────────────────────────────────────────────────
-    public static void main(String[] args) {
-        LC3129_Find_All_Possible_Stable_Binary_Arrays_IB sol = new LC3129_Find_All_Possible_Stable_Binary_Arrays_IB();
-
-        int testNum = 0;
-        int passed = 0;
-
-        // ── Official Sample Tests ────────────────────────────────────────
-        passed += runTest(sol, ++testNum, 1, 1, 2, 2);
-        passed += runTest(sol, ++testNum, 1, 2, 1, 1);
-        passed += runTest(sol, ++testNum, 3, 3, 2, 14);
-
-        // ── Edge-Case Tests ──────────────────────────────────────────────
-        passed += runTest(sol, ++testNum, 1, 1, 1, 2); // minimal array, limit=1
-        passed += runTest(sol, ++testNum, 1, 1, 200, 2); // limit larger than array length
-        passed += runTest(sol, ++testNum, 2, 1, 1, 1); // only [0,1,0] is valid
-
-        System.out.println("\n" + passed + " / " + testNum + " tests passed.");
-    }
-
-    private static int runTest(
+    static int runTest(
             LC3129_Find_All_Possible_Stable_Binary_Arrays_IB sol,
             int testNum, int zero, int one, int limit, int expected) {
 

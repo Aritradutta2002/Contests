@@ -29,19 +29,6 @@ public class LC684_Redundant_Connection {
     public int[] findRedundantConnection(int[][] edges) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
-    public static void main(String[] args) {
-        LC684_Redundant_Connection solver = new LC684_Redundant_Connection();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(new int[][]{{1, 2}, {1, 3}, {2, 3}}, new int[]{2, 3}),
-                new TestCase(new int[][]{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}}, new int[]{1, 4}),
-                new TestCase(new int[][]{{1, 2}, {2, 3}, {3, 1}}, new int[]{3, 1})
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC684_Redundant_Connection solver, TestCase[] tests) {
         int passed = 0;
         for (int i = 0; i < tests.length; i++) {
@@ -64,7 +51,6 @@ public class LC684_Redundant_Connection {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int[][] edges;
         final int[] expected;

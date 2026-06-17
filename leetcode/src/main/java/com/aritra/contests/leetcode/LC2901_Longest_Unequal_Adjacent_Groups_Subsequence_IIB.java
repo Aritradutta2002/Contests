@@ -75,19 +75,4 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIB {
         return distance;
     }
     
-    // Example usage
-    public static void main(String[] args) {
-        LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIB solution = new LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIB();
-        
-        // Example test case
-        String[] words = {"bab", "dab", "cab"};
-        String[] groups = {"a", "b", "c"};
-        List<Integer> result = solution.getWordsInLongestSubsequence(words.length, words, groups);
-        
-        System.out.println("Indices of longest subsequence: " + result);
-        System.out.print("Words in longest subsequence: ");
-        for (int index : result) {
-            System.out.print(words[index] + " ");
-        }
-    }
-} 
+    // Example usage} 

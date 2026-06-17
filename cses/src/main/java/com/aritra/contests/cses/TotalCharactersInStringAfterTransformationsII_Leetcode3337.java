@@ -3,19 +3,6 @@ package com.aritra.contests.cses;
 import java.util.*;
 
 public class TotalCharactersInStringAfterTransformationsII_Leetcode3337 {
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        int t = sc.nextInt();
-        List<Integer> nums = new ArrayList<>();
-        for (int i = 0; i < 26; i++) {
-            nums.add(sc.nextInt());
-        }
-        sc.close();
-        System.out.println(lengthAfterTransformations(s, t, nums));
-    }
-
     private static final int MOD = 1_000_000_007;
 
     public static int lengthAfterTransformations(String s, int t, List<Integer> nums) {
@@ -41,7 +28,6 @@ public class TotalCharactersInStringAfterTransformationsII_Leetcode3337 {
 
         return stringSize;
     }
-
     private static int[][] buildTransformationMatrix(List<Integer> nums) {
         int[][] matrix = new int[26][26];
         for (int i = 0; i < 26; i++) {
@@ -52,7 +38,6 @@ public class TotalCharactersInStringAfterTransformationsII_Leetcode3337 {
         }
         return matrix;
     }
-
     private static int[][] matrixPower(int[][] base, int exp) {
         int n = base.length;
         int[][] result = new int[n][n];
@@ -69,7 +54,6 @@ public class TotalCharactersInStringAfterTransformationsII_Leetcode3337 {
         }
         return result;
     }
-
     private static int[][] multiplyMatrices(int[][] A, int[][] B) {
         int n = A.length;
         int[][] res = new int[n][n];

@@ -30,7 +30,6 @@ Input: robots (array), distance (array), walls (array)
 Output: integer (maximum unique walls destroyed)
 */
 public class LC3661_Maximum_Walls_Destroyed_By_Robots {
-    
     public int maxWalls(int[] robots, int[] distance, int[] walls) {
         int n = robots.length;
         int m = walls.length;
@@ -79,7 +78,6 @@ public class LC3661_Maximum_Walls_Destroyed_By_Robots {
 
         return wallsOnRobotPositions + Math.max(dpLeft, dpRight + rightTail);
     }
-
     private int countWallsOnRobotPositions(int[] robots, int[] walls) {
         int i = 0;
         int j = 0;
@@ -99,19 +97,16 @@ public class LC3661_Maximum_Walls_Destroyed_By_Robots {
 
         return count;
     }
-
     private int countRightGapWalls(int[] robots, int[] distance, int[] walls, int i) {
         int left = robots[i] + 1;
         int right = Math.min(robots[i] + distance[i], robots[i + 1] - 1);
         return countInRange(walls, left, right);
     }
-
     private int countLeftGapWalls(int[] robots, int[] distance, int[] walls, int i) {
         int left = Math.max(robots[i] + 1, robots[i + 1] - distance[i + 1]);
         int right = robots[i + 1] - 1;
         return countInRange(walls, left, right);
     }
-
     private int countBothGapWalls(int[] robots, int[] distance, int[] walls, int i) {
         int left1 = robots[i] + 1;
         int right1 = Math.min(robots[i] + distance[i], robots[i + 1] - 1);
@@ -125,7 +120,6 @@ public class LC3661_Maximum_Walls_Destroyed_By_Robots {
 
         return count1 + count2 - overlap;
     }
-
     private int countInRange(int[] walls, int left, int right) {
         if (left > right) {
             return 0;
@@ -135,7 +129,6 @@ public class LC3661_Maximum_Walls_Destroyed_By_Robots {
         int to = upperBound(walls, right);
         return to - from;
     }
-
     private int lowerBound(int[] arr, int target) {
         int left = 0;
         int right = arr.length;
@@ -151,7 +144,6 @@ public class LC3661_Maximum_Walls_Destroyed_By_Robots {
 
         return left;
     }
-
     private int upperBound(int[] arr, int target) {
         int left = 0;
         int right = arr.length;
@@ -166,43 +158,4 @@ public class LC3661_Maximum_Walls_Destroyed_By_Robots {
         }
 
         return left;
-    }
-
-  
-    public static void main(String[] args) {
-        LC3661_Maximum_Walls_Destroyed_By_Robots solution = new LC3661_Maximum_Walls_Destroyed_By_Robots();
-        
-        // Test case 1 (from LeetCode example)
-        int[] robots1 = {4};
-        int[] distance1 = {3};
-        int[] walls1 = {1, 10};
-        try {
-            int result1 = solution.maxWalls(robots1, distance1, walls1);
-            System.out.println("Test 1: " + (result1 == 1 ? "PASS" : "FAIL, got " + result1));
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 1: SKIPPED (not implemented)");
-        }
-        
-        // Test case 2 (from LeetCode example)
-        int[] robots2 = {10, 2};
-        int[] distance2 = {5, 1};
-        int[] walls2 = {5, 2, 7};
-        try {
-            int result2 = solution.maxWalls(robots2, distance2, walls2);
-            System.out.println("Test 2: " + (result2 == 3 ? "PASS" : "FAIL, got " + result2));
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 2: SKIPPED (not implemented)");
-        }
-        
-        // Test case 3 (from LeetCode example)
-        int[] robots3 = {1, 2};
-        int[] distance3 = {100, 1};
-        int[] walls3 = {10};
-        try {
-            int result3 = solution.maxWalls(robots3, distance3, walls3);
-            System.out.println("Test 3: " + (result3 == 0 ? "PASS" : "FAIL, got " + result3));
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test 3: SKIPPED (not implemented)");
-        }
-    }
-}
+    }}

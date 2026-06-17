@@ -9,12 +9,6 @@ import java.io.*;
  *   Created On: Saturday,07.06.2025 01:03 am
  */
 public class LC2434_Using_Robot_To_Print_Lexicographically_Smallest_String {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        System.out.println(robotWithString(s));
-    }
-
     public static String robotWithString(String s) {
         return "";
     }

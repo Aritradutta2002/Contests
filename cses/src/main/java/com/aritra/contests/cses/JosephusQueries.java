@@ -13,21 +13,6 @@ import java.util.*;
 import java.math.*;
 
 public class JosephusQueries {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int T = fs.nextInt();
-        while (T-- > 0) {
-            long n = fs.nextInt();
-            long k = fs.nextInt();
-            int t = 1;
-            long res = Josephus(n, k, 0, 1, 0);
-            out.println(res);
-        }
-
-        out.close();
-    }
-
     static long Josephus(long n, long k, long first, long multi, long add) {
         long tot = n / 2 + (n & first & 1);
         if (k <= tot)
@@ -35,7 +20,6 @@ public class JosephusQueries {
         else
             return Josephus((n + 1 - first) / 2, k - tot, first ^ (n & 1), multi * 2, add + multi * first - multi);
     }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -48,7 +32,6 @@ public class JosephusQueries {
         }
         Arrays.sort(a);
     }
-
     public static long gcd(long a, long b) {
         while (b != 0) {
             long temp = b;
@@ -57,19 +40,15 @@ public class JosephusQueries {
         }
         return a;
     }
-
     public static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     public static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     public static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -78,7 +57,6 @@ public class JosephusQueries {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -90,11 +68,9 @@ public class JosephusQueries {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     public static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     public static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -103,7 +79,6 @@ public class JosephusQueries {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     public static class FastScanner {
         private int BS = 1 << 16;
         private char NC = (char) 0;
@@ -116,16 +91,14 @@ public class JosephusQueries {
         public FastScanner() {
             in = new BufferedInputStream(System.in, BS);
         }
-
-        public FastScanner(String s) {
+    public FastScanner(String s) {
             try {
                 in = new BufferedInputStream(new FileInputStream(new File(s)), BS);
             } catch (Exception e) {
                 in = new BufferedInputStream(System.in, BS);
             }
         }
-
-        private char getChar() {
+    private char getChar() {
             while (bId == size) {
                 try {
                     size = in.read(buf);
@@ -138,28 +111,24 @@ public class JosephusQueries {
             }
             return (char) buf[bId++];
         }
-
-        public int nextInt() {
+    public int nextInt() {
             return (int) nextLong();
         }
-
-        public int[] nextInts(int N) {
+    public int[] nextInts(int N) {
             int[] res = new int[N];
             for (int i = 0; i < N; i++) {
                 res[i] = (int) nextLong();
             }
             return res;
         }
-
-        public long[] nextLongs(int N) {
+    public long[] nextLongs(int N) {
             long[] res = new long[N];
             for (int i = 0; i < N; i++) {
                 res[i] = nextLong();
             }
             return res;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             cnt = 1;
             boolean neg = false;
             if (c == NC)
@@ -175,21 +144,18 @@ public class JosephusQueries {
             }
             return neg ? -res : res;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             double cur = nextLong();
             return c != '.' ? cur : cur + nextLong() / cnt;
         }
-
-        public double[] nextDoubles(int N) {
+    public double[] nextDoubles(int N) {
             double[] res = new double[N];
             for (int i = 0; i < N; i++) {
                 res[i] = nextDouble();
             }
             return res;
         }
-
-        public String next() {
+    public String next() {
             StringBuilder res = new StringBuilder();
             while (c <= 32)
                 c = getChar();
@@ -199,8 +165,7 @@ public class JosephusQueries {
             }
             return res.toString();
         }
-
-        public String nextLine() {
+    public String nextLine() {
             StringBuilder res = new StringBuilder();
             while (c <= 32)
                 c = getChar();
@@ -210,8 +175,7 @@ public class JosephusQueries {
             }
             return res.toString();
         }
-
-        public boolean hasNext() {
+    public boolean hasNext() {
             if (c > 32)
                 return true;
             while (true) {

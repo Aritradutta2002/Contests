@@ -1,15 +1,7 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 public class LC1903_Largest_Odd_Number_In_String {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-
-        System.out.println(largeOddNum(str));
-
-    }
-
-      public static String largeOddNum(String s) {
+    public static String largeOddNum(String s) {
         String str = "";
 
         for(int i = 0; i < s.length(); i++) {

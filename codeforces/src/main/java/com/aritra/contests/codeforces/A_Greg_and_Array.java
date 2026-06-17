@@ -3,13 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class A_Greg_and_Array {
-    static Scanner sc = new Scanner(System.in);
-
-    public static void main(String[] args) {
-        solve();
-    }
-
-    public static void solve() {
+    static Scanner sc = new Scanner(System.in);public static void solve() {
         int n = sc.nextInt();
         int m = sc.nextInt();
         int k = sc.nextInt();
@@ -61,7 +55,6 @@ public class A_Greg_and_Array {
 
         printArray(A);
     }
-
     public static void printArray(long[] arr) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {

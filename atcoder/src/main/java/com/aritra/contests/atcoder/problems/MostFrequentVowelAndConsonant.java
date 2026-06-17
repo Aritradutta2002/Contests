@@ -3,14 +3,6 @@ package com.aritra.contests.atcoder.problems;
 import java.util.*;
 
 public class MostFrequentVowelAndConsonant {
-
-    public static void main(String[] args) {
-        Scanner fs = new Scanner(System.in);
-        String s = fs.next();
-        MostFrequentVowelAndConsonant obj = new MostFrequentVowelAndConsonant();
-        System.out.println(obj.mostFrequentVowelAndConsonant(s));
-    }
-
     public int mostFrequentVowelAndConsonant(String s) {
         int[] vowelFrequencies = new int[26];
         int[] consonantFrequencies = new int[26];
@@ -39,7 +31,6 @@ public class MostFrequentVowelAndConsonant {
 
         return maxVowelFrequency + maxConsonantFrequency;
     }
-
     private boolean isVowel(char c) {
         return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }

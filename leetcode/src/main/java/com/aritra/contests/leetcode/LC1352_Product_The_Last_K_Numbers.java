@@ -3,10 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC1352_Product_The_Last_K_Numbers {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-    }
-
     static class ProductOfNumbers {
         // Stores cumulative product of the stream
         private ArrayList<Integer> prefixProduct = new ArrayList<>();
@@ -17,8 +13,7 @@ public class LC1352_Product_The_Last_K_Numbers {
             this.prefixProduct.add(1);
             this.size = 0;
         }
-
-        public void add(int num) {
+    public void add(int num) {
             if (num == 0) {
                 // If num is 0, reset the cumulative products since multiplication
                 // with 0 invalidates previous products
@@ -32,8 +27,7 @@ public class LC1352_Product_The_Last_K_Numbers {
                 this.size++;
             }
         }
-
-        public int getProduct(int k) {
+    public int getProduct(int k) {
             // Check if the requested product length exceeds the size of the valid
             // product list
             if (k > this.size)

@@ -3,17 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC2962_Count_Subarrays_Where_Max_Element_Appears_At_Least_K_Times_A {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
-        }
-        int k = sc.nextInt();
-        System.out.println(countSubarrays(nums, k));
-    }
-
     public static long countSubarrays(int[] nums, int k) {
         int n = nums.length;
         int max = Integer.MIN_VALUE;

@@ -55,12 +55,10 @@ public class LC3826_Minimum_Partition_Score {
 
         return prev[n] / 2L;
     }
-
     private Line buildLine(int index, long[] prefix, long[] dp) {
         long sum = prefix[index];
         return new Line(-2L * sum, dp[index] + sum * sum - sum);
     }
-
     private boolean isRedundant(Line a, Line b, Line c) {
         BigInteger left = BigInteger.valueOf(b.intercept - a.intercept)
                 .multiply(BigInteger.valueOf(a.slope - c.slope));
@@ -68,17 +66,14 @@ public class LC3826_Minimum_Partition_Score {
                 .multiply(BigInteger.valueOf(a.slope - b.slope));
         return left.compareTo(right) >= 0;
     }
-
     private Line firstLine(ArrayDeque<Line> hull) {
         return hull.peekFirst();
     }
-
     private Line secondLine(ArrayDeque<Line> hull) {
         Iterator<Line> iterator = hull.iterator();
         iterator.next();
         return iterator.next();
     }
-
     private static final class Line {
         final long slope;
         final long intercept;
@@ -92,39 +87,6 @@ public class LC3826_Minimum_Partition_Score {
             return slope * x + intercept;
         }
     }
-
-    public static void main(String[] args) {
-        /*
-         * LeetCode 3826. Minimum Partition Score
-         *
-         * Description:
-         * Partition nums into exactly k non-empty contiguous subarrays.
-         * The value of a subarray with sum = sumArr is:
-         *   sumArr * (sumArr + 1) / 2
-         * Return the minimum possible total score across all k-partitions.
-         *
-         * Constraints:
-         * 1 <= nums.length <= 1000
-         * 1 <= nums[i] <= 10^4
-         * 1 <= k <= nums.length
-         */
-
-        LC3826_Minimum_Partition_Score solver = new LC3826_Minimum_Partition_Score();
-
-        TestCase[] tests = new TestCase[]{
-                // Official examples
-                new TestCase(new int[]{5, 1, 2, 1}, 2, 25L),
-                new TestCase(new int[]{1, 2, 3, 4}, 1, 55L),
-                new TestCase(new int[]{1, 1, 1}, 3, 3L),
-
-                // Extra sanity checks
-                new TestCase(new int[]{7}, 1, 28L),
-                new TestCase(new int[]{2, 2, 2, 2}, 4, 12L)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(LC3826_Minimum_Partition_Score solver, TestCase[] tests) {
         int passed = 0;
 
@@ -160,7 +122,6 @@ public class LC3826_Minimum_Partition_Score {
 
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         int[] nums;
         int k;

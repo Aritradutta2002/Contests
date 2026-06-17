@@ -7,12 +7,6 @@ import java.util.Scanner;
  *   Created On: Saturday,14.06.2025 07:45 pm
  */
 public class LC2566_Maximum_Difference_By_Remapping_A_Digit {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        System.out.println(minMaxDifference(num));
-    }
-
     public static int minMaxDifference(int num) {
         String s = Integer.toString(num);
         String t = s;

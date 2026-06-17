@@ -9,13 +9,11 @@ import java.io.*;
  */
     
 public class LC1578_Minimum_Time_To_Make_Rope_Colorful {
-
     static class Solution {
         public static int minCost(String colors, int[] neededTime) {
             return minCostOptimized(colors, neededTime);
         }
-
-        public static int minCostOptimized(String colors, int[] neededTime) {
+    public static int minCostOptimized(String colors, int[] neededTime) {
             validateInput(colors, neededTime);
 
             int totalCost = 0;
@@ -32,8 +30,7 @@ public class LC1578_Minimum_Time_To_Make_Rope_Colorful {
 
             return totalCost;
         }
-
-        public static int minCostGroupSort(String colors, int[] neededTime) {
+    public static int minCostGroupSort(String colors, int[] neededTime) {
             validateInput(colors, neededTime);
 
             int totalCost = 0;
@@ -58,8 +55,7 @@ public class LC1578_Minimum_Time_To_Make_Rope_Colorful {
 
             return totalCost;
         }
-
-        public static int minCostNaiveSimulation(String colors, int[] neededTime) {
+    public static int minCostNaiveSimulation(String colors, int[] neededTime) {
             validateInput(colors, neededTime);
 
             StringBuilder rope = new StringBuilder(colors);
@@ -96,21 +92,9 @@ public class LC1578_Minimum_Time_To_Make_Rope_Colorful {
 
             return totalCost;
         }
-
-        private static void validateInput(String colors, int[] neededTime) {
+    private static void validateInput(String colors, int[] neededTime) {
             if (colors == null || neededTime == null || colors.length() != neededTime.length) {
                 throw new IllegalArgumentException("Invalid input");
             }
         }
-    }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String colors = sc.nextLine();
-        int[] neededTime = Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-
-        System.out.println("Naive simulation cost: " + Solution.minCostNaiveSimulation(colors, neededTime));
-        System.out.println("Grouping + sort cost: " + Solution.minCostGroupSort(colors, neededTime));
-        System.out.println("Optimized single-pass cost: " + Solution.minCostOptimized(colors, neededTime));
-        sc.close();
-    }
-}
+    }}

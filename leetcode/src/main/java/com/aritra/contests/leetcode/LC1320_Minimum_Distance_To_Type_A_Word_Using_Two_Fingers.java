@@ -51,35 +51,16 @@ public class LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers {
                 ans = Math.min(ans, dp[n][f1][f2]);
         return ans;
     }
-
     private int dist(int a, int b) {
         int[] posA = getPos(a);
         int[] posB = getPos(b);
         return Math.abs(posA[0] - posB[0]) + Math.abs(posA[1] - posB[1]);
     }
-
     private int[] getPos(int idx) {
         int row = idx / 6;
         int col = idx % 6;
         return new int[]{row, col};
     }
-
-    public static void main(String[] args) {
-        LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers solver = new LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers();
-
-        // Test Case 1
-        String word1 = "CAKE";
-        runTest(solver, 1, word1, 3);
-
-        // Test Case 2
-        String word2 = "HAPPY";
-        runTest(solver, 2, word2, 6);
-
-        // Test Case 3
-        String word3 = "NEW";
-        runTest(solver, 3, word3, 3);
-    }
-
     private static void runTest(LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers solver, int testId, String word, int expected) {
         try {
             int result = solver.minimumDistance(word);

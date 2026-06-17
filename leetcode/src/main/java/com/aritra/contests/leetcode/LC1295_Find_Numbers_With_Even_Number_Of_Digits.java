@@ -1,15 +1,6 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 public class LC1295_Find_Numbers_With_Even_Number_Of_Digits {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
-        }
-        System.out.println(findNumbers(nums));
-    }
     public static int findNumbers(int[] nums) {
         int count = 0;
         for(int i : nums){

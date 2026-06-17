@@ -7,23 +7,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class UniqueElement {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int n = fs.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = fs.nextInt();
-        }
-        Set set = new HashSet();
-        for (int i = 0; i < n; i++) {
-            set.add(arr[i]);
-        }
-        System.out.println(set.size());
-
-        out.close();
-    }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -36,19 +19,15 @@ public class UniqueElement {
         }
         Arrays.sort(a);
     }
-
     static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -57,7 +36,6 @@ public class UniqueElement {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -69,11 +47,9 @@ public class UniqueElement {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -82,7 +58,6 @@ public class UniqueElement {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     static class FastScanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer("");

@@ -4,25 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class LC2962_Count_Subarrays_Where_Max_Element_Appears_At_Least_K_Times_B {
-    public static void main(String[] args) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(in.readLine());
-        int n = Integer.parseInt(st.nextToken());
-
-        // Read nums and track the global max in one pass
-        int[] nums = new int[n];
-        st = new StringTokenizer(in.readLine());
-        int maxVal = Integer.MIN_VALUE;
-        for (int i = 0; i < n; i++) {
-            nums[i] = Integer.parseInt(st.nextToken());
-            if (nums[i] > maxVal) {
-                maxVal = nums[i];
-            }
-        }
-
-        int k = Integer.parseInt(in.readLine().trim());
-        System.out.println(countSubarrays(nums, maxVal, k));
-    }
 
     /**
      * Counts how many subarrays of nums have the global maximum (maxVal)

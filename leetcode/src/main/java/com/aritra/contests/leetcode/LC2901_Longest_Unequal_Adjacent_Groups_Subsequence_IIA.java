@@ -12,34 +12,6 @@ import java.util.*;
  * and the Hamming distance between them is exactly 1.
  */
 public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
-
-    public static void main(String[] args) {
-        FastIO sc = new FastIO();
-        int n = sc.nextInt();
-        String[] words = new String[n];
-        for (int i = 0; i < n; i++) {
-            words[i] = sc.next();
-        }
-        int m = sc.nextInt();
-        String[] groups = new String[m];
-        for (int i = 0; i < m; i++) {
-            groups[i] = sc.next();
-        }
-
-        Map<String, Integer> groupMap = new HashMap<>();
-        int[] groupIds = new int[m];
-        int groupIdCounter = 0;
-        for (int i = 0; i < m; i++) {
-            groupMap.putIfAbsent(groups[i], groupIdCounter++);
-            groupIds[i] = groupMap.get(groups[i]);
-        }
-
-        List<String> result = getWordsInLongestSubsequence(words, groupIds);
-        for (String word : result) {
-            System.out.println(word);
-        }
-    }
-
     public static List<String> getWordsInLongestSubsequence(String[] words, int[] groups) {
         int n = words.length;
 
@@ -77,7 +49,6 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
 
         return result;
     }
-
     private static int hammingDistance(String a, String b) {
         if (a.length() != b.length())
             return -1;
@@ -91,7 +62,6 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
 
         return distance;
     }
-
     static class FastIO extends PrintWriter {
         private InputStream stream;
         private byte[] buf = new byte[1 << 16];
@@ -100,18 +70,15 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
         public FastIO() {
             this(System.in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1)
                 throw new InputMismatchException();
             if (curChar >= numChars) {
@@ -126,8 +93,7 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -139,8 +105,7 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -152,8 +117,7 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c;
             do {
                 c = nextByte();
@@ -172,8 +136,7 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             do {
                 c = nextByte();
@@ -192,8 +155,7 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIA {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return Double.parseDouble(next());
         }
     }

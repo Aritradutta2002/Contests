@@ -14,14 +14,6 @@ import static java.lang.System.out;
  *   Created On: Thursday,19.06.2025 12:27 am
  */
 public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
-    public static void main(String[] args) throws IOException {
-        FastIO sc = new FastIO();
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        int[] nums = sc.readIntArray(n);
-        int[][] result = divideArray(nums, k);
-    }
-
     public static int[][] divideArray(int[] nums, int k) {
         int n = nums.length;
         if (k == 1) {
@@ -48,7 +40,6 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
         }
         return result;
     }
-
     static class FastIO extends PrintWriter {
         private InputStream stream;
         private byte[] buf = new byte[1 << 16];
@@ -57,18 +48,15 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
         public FastIO() {
             this(in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1) throw new InputMismatchException();
             if (curChar >= numChars) {
                 curChar = 0;
@@ -81,8 +69,7 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -94,8 +81,7 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -107,8 +93,7 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c;
             do {
                 c = nextByte();
@@ -126,8 +111,7 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             do {
                 c = nextByte();
@@ -145,12 +129,10 @@ public class LC2966_Divide_Array_Into_Arrays_With_Max_Difference {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return parseDouble(next());
         }
-
-        public int[] readIntArray(int n) {
+    public int[] readIntArray(int n) {
             int[] arr = new int[n];
             for (int i = 0; i < n; i++) {
                 arr[i] = nextInt();

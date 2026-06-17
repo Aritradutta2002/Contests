@@ -50,23 +50,6 @@ public class LC994_Rotting_Oranges {
         }
         return fresh == 0 ? time : -1;
     }
-
-    public static void main(String[] args) {
-        LC994_Rotting_Oranges solver = new LC994_Rotting_Oranges();
-
-        // Test Case 1
-        int[][] grid1 = {{2,1,1},{1,1,0},{0,1,1}};
-        runTest(solver, 1, grid1, 4);
-
-        // Test Case 2
-        int[][] grid2 = {{2,1,1},{0,1,1},{1,0,1}};
-        runTest(solver, 2, grid2, -1);
-
-        // Test Case 3
-        int[][] grid3 = {{0,2}};
-        runTest(solver, 3, grid3, 0);
-    }
-
     private static void runTest(LC994_Rotting_Oranges solver, int testId, int[][] grid, int expected) {
         int result = solver.orangesRotting(grid);
         if (result == expected) {

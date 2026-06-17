@@ -32,7 +32,6 @@ public class LC1559_Detect_Cycles_in_2D_Grid {
         }
         return false;
     }
-
     public boolean bfs(int rr, int cc, int px, int py, char[][] grid, boolean[][] visited) {
         Queue<int[]> child = new ArrayDeque<>();
         Queue<int[]> parent = new ArrayDeque<>();
@@ -68,34 +67,6 @@ public class LC1559_Detect_Cycles_in_2D_Grid {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        LC1559_Detect_Cycles_in_2D_Grid solution = new LC1559_Detect_Cycles_in_2D_Grid();
-
-        char[][] grid1 = {
-                { 'a', 'a', 'a', 'a' },
-                { 'a', 'b', 'b', 'a' },
-                { 'a', 'b', 'b', 'a' },
-                { 'a', 'a', 'a', 'a' }
-        };
-        testCase(solution, grid1, true, "Example 1");
-
-        char[][] grid2 = {
-                { 'c', 'c', 'c', 'a' },
-                { 'c', 'd', 'c', 'c' },
-                { 'c', 'c', 'e', 'c' },
-                { 'f', 'c', 'c', 'c' }
-        };
-        testCase(solution, grid2, true, "Example 2");
-
-        char[][] grid3 = {
-                { 'a', 'b', 'b' },
-                { 'b', 'z', 'b' },
-                { 'b', 'b', 'a' }
-        };
-        testCase(solution, grid3, false, "Example 3");
-    }
-
     private static void testCase(LC1559_Detect_Cycles_in_2D_Grid solution, char[][] grid, boolean expected,
             String testName) {
         try {

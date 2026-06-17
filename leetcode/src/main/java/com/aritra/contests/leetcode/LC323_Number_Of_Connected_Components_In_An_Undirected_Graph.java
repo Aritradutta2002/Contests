@@ -26,20 +26,6 @@ public class LC323_Number_Of_Connected_Components_In_An_Undirected_Graph {
     public int countComponents(int n, int[][] edges) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
-
-    public static void main(String[] args) {
-        LC323_Number_Of_Connected_Components_In_An_Undirected_Graph solver =
-                new LC323_Number_Of_Connected_Components_In_An_Undirected_Graph();
-
-        TestCase[] tests = new TestCase[]{
-                new TestCase(5, new int[][]{{0, 1}, {1, 2}, {3, 4}}, 2),
-                new TestCase(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {3, 4}}, 1),
-                new TestCase(5, new int[][]{}, 5)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC323_Number_Of_Connected_Components_In_An_Undirected_Graph solver,
             TestCase[] tests) {
@@ -63,7 +49,6 @@ public class LC323_Number_Of_Connected_Components_In_An_Undirected_Graph {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final int n;
         final int[][] edges;

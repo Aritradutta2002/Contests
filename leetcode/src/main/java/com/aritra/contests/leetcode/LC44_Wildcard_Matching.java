@@ -16,39 +16,7 @@ import java.util.*;
  * - p contains only lowercase English letters, '?' or '*'.
  */
 public class LC44_Wildcard_Matching {
-
     public boolean isMatch(String s, String p) {
         throw new UnsupportedOperationException("Not implemented yet.");
-    }
-
-
-    
-    public static void main(String[] args) {
-        LC44_Wildcard_Matching solver = new LC44_Wildcard_Matching();
-
-        String[][] testCases = {
-            {"aa", "a"},           // false
-            {"aa", "*"},           // true
-            {"cb", "?a"},          // false
-            {"adceb", "*a*b"},     // true
-            {"acdcb", "a*c?b"},    // false
-            {"", "*****"},         // true
-            {"mississippi", "m??*iss*?i*"}, // true
-            {"abefcdgiescdfimde", "ab*cd?i*de"}, // true
-        };
-        boolean[] expected = {false, true, false, true, false, true, true, true};
-
-        for (int i = 0; i < testCases.length; i++) {
-            try {
-                boolean result = solver.isMatch(testCases[i][0], testCases[i][1]);
-                if (result == expected[i]) {
-                    System.out.println("Test " + (i + 1) + ": PASS");
-                } else {
-                    System.out.println("Test " + (i + 1) + ": FAIL (expected " + expected[i] + ", got " + result + ")");
-                }
-            } catch (UnsupportedOperationException e) {
-                System.out.println("Test " + (i + 1) + ": SKIPPED (Not implemented)");
-            }
-        }
     }
 }

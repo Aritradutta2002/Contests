@@ -18,11 +18,9 @@ import java.util.*;
  * Print "YES" if m is the next prime after n, otherwise print "NO".
  */
 public class A_Panoramixs_Prediction {
-
     public static String panoramixPrediction(int n, int m) {
         return sieve(n, m) ? "YES" : "NO";
     }
-
     static boolean sieve(int n, int m) {
         boolean[] isPrime = new boolean[m + 1];
         Arrays.fill(isPrime, true);
@@ -43,22 +41,6 @@ public class A_Panoramixs_Prediction {
         if (list.size() < 2) return false;
         return (list.get(list.size() - 1) == m && list.get(list.size() - 2) == n);
     }
-
-    public static void main(String[] args) {
-        List<TestCase> tests = new ArrayList<>();
-
-        // Official sample-style tests.
-        tests.add(new TestCase(3, 5, "YES", "Sample 1"));
-        tests.add(new TestCase(7, 9, "NO", "Sample 2"));
-
-        // Extra edge-case tests only.
-        tests.add(new TestCase(2, 3, "YES", "Edge: minimum prime boundary"));
-        tests.add(new TestCase(47, 49, "NO", "Edge: near upper bound, composite m"));
-        tests.add(new TestCase(47, 53, "YES", "Edge: near upper bound, next prime"));
-
-        runTests(tests);
-    }
-
     private static void runTests(List<TestCase> tests) {
         int passed = 0;
         int failed = 0;
@@ -90,7 +72,6 @@ public class A_Panoramixs_Prediction {
         System.out.println();
         System.out.println("Summary: PASS=" + passed + ", FAIL=" + failed + ", SKIPPED=" + skipped);
     }
-
     private static class TestCase {
         final int n;
         final int m;

@@ -5,19 +5,6 @@ import java.util.*;
 @SuppressWarnings("unused")
 
 public class LC3335_Total_Characters_In_String_After_Transformations_I {
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-        int k = sc.nextInt();
-
-        System.out.println("Result for " + str + " is : " + lengthAfterTransformations(str, k));
-        // System.out.println("Result for abcyy is : " +
-        // lengthAfterTransformations("abcyy", 2)); // output -> 7
-        // System.out.println("Result for azbk is : " +
-        // lengthAfterTransformations("azbk", 1)); // output -> 5
-    }
-
     public static int lengthAfterTransformations(String s, int t) {
 
         final int MOD = 1_000_000_007;

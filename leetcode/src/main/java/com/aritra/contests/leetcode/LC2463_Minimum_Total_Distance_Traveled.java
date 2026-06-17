@@ -59,18 +59,6 @@ public class LC2463_Minimum_Total_Distance_Traveled {
 
         return dp[m][n];
     }
-
-    public static void main(String[] args) {
-        LC2463_Minimum_Total_Distance_Traveled solver = new LC2463_Minimum_Total_Distance_Traveled();
-
-        TestCase[] tests = new TestCase[] {
-                new TestCase(Arrays.asList(0, 4, 6), new int[][] { { 2, 2 }, { 6, 2 } }, 4),
-                new TestCase(Arrays.asList(1, -1), new int[][] { { -2, 1 }, { 2, 1 } }, 2)
-        };
-
-        runAllTests(solver, tests);
-    }
-
     private static void runAllTests(
             LC2463_Minimum_Total_Distance_Traveled solver,
             TestCase[] tests) {
@@ -96,7 +84,6 @@ public class LC2463_Minimum_Total_Distance_Traveled {
         }
         System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
     }
-
     private static class TestCase {
         final List<Integer> robot;
         final int[][] factory;

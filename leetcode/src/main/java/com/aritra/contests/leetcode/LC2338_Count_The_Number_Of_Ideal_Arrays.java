@@ -2,12 +2,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 @SuppressWarnings("unused")
 public class LC2338_Count_The_Number_Of_Ideal_Arrays {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int maxValue = sc.nextInt();
-        System.out.println(idealArrays(n, maxValue));
-    }
     public static int idealArrays(int n, int maxValue) {
         final int MOD = 1_000_000_007;
         int maxLen = 14; // max chain length is log2(maxValue)
@@ -43,11 +37,9 @@ public class LC2338_Count_The_Number_Of_Ideal_Arrays {
         }
         return (int) ans;
     }
-
     private static long modInverse(long a, int mod) {
         return modPow(a, mod - 2, mod);
     }
-
     private static long modPow(long base, long exp, int mod) {
         long result = 1;
         base %= mod;

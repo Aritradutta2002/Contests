@@ -38,26 +38,6 @@ public class LC2075_Decode_The_Slanted_Ciphertext {
         }
         return result.toString();
     }
-
-    public static void main(String[] args) {
-        LC2075_Decode_The_Slanted_Ciphertext solver = new LC2075_Decode_The_Slanted_Ciphertext();
-
-        // Test Case 1
-        String encoded1 = "ch   ie   pr";
-        int rows1 = 3;
-        runTest(solver, 1, encoded1, rows1, "cipher");
-
-        // Test Case 2
-        String encoded2 = "iveo    eed   l te   olc";
-        int rows2 = 4;
-        runTest(solver, 2, encoded2, rows2, "i love leetcode");
-
-        // Test Case 3
-        String encoded3 = "coding";
-        int rows3 = 1;
-        runTest(solver, 3, encoded3, rows3, "coding");
-    }
-
     private static void runTest(LC2075_Decode_The_Slanted_Ciphertext solver, int testId, String encodedString, int rows, String expected) {
         try {
             String result = solver.decodeCiphertext(encodedString, rows);

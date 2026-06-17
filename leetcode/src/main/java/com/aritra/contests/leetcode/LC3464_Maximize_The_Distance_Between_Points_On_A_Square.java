@@ -26,7 +26,6 @@ import java.util.Arrays;
  * Complexity: O(n log n + n*k log(side))
  */
 public class LC3464_Maximize_The_Distance_Between_Points_On_A_Square {
-
     public int maxDistance(int side, int[][] points, int k) {
         int n = points.length;
         long[] pos = new long[n];
@@ -58,14 +57,12 @@ public class LC3464_Maximize_The_Distance_Between_Points_On_A_Square {
         }
         return (int) low;
     }
-
     private long mapToPerimeterPosition(int side, int x, int y) {
         if (x == 0) return y;                           // left edge
         if (y == side) return (long) side + x;          // top edge
         if (x == side) return 3L * side - y;            // right edge
         return 4L * side - x;                           // bottom edge
     }
-
     private boolean canSelect(long[] d, int n, int k, long dist, long perimeter) {
         // next[i]: first index j such that d[j] - d[i] >= dist
         int[] next = new int[2 * n];
@@ -95,15 +92,6 @@ public class LC3464_Maximize_The_Distance_Between_Points_On_A_Square {
     }
 
     // Simple tests
-    public static void main(String[] args) {
-        LC3464_Maximize_The_Distance_Between_Points_On_A_Square s = new LC3464_Maximize_The_Distance_Between_Points_On_A_Square();
-
-        run(s, 1, 2, new int[][]{{0,2},{2,0},{2,2},{0,0}}, 4, 2);
-        run(s, 2, 2, new int[][]{{0,0},{1,2},{2,0},{2,2},{2,1}}, 4, 1);
-        run(s, 3, 2, new int[][]{{0,0},{0,1},{0,2},{1,2},{2,0},{2,2},{2,1}}, 5, 1);
-        run(s, 4, 4, new int[][]{{0,0},{0,4},{4,4},{4,0}}, 4, 4);
-    }
-
     private static void run(LC3464_Maximize_The_Distance_Between_Points_On_A_Square s,
                              int id, int side, int[][] points, int k, int expected) {
         int ans = s.maxDistance(side, points, k);

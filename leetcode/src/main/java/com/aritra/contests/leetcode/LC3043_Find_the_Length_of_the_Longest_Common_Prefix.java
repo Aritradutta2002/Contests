@@ -17,7 +17,6 @@ import java.util.*;
  * - 1 <= arr1[i], arr2[i] <= 10^8
  */
 public class LC3043_Find_the_Length_of_the_Longest_Common_Prefix {
-
     public int longestCommonPrefix(int[] arr1, int[] arr2) {
         Set<String> set = new HashSet<>();
         for (int num : arr1) {
@@ -39,26 +38,6 @@ public class LC3043_Find_the_Length_of_the_Longest_Common_Prefix {
         }
         return maxLen;
     }
-
-    public static void main(String[] args) {
-        LC3043_Find_the_Length_of_the_Longest_Common_Prefix solver = new LC3043_Find_the_Length_of_the_Longest_Common_Prefix();
-
-        // Test Case 1
-        int[] arr1_1 = { 1, 10, 100 };
-        int[] arr2_1 = { 1000 };
-        runTest(solver, 1, arr1_1, arr2_1, 3);
-
-        // Test Case 2
-        int[] arr1_2 = { 1, 2, 3 };
-        int[] arr2_2 = { 4, 4, 4 };
-        runTest(solver, 2, arr1_2, arr2_2, 0);
-
-        // Test Case 3
-        int[] arr1_3 = { 12, 123 };
-        int[] arr2_3 = { 124, 12345 };
-        runTest(solver, 3, arr1_3, arr2_3, 3);
-    }
-
     private static void runTest(LC3043_Find_the_Length_of_the_Longest_Common_Prefix solver, int testId, int[] arr1,
             int[] arr2, int expected) {
         try {

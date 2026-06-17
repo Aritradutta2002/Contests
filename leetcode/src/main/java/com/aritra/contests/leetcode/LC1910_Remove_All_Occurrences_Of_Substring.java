@@ -3,13 +3,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 
 public class LC1910_Remove_All_Occurrences_Of_Substring {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-        String part = sc.nextLine();
-        System.out.println(removeOccurrences(str, part));
-    }
-
     static public String removeOccurrences(String s, String part) {
 
         StringBuilder ans = new StringBuilder();

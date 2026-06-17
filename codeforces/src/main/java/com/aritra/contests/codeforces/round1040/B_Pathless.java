@@ -10,16 +10,6 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class B_Pathless {
-
-    public static void main(String[] args) {
-        FastIO sc = new FastIO();
-        int t = sc.nextInt();
-        while (t-- > 0) {
-            solve(sc);
-        }
-        sc.close();
-    }
-
     public static void solve(FastIO sc) {
         int n = sc.nextInt();
         int s = sc.nextInt();
@@ -40,8 +30,7 @@ public class B_Pathless {
 
         long k = s - s_total;
 
-
-        if (k > 1 && k % 2 != 0) {
+if (k > 1 && k % 2 != 0) {
 
             printBobWinArrangement(sc, c0, c1, c2);
         } else {
@@ -49,16 +38,12 @@ public class B_Pathless {
             sc.println(-1);
         }
     }
-
-
     private static void printBobWinArrangement(FastIO sc, int c0, int c1, int c2) {
         for (int i = 0; i < c0; i++) sc.print("0 ");
         for (int i = 0; i < c2; i++) sc.print("2 ");
         for (int i = 0; i < c1; i++) sc.print("1 ");
         sc.println();
     }
-
-
     static class FastIO extends PrintWriter {
         private final InputStream stream;
         private final byte[] buf = new byte[1 << 16];
@@ -67,18 +52,15 @@ public class B_Pathless {
         public FastIO() {
             this(System.in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1) throw new InputMismatchException();
             if (curChar >= numChars) {
                 curChar = 0;
@@ -91,8 +73,7 @@ public class B_Pathless {
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -104,8 +85,7 @@ public class B_Pathless {
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -117,8 +97,7 @@ public class B_Pathless {
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c;
             do {
                 c = nextByte();
@@ -136,8 +115,7 @@ public class B_Pathless {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             do {
                 c = nextByte();
@@ -155,12 +133,10 @@ public class B_Pathless {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return Double.parseDouble(next());
         }
-
-        public int[] readIntArray(int n) {
+    public int[] readIntArray(int n) {
             int[] arr = new int[n];
             for (int i = 0; i < n; i++) {
                 arr[i] = nextInt();
@@ -169,5 +145,4 @@ public class B_Pathless {
         }
     }
 }
-
 

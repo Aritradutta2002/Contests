@@ -12,19 +12,10 @@ import static java.lang.System.in;
  *   Created On: Thursday,12.06.2025 11:59 pm
  */
 public class LC386_Lexicographical_Numbers_A {
-    public static void main(String[] args) {
-        FastIO sc = new FastIO();
-        int n = sc.nextInt();
-        List<Integer> result = lexicalOrder(n);
-        System.out.println(result);
-    }
-
     public static List<Integer> lexicalOrder(int n) {
 
-
-        return new ArrayList<>();
+return new ArrayList<>();
     }
-
     static class FastIO extends PrintWriter {
         private InputStream stream;
         private byte[] buf = new byte[1 << 16];
@@ -33,18 +24,15 @@ public class LC386_Lexicographical_Numbers_A {
         public FastIO() {
             this(in, System.out);
         }
-
-        public FastIO(InputStream i, OutputStream o) {
+    public FastIO(InputStream i, OutputStream o) {
             super(o);
             stream = i;
         }
-
-        public FastIO(String i, String o) throws IOException {
+    public FastIO(String i, String o) throws IOException {
             super(new FileWriter(o));
             stream = new FileInputStream(i);
         }
-
-        private int nextByte() {
+    private int nextByte() {
             if (numChars == -1) throw new InputMismatchException();
             if (curChar >= numChars) {
                 curChar = 0;
@@ -57,8 +45,7 @@ public class LC386_Lexicographical_Numbers_A {
             }
             return buf[curChar++];
         }
-
-        public String nextLine() {
+    public String nextLine() {
             int c;
             do {
                 c = nextByte();
@@ -70,8 +57,7 @@ public class LC386_Lexicographical_Numbers_A {
             } while (c > '\n');
             return res.toString();
         }
-
-        public String next() {
+    public String next() {
             int c;
             do {
                 c = nextByte();
@@ -83,8 +69,7 @@ public class LC386_Lexicographical_Numbers_A {
             } while (c > ' ');
             return res.toString();
         }
-
-        public int nextInt() {
+    public int nextInt() {
             int c;
             do {
                 c = nextByte();
@@ -102,8 +87,7 @@ public class LC386_Lexicographical_Numbers_A {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public long nextLong() {
+    public long nextLong() {
             int c;
             do {
                 c = nextByte();
@@ -121,12 +105,10 @@ public class LC386_Lexicographical_Numbers_A {
             } while (c > ' ');
             return res * sgn;
         }
-
-        public double nextDouble() {
+    public double nextDouble() {
             return parseDouble(next());
         }
-
-        public int[] readIntArray(int n) {
+    public int[] readIntArray(int n) {
             int[] arr = new int[n];
             for (int i = 0; i < n; i++) {
                 arr[i] = nextInt();

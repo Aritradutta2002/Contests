@@ -1,15 +1,6 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 public class LC1790_Check_If_One_String_Swap_Can_Make_Strings_Equal {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        String s = sc.nextLine();
-        String t = sc.nextLine();
-
-        System.out.println(areAlmostEqual(s, t));
-    }
-
     static public boolean areAlmostEqual(String s1, String s2) {
        boolean isEqual = false;
 
@@ -27,7 +18,6 @@ public class LC1790_Check_If_One_String_Swap_Can_Make_Strings_Equal {
         }
         return isEqual;
     }
-
     static String swap(String s, int i, int j) {
         char[] charArray = s.toCharArray();
         char temp = charArray[i];

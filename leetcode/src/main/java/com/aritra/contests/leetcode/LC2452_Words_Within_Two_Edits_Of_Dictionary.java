@@ -37,7 +37,6 @@ public class LC2452_Words_Within_Two_Edits_Of_Dictionary {
         }
         return ans;
     }
-
     private boolean isWithinTwoEdits(String a, String b) {
         int diffs = 0;
         for (int i = 0; i < a.length(); i++) {
@@ -49,29 +48,6 @@ public class LC2452_Words_Within_Two_Edits_Of_Dictionary {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        LC2452_Words_Within_Two_Edits_Of_Dictionary solution = new LC2452_Words_Within_Two_Edits_Of_Dictionary();
-
-        // Test Case 1
-        String[] queries1 = { "word", "note", "ants", "wood" };
-        String[] dictionary1 = { "wood", "joke", "moat" };
-        List<String> expected1 = Arrays.asList("word", "note", "wood");
-        testCase(solution, queries1, dictionary1, expected1, "Test Case 1");
-
-        // Test Case 2
-        String[] queries2 = { "yes" };
-        String[] dictionary2 = { "not" };
-        List<String> expected2 = Collections.emptyList();
-        testCase(solution, queries2, dictionary2, expected2, "Test Case 2");
-
-        // LeetCode failing case
-        String[] queries3 = { "tsl", "sri", "yyy", "rbc", "dda", "qus", "hyb", "ilu", "ahd" };
-        String[] dictionary3 = { "uyj", "bug", "dba", "xbe", "blu", "wuo", "tsf", "tga" };
-        List<String> expected3 = Arrays.asList("tsl", "yyy", "rbc", "dda", "qus", "hyb", "ilu");
-        testCase(solution, queries3, dictionary3, expected3, "Test Case 3");
-    }
-
     private static void testCase(LC2452_Words_Within_Two_Edits_Of_Dictionary solution,
             String[] queries, String[] dictionary, List<String> expected, String testName) {
         List<String> result = solution.twoEditWords(queries, dictionary);

@@ -3,29 +3,7 @@ package com.aritra.contests.cses;
 import java.util.*;
 import java.io.*;
 
-public class JosephusOptimized {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        
-        Deque<Integer> circle = new ArrayDeque<>();
-        for (int i = 1; i <= n; i++) {
-            circle.addLast(i);
-        }
-        
-        StringBuilder result = new StringBuilder();
-        
-        while (circle.size() > 1) {
-            circle.addLast(circle.removeFirst());
-            result.append(circle.removeFirst()).append(" ");
-        }
-        
-        result.append(circle.getFirst());
-        
-        System.out.println(result.toString());
-    }
-}
-
+public class JosephusOptimized {}
 
 /*
 	The Big Idea: Simulating a Circle
@@ -128,5 +106,4 @@ public class JosephusOptimized {
 	Final Output: 2 4 6 1 5 3 7
 	
 */
-
 

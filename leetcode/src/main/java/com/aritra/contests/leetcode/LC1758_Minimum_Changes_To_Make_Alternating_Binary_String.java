@@ -57,28 +57,7 @@ public class LC1758_Minimum_Changes_To_Make_Alternating_Binary_String {
 
         return Math.min(cost0, n - cost0);
     }
-
-    // ─── Test Harness ────────────────────────────────────────────────────
-    public static void main(String[] args) {
-        LC1758_Minimum_Changes_To_Make_Alternating_Binary_String sol = new LC1758_Minimum_Changes_To_Make_Alternating_Binary_String();
-
-        int testNum = 0;
-        int passed = 0;
-
-        // ── Official Sample Tests ────────────────────────────────────────
-        passed += runTest(sol, ++testNum, "0100", 1);
-        passed += runTest(sol, ++testNum, "10", 0);
-        passed += runTest(sol, ++testNum, "1111", 2);
-
-        // ── Extra Sanity Tests ───────────────────────────────────────────
-        passed += runTest(sol, ++testNum, "0", 0); // single char, already alternating
-        passed += runTest(sol, ++testNum, "01010101", 0); // already alternating (starts with 0)
-        passed += runTest(sol, ++testNum, "0000", 2); // needs 2 changes -> "0101"
-
-        System.out.println("\n" + passed + " / " + testNum + " tests passed.");
-    }
-
-    private static int runTest(
+    static int runTest(
             LC1758_Minimum_Changes_To_Make_Alternating_Binary_String sol,
             int testNum, String input, int expected) {
 

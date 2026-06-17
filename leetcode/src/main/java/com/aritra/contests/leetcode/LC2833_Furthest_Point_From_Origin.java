@@ -15,7 +15,6 @@ import java.util.*;
  * moves[i] is one of 'L', 'R', '_'
  */
 public class LC2833_Furthest_Point_From_Origin {
-
     public int furthestDistanceFromOrigin(String moves) {
         int l = 0;
         int r = 0;
@@ -26,25 +25,4 @@ public class LC2833_Furthest_Point_From_Origin {
             if(c == '_') t++;
         }
         return Math.abs(l-r)+t;
-    }
-
-    public static void main(String[] args) {
-        LC2833_Furthest_Point_From_Origin solver = new LC2833_Furthest_Point_From_Origin();
-
-        List<String> tests = Arrays.asList(
-                "L_RL__R",
-                "_R__LL_",
-                "_______",
-                "LRLR");
-
-        int[] expected = { 3, 5, 7, 0 };
-
-        for (int i = 0; i < tests.size(); i++) {
-            String moves = tests.get(i);
-            int actual = solver.furthestDistanceFromOrigin(moves);
-            System.out.println(
-                    "Test " + (i + 1) + " | moves = " + moves + " | expected = " + expected[i] + " | actual = "
-                            + actual);
-        }
-    }
-}
+    }}

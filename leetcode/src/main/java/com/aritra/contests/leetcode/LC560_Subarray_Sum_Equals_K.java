@@ -27,33 +27,4 @@ public class LC560_Subarray_Sum_Equals_K {
         
         return count;
     }
-
-    public static void main(String[] args) {
-        LC560_Subarray_Sum_Equals_K solution = new LC560_Subarray_Sum_Equals_K();
-
-        // Test cases
-        int[][] testNums = {
-            {1, 1, 1},
-            {1, 2, 3},
-            {1, -1, 0}
-        };
-        int[] testK = {2, 3, 0};
-        int[] expected = {2, 2, 3};
-
-        for (int i = 0; i < testNums.length; i++) {
-            System.out.print("Test Case " + (i + 1) + ": ");
-            try {
-                int result = solution.subarraySum(testNums[i], testK[i]);
-                if (result == expected[i]) {
-                    System.out.println("PASS");
-                } else {
-                    System.out.println("FAIL (Expected " + expected[i] + ", Got " + result + ")");
-                }
-            } catch (UnsupportedOperationException e) {
-                System.out.println("SKIPPED - " + e.getMessage());
-            } catch (Exception e) {
-                System.out.println("FAIL - Exception: " + e.getMessage());
-            }
-        }
-    }
 }

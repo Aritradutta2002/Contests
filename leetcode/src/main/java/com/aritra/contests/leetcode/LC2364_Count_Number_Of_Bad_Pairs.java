@@ -6,17 +6,6 @@ import java.util.*;
     ii) (j  - i) != (nums[j] - nums[i])
  */
 public class LC2364_Count_Number_Of_Bad_Pairs {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
-        }
-        System.out.println(countBadPairs(nums));
-        sc.close();
-    }
-
     public static long countBadPairs(int[] nums) {
         int n = nums.length;
         long totalPairs = (long) n * (n - 1) / 2;

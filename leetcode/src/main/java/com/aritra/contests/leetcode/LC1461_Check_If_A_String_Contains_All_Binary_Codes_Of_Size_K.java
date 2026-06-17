@@ -1,14 +1,6 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 public class LC1461_Check_If_A_String_Contains_All_Binary_Codes_Of_Size_K {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        int k = sc.nextInt();
-
-        System.out.println(hasAllCodes(s, k));
-    }
-
     public static boolean hasAllCodes(String s, int k) {
         if (k > s.length()) {
             return false;

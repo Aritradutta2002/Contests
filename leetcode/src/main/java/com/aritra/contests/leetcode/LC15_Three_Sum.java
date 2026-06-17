@@ -1,20 +1,7 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
-public class LC15_Three_Sum {
-    public static void main(String[] args) {
-        Scanner fs = new Scanner(System.in);
-        int n = fs.nextInt();
-        int[] test1 = { -1, 0, 1, 2, -1, -4 };
-        int[] test2 = { 0, 1, 1 };
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = fs.nextInt();
-        }
-        System.out.println(threeSum(test1));
-        System.out.println(threeSum(test2));
-        System.out.println(threeSum(nums));
-    }
 
+public class LC15_Three_Sum {
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
 
@@ -32,10 +19,8 @@ public class LC15_Three_Sum {
                 if (sum == 0) {
                     result.add(Arrays.asList(nums[i], nums[left], nums[right]));
 
-                    // Skip duplicates for the second number
                     while (left < right && nums[left] == nums[left + 1])
                         left++;
-                    // Skip duplicates for the third number
                     while (left < right && nums[right] == nums[right - 1])
                         right--;
 
@@ -51,5 +36,4 @@ public class LC15_Three_Sum {
         return result;
     }
 }
-
 

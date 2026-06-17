@@ -2,18 +2,6 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 @SuppressWarnings("unused")
 public class LC2563_Count_The_Number_Of_Fair_Pairs {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++){
-            nums[i] = sc.nextInt();
-        }
-        int lower = sc.nextInt();
-        int upper = sc.nextInt();
-        System.out.println(countFairPairs(nums, lower, upper));
-    }
-
     public static long countFairPairs(int[] nums, int lower, int upper) {
         int n = nums.length;
         Arrays.sort(nums);
@@ -27,7 +15,6 @@ public class LC2563_Count_The_Number_Of_Fair_Pairs {
 
         return (long) ans;
     }
-    
     static int lower_bound(int arr[], int start, int N, int X){
         int mid, low = start, high = N;
         while (low < high) {
@@ -43,7 +30,6 @@ public class LC2563_Count_The_Number_Of_Fair_Pairs {
         }
         return low;
     }
-
     static int upper_bound(int arr[], int start, int N, int X){
         int mid;
         int low = start, high = N;

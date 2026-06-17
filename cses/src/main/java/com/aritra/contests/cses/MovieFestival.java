@@ -7,28 +7,6 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class MovieFestival {
-    public static void main(String[] args) {
-        FastScanner fs = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        int n = fs.nextInt();
-        List<int[]> list = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            int start = fs.nextInt();
-            int end = fs.nextInt();
-            list.add(new int[] { end, start });
-        }
-        Collections.sort(list, Comparator.comparingInt(a -> a[0]));
-        int count = 0;
-        int currEnd = 0;
-        for (int[] movie : list) {
-            if (movie[1] >= currEnd) {
-                currEnd = movie[0];
-                count++;
-            }
-        }
-        System.out.println(count);
-    }
-
     static final Random random = new Random();
     static final int mod = 1_000_000_007;
 
@@ -41,19 +19,15 @@ public class MovieFestival {
         }
         Arrays.sort(a);
     }
-
     static long add(long a, long b) {
         return (a + b) % mod;
     }
-
     static long sub(long a, long b) {
         return ((a - b) % mod + mod) % mod;
     }
-
     static long mul(long a, long b) {
         return (a * b) % mod;
     }
-
     static long exp(long base, long exp) {
         if (exp == 0)
             return 1;
@@ -62,7 +36,6 @@ public class MovieFestival {
             return mul(half, half);
         return mul(half, mul(half, base));
     }
-
     static long[] factorials = new long[2_000_001];
     static long[] invFactorials = new long[2_000_001];
 
@@ -74,11 +47,9 @@ public class MovieFestival {
         for (int i = invFactorials.length - 2; i >= 0; i--)
             invFactorials[i] = mul(invFactorials[i + 1], i + 1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n - k]));
     }
-
     static void sort(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         for (int i : a)
@@ -87,7 +58,6 @@ public class MovieFestival {
         for (int i = 0; i < a.length; i++)
             a[i] = l.get(i);
     }
-
     static class FastScanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer("");

@@ -16,7 +16,6 @@ import java.util.*;
  */
 
 public class LC2615_Sum_Of_Distances {
-
     public long[] distance(int[] nums) {
         int n = nums.length;
         long[] ans = new long[n];
@@ -51,31 +50,4 @@ public class LC2615_Sum_Of_Distances {
         }
 
         return ans;
-    }
-
-    public static void main(String[] args) {
-        LC2615_Sum_Of_Distances solver = new LC2615_Sum_Of_Distances();
-        // Test case 1
-        int[] nums1 = { 1, 3, 1, 1, 2 };
-        long[] expected1 = { 5, 0, 3, 4, 0 };
-        long[] result1 = solver.distance(nums1);
-        System.out.println("Test 1: " + Arrays.toString(result1));
-        assert Arrays.equals(result1, expected1) : "Test 1 failed";
-
-        // Test case 2
-        int[] nums2 = { 0, 5, 3 };
-        long[] expected2 = { 0, 0, 0 };
-        long[] result2 = solver.distance(nums2);
-        System.out.println("Test 2: " + Arrays.toString(result2));
-        assert Arrays.equals(result2, expected2) : "Test 2 failed";
-
-        // Test case 3
-        int[] nums3 = { 1, 1, 1, 1 };
-        long[] expected3 = { 6, 4, 4, 6 };
-        long[] result3 = solver.distance(nums3);
-        System.out.println("Test 3: " + Arrays.toString(result3));
-        assert Arrays.equals(result3, expected3) : "Test 3 failed";
-
-        System.out.println("All tests passed.");
-    }
-}
+    }}

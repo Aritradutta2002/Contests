@@ -10,7 +10,6 @@ public class LCMisc_Graph_Traversal {
             }
         }
     }
-
     public static void solve() {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -29,10 +28,5 @@ public class LCMisc_Graph_Traversal {
         boolean[] vis = new boolean[n];
         dfs(root, adj, -1, dfsTraversal, vis);
         sc.close();
-    }
-
-    public static void main(String[] args) {
-        solve();
-    }
-}
+    }}
 

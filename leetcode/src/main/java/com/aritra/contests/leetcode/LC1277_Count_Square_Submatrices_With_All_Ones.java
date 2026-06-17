@@ -1,16 +1,6 @@
 package com.aritra.contests.leetcode;
 
 class LC1277_Count_Square_Submatrices_With_All_Ones {
-    public static void main(String[] args) {
-        // Sample test case
-        int[][] matrix = {
-            {0, 1, 1, 1},
-            {1, 1, 1, 1},
-            {0, 1, 1, 1}
-        };
-        int result = countSquares(matrix);
-        System.out.println("Count of square submatrices with all ones: " + result); // Expected: 15
-    }
     public static int countSquares(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return 0;

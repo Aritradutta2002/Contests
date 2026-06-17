@@ -21,7 +21,6 @@ import java.util.*;
  * int count of valid submatrices
  */
 public class LC3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y {
-
     public static int numberOfSubmatrices(char[][] grid) {
         int rows = grid.length, cols = grid[0].length;
         int[][][] pref = prefixCount(grid);
@@ -35,7 +34,6 @@ public class LC3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y {
         }
         return count;
     }
-
     public static boolean isSameFreq(int i, int j, char[][] grid){
         int[][][] pref = prefixCount(grid);
         int x = pref[i][j][0];
@@ -69,39 +67,6 @@ public class LC3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y {
 
         return pref;
     }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        scanner.close();
-
-        runTest(
-            "Example 1",
-            new char[][] {
-                {'X', 'Y', '.'},
-                {'Y', '.', '.'}
-            },
-            3
-        );
-
-        runTest(
-            "Example 2",
-            new char[][] {
-                {'X', 'X'},
-                {'X', 'Y'}
-            },
-            0
-        );
-
-        runTest(
-            "Example 3",
-            new char[][] {
-                {'.', '.'},
-                {'.', '.'}
-            },
-            0
-        );
-    }
-
     private static void runTest(String testName, char[][] grid, int expected) {
         try {
             int actual = numberOfSubmatrices(grid);

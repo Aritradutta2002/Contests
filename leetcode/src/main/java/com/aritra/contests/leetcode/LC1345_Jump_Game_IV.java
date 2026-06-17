@@ -79,37 +79,4 @@ public class LC1345_Jump_Game_IV {
         }
         
         return jumps;
-    }
-    
-    public static void main(String[] args) {
-        LC1345_Jump_Game_IV solution = new LC1345_Jump_Game_IV();
-        
-        // Test case 1: Can jump via equal values
-        int[] test1 = {100, -23, -23, 404, 100, 23, 44, 8};
-        int expected1 = 4;
-        int result1 = solution.minimumJumps(test1);
-        System.out.println("Test 1: " + (result1 == expected1 ? "Pass" : "Fail") + 
-                         " (Expected: " + expected1 + ", Got: " + result1 + ")");
-        
-        // Test case 2: Only adjacent jumps possible
-        int[] test2 = {7};
-        int expected2 = 0;
-        int result2 = solution.minimumJumps(test2);
-        System.out.println("Test 2: " + (result2 == expected2 ? "Pass" : "Fail") + 
-                         " (Expected: " + expected2 + ", Got: " + result2 + ")");
-        
-        // Test case 3: Jump to equal values at the end
-        int[] test3 = {7, 6, 9, 6, 9, 6, 5, 8, 3, 6, 7, 6, 9, 7};
-        int expected3 = 1;
-        int result3 = solution.minimumJumps(test3);
-        System.out.println("Test 3: " + (result3 == expected3 ? "Pass" : "Fail") + 
-                         " (Expected: " + expected3 + ", Got: " + result3 + ")");
-        
-        // Test case 4: Must use adjacent jumps
-        int[] test4 = {1, 2, 3};
-        int expected4 = 2;
-        int result4 = solution.minimumJumps(test4);
-        System.out.println("Test 4: " + (result4 == expected4 ? "Pass" : "Fail") + 
-                         " (Expected: " + expected4 + ", Got: " + result4 + ")");
-    }
-}
+    }}

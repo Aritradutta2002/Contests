@@ -31,14 +31,12 @@ import java.util.*;
  * - -1000 <= coins[i][j] <= 1000
  */
 public class LC3418_Maximum_Amount_Of_Money_Robot_Can_Earn {
-
     public long maximumAmount(int[][] coins) {
         int n = coins.length;
         int m = coins[0].length;
         Long[][][] memo = new Long[n][m][3];
         return dfs(0, 0, n, m, coins, memo, 2);
     }
-
     public static long dfs(int i, int j, int n, int m, int[][] coins, Long[][][] memo, int k) {
         if (i >= n || j >= m) {
             return Long.MIN_VALUE / 2; 
@@ -57,14 +55,12 @@ public class LC3418_Maximum_Amount_Of_Money_Robot_Can_Earn {
 
         long currentVal = coins[i][j];
 
-  
-        long takeMove = currentVal + Math.max(
+long takeMove = currentVal + Math.max(
             dfs(i + 1, j, n, m, coins, memo, k),
             dfs(i, j + 1, n, m, coins, memo, k)
         );
 
-    
-        long neutralizeMove = Long.MIN_VALUE / 2;
+long neutralizeMove = Long.MIN_VALUE / 2;
         if (currentVal < 0 && k > 0) {
             neutralizeMove = 0 + Math.max(
                 dfs(i + 1, j, n, m, coins, memo, k - 1),
@@ -73,45 +69,5 @@ public class LC3418_Maximum_Amount_Of_Money_Robot_Can_Earn {
         }
        
         return memo[i][j][k] = Math.max(takeMove, neutralizeMove);
-    }
-
-    public static void main(String[] args) {
-        LC3418_Maximum_Amount_Of_Money_Robot_Can_Earn solution = new LC3418_Maximum_Amount_Of_Money_Robot_Can_Earn();
-
-        // Test Cases
-        int[][][] testCoins = {
-                { { 0, 1, -1 }, { 1, -2, 3 }, { 2, -3, 4 } },
-                { { 10, 10, 10 }, { 10, 10, 10 } },
-                { { 1, -2 }, { -3, 4 } }
-        };
-        long[] expectedOutputs = { 8L, 40L, 5L };
-
-        boolean allPassed = true;
-
-        for (int i = 0; i < testCoins.length; i++) {
-            System.out.print("Test Case " + (i + 1) + ": ");
-            try {
-                long result = solution.maximumAmount(testCoins[i]);
-                if (result == expectedOutputs[i]) {
-                    System.out.println("PASS");
-                } else {
-                    System.out.println("FAIL (Expected " + expectedOutputs[i] + ", got " + result + ")");
-                    allPassed = false;
-                }
-            } catch (UnsupportedOperationException e) {
-                System.out.println("SKIPPED (Not implemented yet)");
-                allPassed = false;
-            } catch (Exception e) {
-                System.out.println("FAIL (Exception: " + e.getMessage() + ")");
-                allPassed = false;
-            }
-        }
-
-        System.out.println("========================================");
-        if (allPassed) {
-            System.out.println("All test cases passed!");
-        } else {
-            System.out.println("Some test cases failed or were skipped.");
-        }
     }
 }

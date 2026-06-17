@@ -46,30 +46,4 @@ public class LC2033_Minimum_Operations_to_Make_a_Uni_Value_Grid {
 
         return (int) ops;
     }
-
-    public static void main(String[] args) {
-        LC2033_Minimum_Operations_to_Make_a_Uni_Value_Grid solver = new LC2033_Minimum_Operations_to_Make_a_Uni_Value_Grid();
-
-        int[][][] grids = {
-            {{2, 4}, {6, 8}},
-            {{1, 5}, {2, 3}},
-            {{1, 2}, {3, 4}}
-        };
-        int[] xs = {2, 1, 2};
-        int[] expected = {4, 5, -1};
-
-        int passed = 0;
-        for (int i = 0; i < grids.length; i++) {
-            int actual = solver.minOperations(grids[i], xs[i]);
-            boolean ok = actual == expected[i];
-            if (ok) passed++;
-            System.out.println(
-                "Test " + (i + 1) + " -> expected=" + expected[i]
-                + ", actual=" + actual
-                + " | " + (ok ? "PASS" : "FAIL")
-            );
-        }
-
-        System.out.println("\nSummary: " + passed + "/" + grids.length + " tests passed.");
-    }
 }
