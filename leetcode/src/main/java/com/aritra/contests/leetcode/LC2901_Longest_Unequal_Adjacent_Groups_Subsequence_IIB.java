@@ -75,4 +75,4 @@ public class LC2901_Longest_Unequal_Adjacent_Groups_Subsequence_IIB {
         return distance;
     }
     
-    // Example usage} 
+}
