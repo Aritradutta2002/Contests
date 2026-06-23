@@ -59,6 +59,9 @@ out/
 .settings
 .springBeans
 .sts4-cache
+
+# Shared build output
+build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
@@ -106,3 +109,10 @@ local.properties
 
 # Test output
 *.hprof
+
+# Kiro AI configuration
+.kiro/
+
+# GitHub workflows and instructions
+.github/
+

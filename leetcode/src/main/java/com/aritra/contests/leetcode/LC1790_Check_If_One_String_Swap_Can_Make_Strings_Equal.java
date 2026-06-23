@@ -1,0 +1,29 @@
+package com.aritra.contests.leetcode;
+import java.util.*;
+public class LC1790_Check_If_One_String_Swap_Can_Make_Strings_Equal {
+    static public boolean areAlmostEqual(String s1, String s2) {
+       boolean isEqual = false;
+
+       if(s1.length() != s2.length()){
+           return isEqual;
+       }
+
+       if(s1.equals(s2))  return true;
+
+        for(int i = 0; i < s1.length() - 1; i++){
+            if(swap(s1, i, i + 1).equals(s2)){
+                isEqual = true;
+                break;
+            }
+        }
+        return isEqual;
+    }
+    static String swap(String s, int i, int j) {
+        char[] charArray = s.toCharArray();
+        char temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return new String(charArray);
+    }
+}
+

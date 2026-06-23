@@ -1,0 +1,21 @@
+package com.aritra.contests.leetcode;
+
+import java.util.*;
+
+public class LC1791_Find_Center_Of_Star_Graph {
+    public static int findCenter(int[][] edges) {
+        
+        int a = edges[0][0];
+        int b = edges[0][1];
+        int c = edges[1][0];
+        int d = edges[1][1];
+
+        if (a == c || a == d) {
+            return a;
+        } else {
+            return b;
+        }
+
+    }
+}
+

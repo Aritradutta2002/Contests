@@ -1,0 +1,27 @@
+package com.aritra.contests.leetcode;
+import java.util.*;
+public class LC1922_Count_Good_Numbers {
+    static final long MOD = 1000000007;public static int countGoodNumbers(long n) {
+        long evenExponent = (n + 1) / 2; 
+        long oddExponent = n / 2;         
+        long goodCount = (fastExp(5, evenExponent, MOD) * fastExp(4, oddExponent, MOD)) % MOD;
+        return (int) goodCount;
+    }
+    static long fastExp(long base, long exp, long mod) {
+       long result = 1;
+       base = base % mod;
+       while (exp > 0) {
+           if ((exp & 1) == 1) {  // checking for oddness of exp
+               result = (result * base) % mod;
+           }
+           base = (base * base) % mod;
+           exp >>= 1; // rigth shift exp by 1 bit
+       }
+       return result;
+   }
+}
+
+/*
+ *  if we want to check the evernness of a number then (exp % 2 == 0)
+ *  if  we want to check the oddness of a number then (exp & 1) == 1
+ */
