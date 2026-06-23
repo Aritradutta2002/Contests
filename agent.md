@@ -60,23 +60,24 @@ in the correct folder with the exact naming convention used in this repo.
 - Package: `package com.aritra.contests.leetcode;`
 
 ## File Content Contract
+### Main Solution File (`src/main/java`)
 1. Start with:
    - `package com.aritra.contests.leetcode;`
-   - `import java.util.*;`
-   - `import java.io.*;`
 2. Include a top block comment with:
    - problem number and title
    - short description
    - key constraints
 3. Add the LeetCode method signature(s) as **empty stubs only**.
-4. Include a `main` method with at least 3 test cases **using actual LeetCode examples/test cases**. The test cases should:
-   - Use actual examples from the LeetCode problem
-   - Compare the actual output with the expected output using `Arrays.deepEquals()` (for arrays) or `.equals()` (for other types)
-   - Print "Pass" or "Fail" accordingly
-   - Include comments describing what each test case validates
-5. Every LeetCode method must use:
+4. Every LeetCode method must use:
    - `throw new UnsupportedOperationException("Not implemented yet.");`
-6. **CRITICAL: The AI must NEVER implement the solution logic.** Only generate the scaffold (method signatures, class, comments, main with test placeholders). The user will write the solution code themselves.
+5. **CRITICAL: The AI must NEVER implement the solution logic.** Only generate the scaffold (method signatures, class, comments). The user will write the solution code themselves.
+
+### Test File (`src/test/java`)
+1. Create a JUnit 5 test file with class name matching `<SolutionClassName>_Test`
+2. Use `@Test` annotations from `org.junit.jupiter.api.Test`
+3. Use assertion methods like `assertEquals()`, `assertArrayEquals()`, `assertTrue()` from `org.junit.jupiter.api.Assertions`
+4. Include at least 3 test cases using actual LeetCode examples
+5. Each test should include a comment describing what it validates
 
 ## Existing File Behavior
 1. If exact file already exists, update it only if user asks to modify/replace it.

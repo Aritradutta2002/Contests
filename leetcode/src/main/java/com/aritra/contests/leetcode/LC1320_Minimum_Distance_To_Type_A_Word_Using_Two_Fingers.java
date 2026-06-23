@@ -1,5 +1,4 @@
 package com.aritra.contests.leetcode;
-import java.util.*;
 /*
  * 1320. Minimum Distance to Type a Word Using Two Fingers
  *
@@ -56,11 +55,22 @@ public class LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers {
         int[] posB = getPos(b);
         return Math.abs(posA[0] - posB[0]) + Math.abs(posA[1] - posB[1]);
     }
+    
     private int[] getPos(int idx) {
         int row = idx / 6;
         int col = idx % 6;
         return new int[]{row, col};
     }
+    
+    public static void main(String[] args) {
+        LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers solver = new LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers();
+        runTest(solver, 1, "ABABAB", 4);
+        runTest(solver, 2, "WORD", 9);
+        runTest(solver, 3, "AAA", 0);
+        runTest(solver, 4, "QWERTYUIOPASDFGHJKLZXCVBNM", 0);
+        runTest(solver, 5, "AZ", 7);
+    }
+
     private static void runTest(LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers solver, int testId, String word, int expected) {
         try {
             int result = solver.minimumDistance(word);
