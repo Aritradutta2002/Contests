@@ -38,42 +38,4 @@ public class LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array {
 
         return found ? minDistance : -1;
     }
-    private static void runAllTests(
-            LC2515_Shortest_Distance_To_Target_String_In_A_Circular_Array solver,
-            TestCase[] tests) {
-        int passed = 0;
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                int actual = solver.closetTarget(tc.words, tc.target, tc.startIndex);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | words=%s, target=%s, startIndex=%d | expected=%d, actual=%d | %s%n",
-                        i + 1, Arrays.toString(tc.words), tc.target, tc.startIndex,
-                        tc.expected, actual, ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | words=%s, target=%s, startIndex=%d | expected=%d | SKIPPED (%s)%n",
-                        i + 1, Arrays.toString(tc.words), tc.target, tc.startIndex,
-                        tc.expected, ex.getMessage());
-            }
-        }
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        final String[] words;
-        final String target;
-        final int startIndex;
-        final int expected;
-
-        TestCase(String[] words, String target, int startIndex, int expected) {
-            this.words = words;
-            this.target = target;
-            this.startIndex = startIndex;
-            this.expected = expected;
-        }
-    }
 }

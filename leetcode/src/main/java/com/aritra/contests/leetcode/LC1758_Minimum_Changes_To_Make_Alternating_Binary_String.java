@@ -57,23 +57,4 @@ public class LC1758_Minimum_Changes_To_Make_Alternating_Binary_String {
 
         return Math.min(cost0, n - cost0);
     }
-    static int runTest(
-            LC1758_Minimum_Changes_To_Make_Alternating_Binary_String sol,
-            int testNum, String input, int expected) {
-
-        System.out.printf("Test %d: s = \"%s\", expected = %d  =>  ", testNum, input, expected);
-        try {
-            int result = sol.minOperations(input);
-            if (result == expected) {
-                System.out.println("PASS");
-                return 1;
-            } else {
-                System.out.printf("FAIL (got %d)%n", result);
-                return 0;
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("SKIPPED");
-            return 0;
-        }
-    }
 }

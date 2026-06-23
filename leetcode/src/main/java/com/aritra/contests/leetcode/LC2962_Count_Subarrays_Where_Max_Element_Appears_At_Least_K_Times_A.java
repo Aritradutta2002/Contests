@@ -2,6 +2,16 @@ package com.aritra.contests.leetcode;
 
 import java.util.*;
 
+/*
+ * 2962. Count Subarrays Where Max Element Appears At Least K Times
+ *
+ * Count the number of subarrays where the maximum element appears at least k times.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - 1 <= nums[i] <= 10^6
+ * - 1 <= k <= nums.length
+ */
 public class LC2962_Count_Subarrays_Where_Max_Element_Appears_At_Least_K_Times_A {
     public static long countSubarrays(int[] nums, int k) {
         int n = nums.length;

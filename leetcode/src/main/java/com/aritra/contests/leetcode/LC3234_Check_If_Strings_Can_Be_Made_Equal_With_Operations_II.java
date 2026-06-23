@@ -38,20 +38,4 @@ public class LC3234_Check_If_Strings_Can_Be_Made_Equal_With_Operations_II {
 
         return even1.equals(even2) && odd1.equals(odd2);
     }
-    private static void runTest(LC3234_Check_If_Strings_Can_Be_Made_Equal_With_Operations_II solver, int testId, String s1, String s2, boolean expected) {
-        try {
-            boolean result = solver.checkStrings(s1, s2);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

@@ -5,6 +5,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.math.BigInteger;
 
+/*
+ * 3826. Minimum Partition Score
+ *
+ * Partition an array into exactly k subarrays to minimize the sum of the maximum of each subarray.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 1000
+ * - 1 <= k <= nums.length
+ * - 1 <= nums[i] <= 10^4
+ */
 public class LC3826_Minimum_Partition_Score {
     public long minPartitionScore(int[] nums, int k) {
         int n = nums.length;
@@ -85,52 +95,6 @@ public class LC3826_Minimum_Partition_Score {
 
         long valueAt(long x) {
             return slope * x + intercept;
-        }
-    }
-    private static void runAllTests(LC3826_Minimum_Partition_Score solver, TestCase[] tests) {
-        int passed = 0;
-
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                long actual = solver.minPartitionScore(tc.nums, tc.k);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-
-                System.out.printf(
-                        "Test %d | nums=%s, k=%d | expected=%d, actual=%d | %s%n",
-                        i + 1,
-                        Arrays.toString(tc.nums),
-                        tc.k,
-                        tc.expected,
-                        actual,
-                        ok ? "PASS" : "FAIL"
-                );
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | nums=%s, k=%d | expected=%d | SKIPPED (%s)%n",
-                        i + 1,
-                        Arrays.toString(tc.nums),
-                        tc.k,
-                        tc.expected,
-                        ex.getMessage()
-                );
-            }
-        }
-
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        int[] nums;
-        int k;
-        long expected;
-
-        TestCase(int[] nums, int k, long expected) {
-            this.nums = nums;
-            this.k = k;
-            this.expected = expected;
         }
     }
 }

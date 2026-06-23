@@ -31,20 +31,4 @@ public class LC2553_Separate_The_Digits_In_An_Array {
         Collections.reverse(list);
         return list;
     }
-    static void runTest(int[] nums, int[] expected, String description) {
-        try {
-            int[] actual = separateDigits(nums);
-            boolean pass = Arrays.deepEquals(new Object[] { box(actual) }, new Object[] { box(expected) });
-            System.out.println((pass ? "Pass" : "Fail") + " - " + description);
-        } catch (UnsupportedOperationException ex) {
-            System.out.println("Fail - " + description);
-        }
-    }
-    static Integer[] box(int[] values) {
-        Integer[] boxed = new Integer[values.length];
-        for (int i = 0; i < values.length; i++) {
-            boxed[i] = values[i];
-        }
-        return boxed;
-    }
 }

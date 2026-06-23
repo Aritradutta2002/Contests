@@ -93,15 +93,4 @@ public class LC1391_Check_if_There_is_a_Valid_Path_in_a_Grid {
 
         return false;
     }
-    private static void runTest(LC1391_Check_if_There_is_a_Valid_Path_in_a_Grid solver,
-                                 int[][] grid, boolean expected, String name) {
-        boolean result = solver.hasValidPath(grid);
-        if (result == expected) {
-            System.out.println(name + ": PASS");
-        } else {
-            System.out.println(name + ": FAIL");
-            System.out.println("  Expected: " + expected);
-            System.out.println("  Got:      " + result);
-        }
-    }
 }

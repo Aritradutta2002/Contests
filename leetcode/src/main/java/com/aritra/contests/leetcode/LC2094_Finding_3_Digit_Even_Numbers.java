@@ -1,6 +1,16 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 
+/*
+ * 2094. Finding 3-Digit Even Numbers
+ *
+ * You are given an integer array digits. Return all unique 3-digit even numbers that can be formed
+ * (no leading zeros) using elements from digits.
+ *
+ * Constraints:
+ * - 3 <= digits.length <= 100
+ * - 0 <= digits[i] <= 9
+ */
 public class LC2094_Finding_3_Digit_Even_Numbers {
     public static int[] findEvenNumbers(int[] digits) {
         List<Integer> evenNumbers = new ArrayList<>();

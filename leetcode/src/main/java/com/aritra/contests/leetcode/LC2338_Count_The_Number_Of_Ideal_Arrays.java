@@ -1,6 +1,16 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 @SuppressWarnings("unused")
+/*
+ * 2338. Count the Number of Ideal Arrays
+ *
+ * An ideal array of length n is an array where 1 <= arr[i] <= maxValue and arr[i] % arr[i-1] == 0
+ * for all i > 1. Count the number of ideal arrays of length n.
+ *
+ * Constraints:
+ * - 1 <= n <= 10^4
+ * - 1 <= maxValue <= 10^4
+ */
 public class LC2338_Count_The_Number_Of_Ideal_Arrays {
     public static int idealArrays(int n, int maxValue) {
         final int MOD = 1_000_000_007;

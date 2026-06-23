@@ -43,25 +43,4 @@ public class LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I {
         }
         return res;
     }
-    private static void runTest(LC3633_Earliest_Finish_Time_For_Land_And_Water_Rides_I solver,
-            int testId,
-            int[] landStartTime, int[] landDuration,
-            int[] waterStartTime, int[] waterDuration,
-            int expected) {
-        try {
-            int result = solver.earliestFinishTime(landStartTime, landDuration, waterStartTime, waterDuration);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
-
 }

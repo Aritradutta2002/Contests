@@ -11,7 +11,7 @@ public class LC057_Insert_Interval_Test {
         int[][] intervals = {{1,3},{6,9}};
         int[] newInterval = {2,5};
         int[][] expected = {{1,5},{6,9}};
-        assertThrows(UnsupportedOperationException.class, () -> solver.insert(intervals, newInterval));
+        assertArrayEquals(expected, solver.insert(intervals, newInterval));
     }
 
     @Test
@@ -19,6 +19,7 @@ public class LC057_Insert_Interval_Test {
         LC057_Insert_Interval solver = new LC057_Insert_Interval();
         int[][] intervals = {};
         int[] newInterval = {5,7};
-        assertThrows(UnsupportedOperationException.class, () -> solver.insert(intervals, newInterval));
+        int[][] expected = {{5,7}};
+        assertArrayEquals(expected, solver.insert(intervals, newInterval));
     }
 }

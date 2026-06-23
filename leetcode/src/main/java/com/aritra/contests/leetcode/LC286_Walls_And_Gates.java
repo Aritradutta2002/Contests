@@ -23,45 +23,24 @@ import java.util.*;
  */
 public class LC286_Walls_And_Gates {
     public void wallsAndGates(int[][] rooms) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-    private static int[][] copyGrid(int[][] g) {
-        int[][] out = new int[g.length][];
-        for (int i = 0; i < g.length; i++) {
-            out[i] = Arrays.copyOf(g[i], g[i].length);
-        }
-        return out;
-    }
-    private static void runAllTests(LC286_Walls_And_Gates solver, TestCase[] tests) {
-        int passed = 0;
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            int[][] input = copyGrid(tc.rooms);
-            try {
-                solver.wallsAndGates(input);
-                boolean ok = Arrays.deepEquals(input, tc.expected);
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | rooms=%s | expected=%s, actual=%s | %s%n",
-                        i + 1, Arrays.deepToString(tc.rooms), Arrays.deepToString(tc.expected),
-                        Arrays.deepToString(input), ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | rooms=%s | expected=%s | SKIPPED (%s)%n",
-                        i + 1, Arrays.deepToString(tc.rooms), Arrays.deepToString(tc.expected), ex.getMessage());
+        int m = rooms.length, n = rooms[0].length, INF = Integer.MAX_VALUE;
+        Queue<int[]> queue = new LinkedList<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (rooms[i][j] == 0) queue.offer(new int[]{i, j});
             }
         }
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        final int[][] rooms;
-        final int[][] expected;
-
-        TestCase(int[][] rooms, int[][] expected) {
-            this.rooms = rooms;
-            this.expected = expected;
+        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        while (!queue.isEmpty()) {
+            int[] cell = queue.poll();
+            int r = cell[0], c = cell[1];
+            for (int[] d : dirs) {
+                int nr = r + d[0], nc = c + d[1];
+                if (nr >= 0 && nr < m && nc >= 0 && nc < n && rooms[nr][nc] == INF) {
+                    rooms[nr][nc] = rooms[r][c] + 1;
+                    queue.offer(new int[]{nr, nc});
+                }
+            }
         }
     }
 }

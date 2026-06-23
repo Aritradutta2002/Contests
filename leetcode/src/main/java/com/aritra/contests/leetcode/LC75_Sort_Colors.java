@@ -1,6 +1,17 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 
+/*
+ * 75. Sort Colors
+ *
+ * Given an array nums with n objects colored red, white, or blue (0, 1, 2), sort them in-place so
+ * that objects of the same color are adjacent, in the order red, white, blue.
+ *
+ * Constraints:
+ * - n == nums.length
+ * - 1 <= n <= 300
+ * - nums[i] is 0, 1, or 2
+ */
 public class LC75_Sort_Colors {
     public static void sortColors(int[] nums) {
         sort(nums);

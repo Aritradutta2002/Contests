@@ -9,6 +9,6 @@ public class LC2144_Minimum_Cost_of_Buying_Candies_With_Discount_Test {
     public void testStandardCase() {
         LC2144_Minimum_Cost_of_Buying_Candies_With_Discount solver = new LC2144_Minimum_Cost_of_Buying_Candies_With_Discount();
         int[] cost = {1,2,3};
-        assertThrows(UnsupportedOperationException.class, () -> solver.minimumCost(cost));
+        assertEquals(5, solver.minimumCost(cost));
     }
 }

@@ -81,24 +81,4 @@ public class LC3129_Find_All_Possible_Stable_Binary_Arrays_IB {
 
         return (int) ((dp[zero][one][0] + dp[zero][one][1]) % mod);
     }
-    static int runTest(
-            LC3129_Find_All_Possible_Stable_Binary_Arrays_IB sol,
-            int testNum, int zero, int one, int limit, int expected) {
-
-        System.out.printf("Test %d: zero=%d, one=%d, limit=%d, expected=%d  =>  ",
-                testNum, zero, one, limit, expected);
-        try {
-            int result = sol.numberOfStableArrays(zero, one, limit);
-            if (result == expected) {
-                System.out.println("PASS");
-                return 1;
-            } else {
-                System.out.printf("FAIL (got %d)%n", result);
-                return 0;
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("SKIPPED");
-            return 0;
-        }
-    }
 }

@@ -1,5 +1,16 @@
 package com.aritra.contests.leetcode;
 
+/*
+ * 63. Unique Paths II
+ *
+ * A robot is located at the top-left corner of an m x n grid. The robot can only move down or right.
+ * The grid may contain obstacles (1). Count unique paths from top-left to bottom-right avoiding
+ * obstacles.
+ *
+ * Constraints:
+ * - 1 <= m, n <= 100
+ * - obstacleGrid[i][j] is 0 or 1
+ */
 public class LC63_Unique_Paths_II {
     public static int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;

@@ -2,6 +2,17 @@ package com.aritra.contests.leetcode;
 
 import java.util.*;
 
+/*
+ * 3666. Minimum Operations to Equalize Binary String
+ *
+ * Given a binary string, find the minimum number of operations to make all characters equal.
+ * In one operation, you can flip a substring of length at most 3.
+ *
+ * Constraints:
+ * - 1 <= s.length <= 1000
+ * - s consists of '0' and '1'
+ * - 1 <= k <= s.length
+ */
 public class LC3666_Minimum_Operations_To_Equalize_Binary_String {
     public int minOperations(String s, int k) {
         int n = s.length();

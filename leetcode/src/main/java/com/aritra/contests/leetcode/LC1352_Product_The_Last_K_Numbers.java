@@ -2,6 +2,18 @@ package com.aritra.contests.leetcode;
 
 import java.util.*;
 
+/*
+ * 1352. Product of the Last K Numbers
+ *
+ * Design an algorithm that accepts a stream of integers and retrieves the product of the last k
+ * integers in the stream.
+ *
+ * Constraints:
+ * - 0 <= num <= 100
+ * - 1 <= k <= 4 * 10^4
+ * - At most 4 * 10^4 calls will be made to add and getProduct
+ * - The product of any contiguous stream of numbers fits in a 32-bit integer
+ */
 public class LC1352_Product_The_Last_K_Numbers {
     static class ProductOfNumbers {
         // Stores cumulative product of the stream

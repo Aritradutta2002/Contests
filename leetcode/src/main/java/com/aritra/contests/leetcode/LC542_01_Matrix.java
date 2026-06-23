@@ -42,20 +42,4 @@ public class LC542_01_Matrix {
         }
         return ans;
     }
-    private static void runTest(LC542_01_Matrix solver, int testId, int[][] mat, int[][] expected) {
-        try {
-            int[][] result = solver.updateMatrix(mat);
-            if (Arrays.deepEquals(result, expected)) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + Arrays.deepToString(expected));
-                System.out.println("  Actual:   " + Arrays.deepToString(result));
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

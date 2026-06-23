@@ -47,45 +47,4 @@ public class LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs {
         }
         return x;
     }
-    private static void runAllTests(
-            LC3761_Minimum_Absolute_Distance_Between_Mirror_Pairs solver,
-            TestCase[] tests) {
-        int passed = 0;
-
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                int actual = solver.minMirrorPairDistance(tc.nums);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | nums=%s | expected=%d, actual=%d | %s%n",
-                        i + 1,
-                        Arrays.toString(tc.nums),
-                        tc.expected,
-                        actual,
-                        ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | nums=%s | expected=%d | SKIPPED (%s)%n",
-                        i + 1,
-                        Arrays.toString(tc.nums),
-                        tc.expected,
-                        ex.getMessage());
-            }
-        }
-
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        final int[] nums;
-        final int expected;
-
-        TestCase(int[] nums, int expected) {
-            this.nums = nums;
-            this.expected = expected;
-        }
-    }
 }

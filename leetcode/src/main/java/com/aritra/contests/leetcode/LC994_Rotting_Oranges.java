@@ -50,14 +50,4 @@ public class LC994_Rotting_Oranges {
         }
         return fresh == 0 ? time : -1;
     }
-    private static void runTest(LC994_Rotting_Oranges solver, int testId, int[][] grid, int expected) {
-        int result = solver.orangesRotting(grid);
-        if (result == expected) {
-            System.out.println("Test " + testId + ": PASS");
-        } else {
-            System.out.println("Test " + testId + ": FAIL");
-            System.out.println("  Expected: " + expected);
-            System.out.println("  Actual:   " + result);
-        }
-    }
 }

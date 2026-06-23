@@ -116,3 +116,13 @@ local.properties
 # GitHub workflows and instructions
 .github/
 
+# AI Coding Assistants
+.commandcode/
+agent.md
+.cursor/
+.cursorrules
+.aider/
+.aider.*
+.claude/
+.claude.*
+

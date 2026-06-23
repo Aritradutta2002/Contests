@@ -1,10 +1,7 @@
 package com.aritra.contests.leetcode;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-@Disabled("Method trap() returns placeholder 0 - not yet implemented")
 public class LC42_Trapping_Rain_Water_Test {
 
     @Test

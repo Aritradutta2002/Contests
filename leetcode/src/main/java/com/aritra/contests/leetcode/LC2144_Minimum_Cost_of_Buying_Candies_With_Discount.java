@@ -15,5 +15,11 @@ import java.util.*;
  */
 public class LC2144_Minimum_Cost_of_Buying_Candies_With_Discount {
     public int minimumCost(int[] cost) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        Arrays.sort(cost);
+        int total = 0, n = cost.length;
+        for (int i = n - 1; i >= 0; i -= 3) {
+            total += cost[i];
+            if (i - 1 >= 0) total += cost[i - 1];
+        }
+        return total;
     }}

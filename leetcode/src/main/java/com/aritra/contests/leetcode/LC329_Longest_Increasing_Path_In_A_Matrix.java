@@ -54,18 +54,4 @@ public class LC329_Longest_Increasing_Path_In_A_Matrix {
         memo[i][j] = path + 1;
         return path + 1;
     }
-
-    // -------------------------------------------------------------------------
-    // Test harness
-    // -------------------------------------------------------------------------
-    private static void runTest(String label, int[][] matrix, int expected) {
-        LC329_Longest_Increasing_Path_In_A_Matrix solver = new LC329_Longest_Increasing_Path_In_A_Matrix();
-        try {
-            int result = solver.longestIncreasingPath(matrix);
-            System.out.println(label + ": " + (result == expected ? "PASS" : "FAIL")
-                    + " (expected=" + expected + ", got=" + result + ")");
-        } catch (UnsupportedOperationException e) {
-            System.out.println(label + ": SKIPPED");
-        }
-    }
 }

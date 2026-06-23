@@ -1,5 +1,14 @@
 package com.aritra.contests.leetcode;
 
+/*
+ * 62. Unique Paths
+ *
+ * There is a robot on an m x n grid. The robot can only move down or right at any point. Count how
+ * many unique paths the robot can take from the top-left corner to the bottom-right corner.
+ *
+ * Constraints:
+ * - 1 <= m, n <= 100
+ */
 public class LC62_Unique_Paths {
     public static int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];

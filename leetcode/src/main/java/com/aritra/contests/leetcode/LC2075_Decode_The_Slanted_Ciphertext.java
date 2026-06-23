@@ -38,20 +38,4 @@ public class LC2075_Decode_The_Slanted_Ciphertext {
         }
         return result.toString();
     }
-    private static void runTest(LC2075_Decode_The_Slanted_Ciphertext solver, int testId, String encodedString, int rows, String expected) {
-        try {
-            String result = solver.decodeCiphertext(encodedString, rows);
-            if (result.equals(expected)) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: '" + expected + "'");
-                System.out.println("  Actual:   '" + result + "'");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

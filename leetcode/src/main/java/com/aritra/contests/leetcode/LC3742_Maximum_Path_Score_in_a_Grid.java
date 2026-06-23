@@ -80,19 +80,4 @@ public class LC3742_Maximum_Path_Score_in_a_Grid {
 
         return (maxScore == Integer.MIN_VALUE) ? -1 : maxScore;
     }
-    private static void runTestCase(LC3742_Maximum_Path_Score_in_a_Grid solver, int testCaseNum, int[][] grid, int k, int expected) {
-        System.out.print("Test Case " + testCaseNum + ": ");
-        try {
-            int result = solver.maxPathScore(grid, k);
-            if (result == expected) {
-                System.out.println("PASS");
-            } else {
-                System.out.println("FAIL (Expected: " + expected + ", Got: " + result + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("SKIPPED");
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e.getMessage());
-        }
-    }
 }

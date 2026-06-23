@@ -28,20 +28,4 @@ public class LC657_Robot_Return_To_Origin {
         }
         return ((countLR == 0) && (countUD == 0));
     }
-    private static void runTest(LC657_Robot_Return_To_Origin solver, int testId, String moves, boolean expected) {
-        try {
-            boolean result = solver.judgeCircle(moves);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

@@ -10,18 +10,24 @@ public class LC130_Surrounded_Regions_Test {
     @Test
     public void testStandardCase() {
         char[][] board = {{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
-        assertThrows(UnsupportedOperationException.class, () -> solver.solve(board));
+        char[][] expected = {{'X','X','X','X'},{'X','X','X','X'},{'X','X','X','X'},{'X','O','X','X'}};
+        solver.solve(board);
+        assertArrayEquals(expected, board);
     }
 
     @Test
     public void testSingleX() {
         char[][] board = {{'X'}};
-        assertThrows(UnsupportedOperationException.class, () -> solver.solve(board));
+        char[][] expected = {{'X'}};
+        solver.solve(board);
+        assertArrayEquals(expected, board);
     }
 
     @Test
     public void testSingleO() {
         char[][] board = {{'O'}};
-        assertThrows(UnsupportedOperationException.class, () -> solver.solve(board));
+        char[][] expected = {{'O'}};
+        solver.solve(board);
+        assertArrayEquals(expected, board);
     }
 }

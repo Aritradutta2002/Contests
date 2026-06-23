@@ -2,6 +2,19 @@ package com.aritra.contests.leetcode;
 
 import java.util.*;
 
+/*
+ * 2226. Maximum Candies Allocated to K Children
+ *
+ * You are given an array candies where each element is the size of a pile of candies. You want to
+ * allocate candies to k children such that each child gets the same number of candies, each child
+ * gets candies from one pile only, and every child gets the maximum possible number of candies.
+ * Return the maximum number of candies each child can get.
+ *
+ * Constraints:
+ * - 1 <= candies.length <= 10^5
+ * - 1 <= candies[i] <= 10^7
+ * - 1 <= k <= 10^12
+ */
 public class LC2226_Maximum_Candies_Allocated_To_K_Children {
     public static int maximumCandies(int[] candies, long k) {
         if (candies == null || candies.length == 0) {

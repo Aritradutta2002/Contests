@@ -2,6 +2,18 @@ package com.aritra.contests.leetcode;
 
 import java.util.*;
 
+/*
+ * 3355. Zero Array Transformation I
+ *
+ * Given an array nums and queries (l, r, val), check if nums can be reduced to all zeros by
+ * subtracting val from each element in the range [l, r] for each query.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - 0 <= nums[i] <= 10^5
+ * - 1 <= queries.length <= 10^5
+ * - queries[i].length == 2 (l, r)
+ */
 public class LC3355_Zero_Array_Transformation_I {
     public static boolean isZeroArray(int[] nums, int[][] queries) {
         int[] deltaArray = new int[nums.length + 1];
