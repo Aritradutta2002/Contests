@@ -33,6 +33,9 @@ The five modules are: `leetcode`, `cses`, `codechef`, `codeforces`, `atcoder`.
 When the user provides a LeetCode problem number, title, or URL, generate the Java file
 in the correct folder with the exact naming convention used in this repo.
 
+> [!IMPORTANT]
+> **CRITICAL:** The AI must NEVER implement the actual solution logic. Only create empty stubs/skeletons of the methods (using `throw new UnsupportedOperationException("Not implemented yet.");`) so that the user can write the solution themselves.
+
 ## Accepted Input Formats
 1. Number only: `3546`
 2. Number + title: `3546. Equal Sum Grid Partition I`
