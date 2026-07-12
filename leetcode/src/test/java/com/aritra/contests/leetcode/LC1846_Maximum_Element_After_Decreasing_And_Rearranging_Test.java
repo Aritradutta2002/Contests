@@ -41,12 +41,12 @@ public class LC1846_Maximum_Element_After_Decreasing_And_Rearranging_Test {
         assertEquals(1, solver.maximumElementAfterDecrementingAndRearranging(arr));
     }
 
-    // Validates all-ones array yields length n.
+    // Validates all-ones array yields 1 (cannot increase values, only decrease).
     @Test
     public void testAllOnes() {
         LC1846_Maximum_Element_After_Decreasing_And_Rearranging solver =
                 new LC1846_Maximum_Element_After_Decreasing_And_Rearranging();
         int[] arr = {1, 1, 1, 1, 1};
-        assertEquals(5, solver.maximumElementAfterDecrementingAndRearranging(arr));
+        assertEquals(1, solver.maximumElementAfterDecrementingAndRearranging(arr));
     }
 }

@@ -28,6 +28,12 @@ package com.aritra.contests.leetcode;
 public class LC1846_Maximum_Element_After_Decreasing_And_Rearranging {
 
     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        java.util.Arrays.sort(arr);
+        int max = 1; // first element must be 1
+        for (int i = 1; i < arr.length; i++) {
+            // each element can be at most prev + 1
+            max = Math.min(arr[i], max + 1);
+        }
+        return max;
     }
 }
