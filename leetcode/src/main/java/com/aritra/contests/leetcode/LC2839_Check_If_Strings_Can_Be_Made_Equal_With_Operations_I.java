@@ -42,27 +42,4 @@ public class LC2839_Check_If_Strings_Can_Be_Made_Equal_With_Operations_I {
         temp[j] = t;
         return new String(temp);
     }
-    private static class TestCase {
-        String s1;
-        String s2;
-        boolean expected;
-
-        TestCase(String s1, String s2, boolean expected) {
-            this.s1 = s1;
-            this.s2 = s2;
-            this.expected = expected;
-        }
-    }
-    private static void runTestCase(int idx, TestCase tc) {
-        try {
-            boolean actual = canBeEqual(tc.s1, tc.s2);
-            if (actual == tc.expected) {
-                System.out.println("Test " + idx + ": PASS");
-            } else {
-                System.out.println("Test " + idx + ": FAIL | expected=" + tc.expected + ", actual=" + actual);
-            }
-        } catch (UnsupportedOperationException ex) {
-            System.out.println("Test " + idx + ": SKIPPED (Not implemented yet.)");
-        }
-    }
 }

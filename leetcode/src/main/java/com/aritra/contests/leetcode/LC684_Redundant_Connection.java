@@ -27,37 +27,18 @@ import java.util.*;
  */
 public class LC684_Redundant_Connection {
     public int[] findRedundantConnection(int[][] edges) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-    private static void runAllTests(LC684_Redundant_Connection solver, TestCase[] tests) {
-        int passed = 0;
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                int[] actual = solver.findRedundantConnection(tc.edges);
-                boolean ok = Arrays.equals(actual, tc.expected);
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | edges=%s | expected=%s, actual=%s | %s%n",
-                        i + 1, Arrays.deepToString(tc.edges), Arrays.toString(tc.expected),
-                        Arrays.toString(actual), ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | edges=%s | expected=%s | SKIPPED (%s)%n",
-                        i + 1, Arrays.deepToString(tc.edges), Arrays.toString(tc.expected), ex.getMessage());
-            }
+        int n = edges.length;
+        int[] parent = new int[n + 1];
+        for (int i = 1; i <= n; i++) parent[i] = i;
+        for (int[] e : edges) {
+            int p1 = find(parent, e[0]), p2 = find(parent, e[1]);
+            if (p1 == p2) return e;
+            parent[p1] = p2;
         }
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
+        return new int[0];
     }
-    private static class TestCase {
-        final int[][] edges;
-        final int[] expected;
-
-        TestCase(int[][] edges, int[] expected) {
-            this.edges = edges;
-            this.expected = expected;
-        }
+    private int find(int[] parent, int x) {
+        if (parent[x] != x) parent[x] = find(parent, parent[x]);
+        return parent[x];
     }
 }

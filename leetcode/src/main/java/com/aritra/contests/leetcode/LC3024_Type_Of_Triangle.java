@@ -3,6 +3,16 @@ package com.aritra.contests.leetcode;
 import java.io.*;
 import java.util.*;
 
+/*
+ * 3024. Type of Triangle
+ *
+ * Given three side lengths, return "equilateral", "isosceles", or "scalene" if they form a valid
+ * triangle, or "none" if they do not form a valid triangle.
+ *
+ * Constraints:
+ * - nums.length == 3
+ * - 1 <= nums[i] <= 100
+ */
 public class LC3024_Type_Of_Triangle {
     public static String triangleType(int[] nums) {
         if (nums.length != 3)

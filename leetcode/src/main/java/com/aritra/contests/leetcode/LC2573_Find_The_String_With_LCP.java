@@ -56,49 +56,4 @@ public class LC2573_Find_The_String_With_LCP {
         return new String(word);
 
     }
-    private static void runAllTests(LC2573_Find_The_String_With_LCP solver, TestCase[] tests) {
-        int passed = 0;
-
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                String actual = solver.findTheString(tc.lcp);
-                boolean ok = Objects.equals(tc.expected, actual);
-                if (ok) {
-                    passed++;
-                }
-
-                System.out.printf(
-                        "Test %d | lcp=%s | expected=%s, actual=%s | %s%n",
-                        i + 1,
-                        Arrays.deepToString(tc.lcp),
-                        quote(tc.expected),
-                        quote(actual),
-                        ok ? "PASS" : "FAIL"
-                );
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | lcp=%s | expected=%s | SKIPPED (%s)%n",
-                        i + 1,
-                        Arrays.deepToString(tc.lcp),
-                        quote(tc.expected),
-                        ex.getMessage()
-                );
-            }
-        }
-
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static String quote(String value) {
-        return "\"" + value + "\"";
-    }
-    private static class TestCase {
-        int[][] lcp;
-        String expected;
-
-        TestCase(int[][] lcp, String expected) {
-            this.lcp = lcp;
-            this.expected = expected;
-        }
-    }
 }

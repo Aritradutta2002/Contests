@@ -1,6 +1,17 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 @SuppressWarnings("unused")
+/*
+ * 2563. Count the Number of Fair Pairs
+ *
+ * Given a 0-indexed integer array nums and integers lower and upper, return the number of pairs (i, j)
+ * where 0 <= i < j < n and lower <= nums[i] + nums[j] <= upper.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - -10^9 <= nums[i] <= 10^9
+ * - -10^9 <= lower <= upper <= 10^9
+ */
 public class LC2563_Count_The_Number_Of_Fair_Pairs {
     public static long countFairPairs(int[] nums, int lower, int upper) {
         int n = nums.length;

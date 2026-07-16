@@ -62,29 +62,4 @@ public class LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers {
         return new int[]{row, col};
     }
     
-    public static void main(String[] args) {
-        LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers solver = new LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers();
-        runTest(solver, 1, "ABABAB", 4);
-        runTest(solver, 2, "WORD", 9);
-        runTest(solver, 3, "AAA", 0);
-        runTest(solver, 4, "QWERTYUIOPASDFGHJKLZXCVBNM", 0);
-        runTest(solver, 5, "AZ", 7);
-    }
-
-    private static void runTest(LC1320_Minimum_Distance_To_Type_A_Word_Using_Two_Fingers solver, int testId, String word, int expected) {
-        try {
-            int result = solver.minimumDistance(word);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

@@ -38,18 +38,4 @@ public class LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index {
         }
         return dp[n - 1]; // Return the maximum jumps to reach the last index
     }
-    private static void runTest(LC2770_Maximum_Number_Of_Jumps_To_Reach_The_Last_Index solution,
-                                int[] nums,
-                                int target,
-                                int expected,
-                                String label) {
-        try {
-            int actual = solution.maximumJumps(nums, target);
-            boolean passed = Objects.equals(actual, expected);
-            System.out.println(label + ": " + (passed ? "Pass" : "Fail") +
-                    " (Expected: " + expected + ", Got: " + actual + ")");
-        } catch (UnsupportedOperationException ex) {
-            System.out.println(label + ": Fail (Expected: " + expected + ", Got: Not implemented yet.)");
-        }
-    }
 }

@@ -2,6 +2,16 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 @SuppressWarnings("unused")
 
+/*
+ * 2958. Length of Longest Subarray With At Most K Frequency
+ *
+ * Return the maximum length of a subarray where each element appears at most k times.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - 1 <= nums[i] <= 10^9
+ * - 1 <= k <= nums.length
+ */
 public class LC2958_Length_Of_Longest_Subarray_With_At_Most_K_Frequency {
     public static int maxSubarrayLength(int[] nums, int k) {
         int start = 0, maxLength = 0;

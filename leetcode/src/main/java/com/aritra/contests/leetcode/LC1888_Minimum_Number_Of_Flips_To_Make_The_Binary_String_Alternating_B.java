@@ -57,47 +57,4 @@ public class LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternatin
 
         return answer;
     }
-    private static void runAllTests(
-            LC1888_Minimum_Number_Of_Flips_To_Make_The_Binary_String_Alternating_B solver,
-            TestCase[] tests) {
-
-        int passed = 0;
-
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                int actual = solver.minFlips(tc.s);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-
-                System.out.printf(
-                        "Test %d | s=%s | expected=%d, actual=%d | %s%n",
-                        i + 1,
-                        tc.s,
-                        tc.expected,
-                        actual,
-                        ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | s=%s | expected=%d | SKIPPED (%s)%n",
-                        i + 1,
-                        tc.s,
-                        tc.expected,
-                        ex.getMessage());
-            }
-        }
-
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        String s;
-        int expected;
-
-        TestCase(String s, int expected) {
-            this.s = s;
-            this.expected = expected;
-        }
-    }
 }

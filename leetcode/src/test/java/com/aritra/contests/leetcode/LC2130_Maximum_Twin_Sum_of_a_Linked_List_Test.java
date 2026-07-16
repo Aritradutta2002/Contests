@@ -20,20 +20,20 @@ public class LC2130_Maximum_Twin_Sum_of_a_Linked_List_Test {
     public void testPairSumStandard() {
         LC2130_Maximum_Twin_Sum_of_a_Linked_List solution = new LC2130_Maximum_Twin_Sum_of_a_Linked_List();
         ListNode head = createLinkedList(new int[]{5, 4, 2, 1});
-        assertThrows(UnsupportedOperationException.class, () -> solution.pairSum(head));
+        assertEquals(6, solution.pairSum(head));
     }
 
     @Test
     public void testPairSumAnother() {
         LC2130_Maximum_Twin_Sum_of_a_Linked_List solution = new LC2130_Maximum_Twin_Sum_of_a_Linked_List();
         ListNode head = createLinkedList(new int[]{4, 2, 2, 3});
-        assertThrows(UnsupportedOperationException.class, () -> solution.pairSum(head));
+        assertEquals(7, solution.pairSum(head));
     }
 
     @Test
     public void testPairSumTwoElements() {
         LC2130_Maximum_Twin_Sum_of_a_Linked_List solution = new LC2130_Maximum_Twin_Sum_of_a_Linked_List();
         ListNode head = createLinkedList(new int[]{1, 100000});
-        assertThrows(UnsupportedOperationException.class, () -> solution.pairSum(head));
+        assertEquals(100001, solution.pairSum(head));
     }
 }

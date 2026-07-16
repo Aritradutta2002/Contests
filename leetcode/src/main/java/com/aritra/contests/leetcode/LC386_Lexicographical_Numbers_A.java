@@ -13,8 +13,18 @@ import static java.lang.System.in;
  */
 public class LC386_Lexicographical_Numbers_A {
     public static List<Integer> lexicalOrder(int n) {
-
-return new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+        for (int i = 1; i <= 9; i++) {
+            dfs(i, n, result);
+        }
+        return result;
+    }
+    private static void dfs(int curr, int n, List<Integer> result) {
+        if (curr > n) return;
+        result.add(curr);
+        for (int i = 0; i <= 9; i++) {
+            dfs(curr * 10 + i, n, result);
+        }
     }
     static class FastIO extends PrintWriter {
         private InputStream stream;

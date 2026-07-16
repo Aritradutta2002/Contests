@@ -24,40 +24,20 @@ import java.util.*;
  */
 public class LC323_Number_Of_Connected_Components_In_An_Undirected_Graph {
     public int countComponents(int n, int[][] edges) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-    private static void runAllTests(
-            LC323_Number_Of_Connected_Components_In_An_Undirected_Graph solver,
-            TestCase[] tests) {
-        int passed = 0;
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                int actual = solver.countComponents(tc.n, tc.edges);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | n=%d, edges=%s | expected=%d, actual=%d | %s%n",
-                        i + 1, tc.n, Arrays.deepToString(tc.edges), tc.expected, actual, ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | n=%d, edges=%s | expected=%d | SKIPPED (%s)%n",
-                        i + 1, tc.n, Arrays.deepToString(tc.edges), tc.expected, ex.getMessage());
+        int[] parent = new int[n];
+        for (int i = 0; i < n; i++) parent[i] = i;
+        int components = n;
+        for (int[] e : edges) {
+            int p1 = find(parent, e[0]), p2 = find(parent, e[1]);
+            if (p1 != p2) {
+                parent[p1] = p2;
+                components--;
             }
         }
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
+        return components;
     }
-    private static class TestCase {
-        final int n;
-        final int[][] edges;
-        final int expected;
-
-        TestCase(int n, int[][] edges, int expected) {
-            this.n = n;
-            this.edges = edges;
-            this.expected = expected;
-        }
+    private int find(int[] parent, int x) {
+        if (parent[x] != x) parent[x] = find(parent, parent[x]);
+        return parent[x];
     }
 }

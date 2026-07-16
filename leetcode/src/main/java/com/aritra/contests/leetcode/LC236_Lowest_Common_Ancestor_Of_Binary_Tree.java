@@ -1,6 +1,18 @@
 package com.aritra.contests.leetcode;
 
 @SuppressWarnings("unused")
+/*
+ * 236. Lowest Common Ancestor of a Binary Tree
+ *
+ * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes p and q in the tree.
+ *
+ * Constraints:
+ * - The number of nodes in the tree is in the range [2, 10^5]
+ * - -10^9 <= Node.val <= 10^9
+ * - All Node.val are unique
+ * - p != q
+ * - p and q exist in the tree
+ */
 public class LC236_Lowest_Common_Ancestor_Of_Binary_Tree {
     static class TreeNode {
         int val;

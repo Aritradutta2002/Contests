@@ -1,5 +1,15 @@
 package com.aritra.contests.leetcode;
 
+/*
+ * 1277. Count Square Submatrices with All Ones
+ *
+ * Given a m x n binary matrix, return the number of square submatrices with all ones.
+ *
+ * Constraints:
+ * - 1 <= matrix.length <= 300
+ * - 1 <= matrix[0].length <= 300
+ * - matrix[i][j] is 0 or 1
+ */
 class LC1277_Count_Square_Submatrices_With_All_Ones {
     public static int countSquares(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {

@@ -31,20 +31,23 @@ public class LC2095_Delete_the_Middle_Node_of_a_Linked_List_Test {
     public void testDeleteMiddleOddLength() {
         LC2095_Delete_the_Middle_Node_of_a_Linked_List solution = new LC2095_Delete_the_Middle_Node_of_a_Linked_List();
         ListNode head = createLinkedList(new int[]{1, 3, 4, 7, 1, 2, 6});
-        assertThrows(UnsupportedOperationException.class, () -> solution.deleteMiddle(head));
+        ListNode result = solution.deleteMiddle(head);
+        assertTrue(compareLinkedListWithArray(result, new int[]{1, 3, 4, 1, 2, 6}));
     }
 
     @Test
     public void testDeleteMiddleEvenLength() {
         LC2095_Delete_the_Middle_Node_of_a_Linked_List solution = new LC2095_Delete_the_Middle_Node_of_a_Linked_List();
         ListNode head = createLinkedList(new int[]{1, 2, 3, 4});
-        assertThrows(UnsupportedOperationException.class, () -> solution.deleteMiddle(head));
+        ListNode result = solution.deleteMiddle(head);
+        assertTrue(compareLinkedListWithArray(result, new int[]{1, 2, 4}));
     }
 
     @Test
     public void testDeleteMiddleTwoElements() {
         LC2095_Delete_the_Middle_Node_of_a_Linked_List solution = new LC2095_Delete_the_Middle_Node_of_a_Linked_List();
         ListNode head = createLinkedList(new int[]{2, 1});
-        assertThrows(UnsupportedOperationException.class, () -> solution.deleteMiddle(head));
+        ListNode result = solution.deleteMiddle(head);
+        assertTrue(compareLinkedListWithArray(result, new int[]{2}));
     }
 }

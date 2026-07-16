@@ -13,22 +13,26 @@ import java.util.*;
  */
 public class LC3121_Count_the_Number_of_Special_Characters_II {
     public int numberOfSpecialChars(String word) {
-        return 0;
-    }
-    private static void runTest(LC3121_Count_the_Number_of_Special_Characters_II solver, int testId, String word, int expected) {
-        try {
-            int result = solver.numberOfSpecialChars(word);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
+        int[] firstUpper = new int[26];
+        int[] lastLower = new int[26];
+        Arrays.fill(firstUpper, Integer.MAX_VALUE);
+        Arrays.fill(lastLower, -1);
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (c >= 'a' && c <= 'z') {
+                lastLower[c - 'a'] = i;
             } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
+                if (firstUpper[c - 'A'] == Integer.MAX_VALUE) {
+                    firstUpper[c - 'A'] = i;
+                }
             }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
         }
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            if (lastLower[i] != -1 && firstUpper[i] != Integer.MAX_VALUE && lastLower[i] < firstUpper[i]) {
+                count++;
+            }
+        }
+        return count;
     }
 }

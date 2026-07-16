@@ -2,6 +2,16 @@ package com.aritra.contests.leetcode;
 
 import java.util.Scanner;
 
+/*
+ * 2342. Max Sum Pair with Equal Sum Digits
+ *
+ * Given an array nums, find the maximum sum of two numbers whose digit sum is equal. If no such
+ * pair exists, return -1.
+ *
+ * Constraints:
+ * - 1 <= nums.length <= 10^5
+ * - 1 <= nums[i] <= 10^9
+ */
 public class LC2342_Max_Sum_Pair_With_Equal_Sum_Digits {
     static public int maximumSum(int[] nums) {
         // HashMap<Integer, Integer> map = new HashMap<>();

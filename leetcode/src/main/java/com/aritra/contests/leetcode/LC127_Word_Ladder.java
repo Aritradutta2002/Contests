@@ -19,6 +19,33 @@ import java.util.*;
  */
 public class LC127_Word_Ladder {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        Set<String> wordSet = new HashSet<>(wordList);
+        if (!wordSet.contains(endWord)) return 0;
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(beginWord);
+        int level = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                String curr = queue.poll();
+                char[] arr = curr.toCharArray();
+                for (int j = 0; j < arr.length; j++) {
+                    char orig = arr[j];
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        if (c == orig) continue;
+                        arr[j] = c;
+                        String next = new String(arr);
+                        if (next.equals(endWord)) return level + 1;
+                        if (wordSet.contains(next)) {
+                            wordSet.remove(next);
+                            queue.offer(next);
+                        }
+                    }
+                    arr[j] = orig;
+                }
+            }
+            level++;
+        }
+        return 0;
     }
 }

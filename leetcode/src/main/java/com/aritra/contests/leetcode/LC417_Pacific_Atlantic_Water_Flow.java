@@ -25,43 +25,35 @@ import java.util.*;
  */
 public class LC417_Pacific_Atlantic_Water_Flow {
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-    private static Set<String> toCoordSet(List<List<Integer>> points) {
-        Set<String> s = new HashSet<>();
-        for (List<Integer> p : points) {
-            s.add(p.get(0) + "," + p.get(1));
+        int m = heights.length, n = heights[0].length;
+        boolean[][] pac = new boolean[m][n], atl = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            dfs(heights, pac, i, 0);
+            dfs(heights, atl, i, n - 1);
         }
-        return s;
-    }
-    private static void runAllTests(LC417_Pacific_Atlantic_Water_Flow solver, TestCase[] tests) {
-        int passed = 0;
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                List<List<Integer>> actual = solver.pacificAtlantic(tc.heights);
-                boolean ok = toCoordSet(actual).equals(toCoordSet(tc.expected));
-                if (ok) {
-                    passed++;
+        for (int j = 0; j < n; j++) {
+            dfs(heights, pac, 0, j);
+            dfs(heights, atl, m - 1, j);
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (pac[i][j] && atl[i][j]) {
+                    result.add(Arrays.asList(i, j));
                 }
-                System.out.printf(
-                        "Test %d | heights=%s | expected=%s, actual=%s | %s%n",
-                        i + 1, Arrays.deepToString(tc.heights), tc.expected, actual, ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | heights=%s | expected=%s | SKIPPED (%s)%n",
-                        i + 1, Arrays.deepToString(tc.heights), tc.expected, ex.getMessage());
             }
         }
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
+        return result;
     }
-    private static class TestCase {
-        final int[][] heights;
-        final List<List<Integer>> expected;
-
-        TestCase(int[][] heights, List<List<Integer>> expected) {
-            this.heights = heights;
-            this.expected = expected;
+    private void dfs(int[][] h, boolean[][] visited, int i, int j) {
+        int m = h.length, n = h[0].length;
+        visited[i][j] = true;
+        int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int[] d : dirs) {
+            int ni = i + d[0], nj = j + d[1];
+            if (ni >= 0 && ni < m && nj >= 0 && nj < n && !visited[ni][nj] && h[ni][nj] >= h[i][j]) {
+                dfs(h, visited, ni, nj);
+            }
         }
     }
 }

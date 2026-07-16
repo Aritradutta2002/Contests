@@ -67,16 +67,4 @@ public class LC3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y {
 
         return pref;
     }
-    private static void runTest(String testName, char[][] grid, int expected) {
-        try {
-            int actual = numberOfSubmatrices(grid);
-            if (actual == expected) {
-                System.out.println(testName + ": PASS (expected=" + expected + ", actual=" + actual + ")");
-            } else {
-                System.out.println(testName + ": FAIL (expected=" + expected + ", actual=" + actual + ")");
-            }
-        } catch (UnsupportedOperationException ex) {
-            System.out.println(testName + ": SKIPPED (Not implemented yet.)");
-        }
-    }
 }

@@ -1,6 +1,16 @@
 package com.aritra.contests.leetcode;
 import java.util.*;
 
+/*
+ * 15. 3Sum
+ *
+ * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that
+ * i != j, i != k, j != k, and nums[i] + nums[j] + nums[k] == 0.
+ *
+ * Constraints:
+ * - 3 <= nums.length <= 3000
+ * - -10^5 <= nums[i] <= 10^5
+ */
 public class LC15_Three_Sum {
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();

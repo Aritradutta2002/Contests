@@ -32,21 +32,4 @@ public class LC2657_Find_The_Prefix_Common_Array_Of_Two_Arrays {
         }
         return ans;
     }
-    private static void runTest(LC2657_Find_The_Prefix_Common_Array_Of_Two_Arrays solver, int testId, int[] A, int[] B,
-            int[] expected) {
-        try {
-            int[] result = solver.findThePrefixCommonArray(A, B);
-            if (Arrays.equals(result, expected)) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + Arrays.toString(expected));
-                System.out.println("  Actual:   " + Arrays.toString(result));
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

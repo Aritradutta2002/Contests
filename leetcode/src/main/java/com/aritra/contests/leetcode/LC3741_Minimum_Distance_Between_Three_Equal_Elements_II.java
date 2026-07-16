@@ -50,19 +50,4 @@ public class LC3741_Minimum_Distance_Between_Three_Equal_Elements_II {
 
         return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
     }
-    private static void runTestCase(LC3741_Minimum_Distance_Between_Three_Equal_Elements_II solver, int testCaseNum, int[] nums, int expected) {
-        System.out.print("Test Case " + testCaseNum + ": ");
-        try {
-            int result = solver.minimumDistance(nums);
-            if (result == expected) {
-                System.out.println("PASS");
-            } else {
-                System.out.println("FAIL (Expected: " + expected + ", Got: " + result + ")");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("SKIPPED");
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e.getMessage());
-        }
-    }
 }

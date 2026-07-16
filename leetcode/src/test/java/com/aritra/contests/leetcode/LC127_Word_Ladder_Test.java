@@ -10,19 +10,16 @@ public class LC127_Word_Ladder_Test {
 
     @Test
     public void testExample1() {
-        assertThrows(UnsupportedOperationException.class, () ->
-            solver.ladderLength("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog")));
+        assertEquals(5, solver.ladderLength("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog")));
     }
 
     @Test
     public void testExample2() {
-        assertThrows(UnsupportedOperationException.class, () ->
-            solver.ladderLength("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log")));
+        assertEquals(0, solver.ladderLength("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log")));
     }
 
     @Test
     public void testExample3() {
-        assertThrows(UnsupportedOperationException.class, () ->
-            solver.ladderLength("a", "c", Arrays.asList("a", "b", "c")));
+        assertEquals(2, solver.ladderLength("a", "c", Arrays.asList("a", "b", "c")));
     }
 }

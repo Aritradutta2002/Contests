@@ -9,19 +9,16 @@ public class LC207_Course_Schedule_Test {
 
     @Test
     public void testPossible() {
-        assertThrows(UnsupportedOperationException.class, () -> 
-            solver.canFinish(2, new int[][]{{1, 0}}));
+        assertTrue(solver.canFinish(2, new int[][]{{1, 0}}));
     }
 
     @Test
     public void testImpossible() {
-        assertThrows(UnsupportedOperationException.class, () -> 
-            solver.canFinish(2, new int[][]{{1, 0}, {0, 1}}));
+        assertFalse(solver.canFinish(2, new int[][]{{1, 0}, {0, 1}}));
     }
 
     @Test
     public void testMultiplePrereqs() {
-        assertThrows(UnsupportedOperationException.class, () -> 
-            solver.canFinish(5, new int[][]{{1, 4}, {2, 4}, {3, 1}, {3, 2}}));
+        assertTrue(solver.canFinish(5, new int[][]{{1, 4}, {2, 4}, {3, 1}, {3, 2}}));
     }
 }

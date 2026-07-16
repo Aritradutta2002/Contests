@@ -17,20 +17,11 @@ import java.util.*;
  */
 public class LC1752_Check_If_Array_Is_Sorted_And_Rotated {
     public boolean check(int[] nums) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-    private static void runTest(LC1752_Check_If_Array_Is_Sorted_And_Rotated solver, int testId, int[] nums, boolean expected) {
-        try {
-            boolean actual = solver.check(nums);
-            if (Boolean.valueOf(actual).equals(expected)) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
+        int count = 0, n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) count++;
+            if (count > 1) return false;
         }
+        return true;
     }
 }

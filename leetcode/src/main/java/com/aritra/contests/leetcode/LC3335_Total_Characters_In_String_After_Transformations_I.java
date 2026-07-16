@@ -4,6 +4,17 @@ import java.util.*;
 
 @SuppressWarnings("unused")
 
+/*
+ * 3335. Total Characters in String After Transformations I
+ *
+ * Apply transformation t times: 'a' -> 'bc', 'b' -> 'ca', 'c' -> 'ab', all other letters shift by
+ * one. Return the final length of the string modulo 10^9 + 7.
+ *
+ * Constraints:
+ * - 1 <= s.length <= 10^5
+ * - s consists of lowercase English letters
+ * - 1 <= t <= 10^5
+ */
 public class LC3335_Total_Characters_In_String_After_Transformations_I {
     public static int lengthAfterTransformations(String s, int t) {
 

@@ -38,21 +38,4 @@ public class LC3043_Find_the_Length_of_the_Longest_Common_Prefix {
         }
         return maxLen;
     }
-    private static void runTest(LC3043_Find_the_Length_of_the_Longest_Common_Prefix solver, int testId, int[] arr1,
-            int[] arr2, int expected) {
-        try {
-            int result = solver.longestCommonPrefix(arr1, arr2);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

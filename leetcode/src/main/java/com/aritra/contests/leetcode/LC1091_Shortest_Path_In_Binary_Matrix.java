@@ -61,23 +61,4 @@ if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) return -1;
 
         return -1; 
     }
-    private static int[][] copyGrid(int[][] grid) {
-        int[][] copy = new int[grid.length][];
-        for (int i = 0; i < grid.length; i++) {
-            copy[i] = Arrays.copyOf(grid[i], grid[i].length);
-        }
-        return copy;
-    }
-    private static void runTest(String testName, int[][] grid, int expected) {
-        try {
-            int actual = shortestPathBinaryMatrix(copyGrid(grid));
-            if (actual == expected) {
-                System.out.println(testName + ": PASS (expected=" + expected + ", actual=" + actual + ")");
-            } else {
-                System.out.println(testName + ": FAIL (expected=" + expected + ", actual=" + actual + ")");
-            }
-        } catch (UnsupportedOperationException ex) {
-            System.out.println(testName + ": SKIPPED (Not implemented yet.)");
-        }
-    }
 }

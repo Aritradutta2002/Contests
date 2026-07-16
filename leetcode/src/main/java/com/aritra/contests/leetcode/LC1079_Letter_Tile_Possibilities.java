@@ -2,6 +2,17 @@ package com.aritra.contests.leetcode;
 import java.util.*;
 @SuppressWarnings("unused")
 
+/*
+ * 1079. Letter Tile Possibilities
+ *
+ * You have n tiles, where each tile has one letter tiles[i] printed on it.
+ * Return the number of possible non-empty sequences of letters you can make using the letters
+ * printed on those tiles.
+ *
+ * Constraints:
+ * - 1 <= tiles.length <= 7
+ * - tiles consists of uppercase English letters
+ */
 public class LC1079_Letter_Tile_Possibilities{
     static public int numTilePossibilities(String tiles) {
         int[] freq = new int[26];

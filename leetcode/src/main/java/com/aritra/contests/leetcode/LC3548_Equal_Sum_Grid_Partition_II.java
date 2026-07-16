@@ -99,20 +99,4 @@ public class LC3548_Equal_Sum_Grid_Partition_II {
         }
         return rotated;
     }
-    private static void runTest(LC3548_Equal_Sum_Grid_Partition_II solver, int testId, int[][] grid, boolean expected) {
-        try {
-            boolean result = solver.canPartitionGrid(grid);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

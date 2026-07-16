@@ -59,40 +59,4 @@ public class LC2463_Minimum_Total_Distance_Traveled {
 
         return dp[m][n];
     }
-    private static void runAllTests(
-            LC2463_Minimum_Total_Distance_Traveled solver,
-            TestCase[] tests) {
-        int passed = 0;
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                long actual = solver.minimumTotalDistance(tc.robot, tc.factory);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | robot=%s, factory=%s | expected=%d, actual=%d | %s%n",
-                        i + 1, tc.robot.toString(), Arrays.deepToString(tc.factory),
-                        tc.expected, actual, ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | robot=%s, factory=%s | expected=%d | SKIPPED (%s)%n",
-                        i + 1, tc.robot.toString(), Arrays.deepToString(tc.factory),
-                        tc.expected, ex.getMessage());
-            }
-        }
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        final List<Integer> robot;
-        final int[][] factory;
-        final long expected;
-
-        TestCase(List<Integer> robot, int[][] factory, long expected) {
-            this.robot = robot;
-            this.factory = factory;
-            this.expected = expected;
-        }
-    }
 }

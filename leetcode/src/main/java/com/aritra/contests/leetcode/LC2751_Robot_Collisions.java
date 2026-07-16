@@ -64,20 +64,4 @@ public class LC2751_Robot_Collisions {
         }
         return result;
     }
-    private static void runTest(LC2751_Robot_Collisions solver, int testId, int[] positions, int[] healths, String directions, List<Integer> expected) {
-        try {
-            List<Integer> result = solver.survivedRobotsHealths(positions, healths, directions);
-            if (result.equals(expected)) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

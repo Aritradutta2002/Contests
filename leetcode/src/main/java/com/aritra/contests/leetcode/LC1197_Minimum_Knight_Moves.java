@@ -59,19 +59,4 @@ public class LC1197_Minimum_Knight_Moves {
             return (y + x) / 3 + (y + x) % 3;
         }
     }
-    private static void runTest(LC1197_Minimum_Knight_Moves solver, int testId, int x, int y, int expected) {
-        try {
-            int result = solver.minKnightMoves(x, y);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Input:    x = " + x + ", y = " + y);
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        }
-    }
 }

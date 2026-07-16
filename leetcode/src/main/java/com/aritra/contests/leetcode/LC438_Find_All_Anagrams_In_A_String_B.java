@@ -42,15 +42,4 @@ public class LC438_Find_All_Anagrams_In_A_String_B {
 
         return ans;
     }
-    private static final class TestCase {
-        final String s;
-        final String p;
-        final List<Integer> expected;
-
-        TestCase(String s, String p, List<Integer> expected) {
-            this.s = s;
-            this.p = p;
-            this.expected = expected;
-        }
-    }
 }

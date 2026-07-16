@@ -26,20 +26,4 @@ public class LC2946_Matrix_Similarity_After_Cyclic_Shifts {
         }
         return true;
     }
-    private static void runTest(LC2946_Matrix_Similarity_After_Cyclic_Shifts solver, int testId, int[][] mat, int k, boolean expected) {
-        try {
-            boolean result = solver.areSimilar(mat, k);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

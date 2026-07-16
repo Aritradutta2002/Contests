@@ -27,20 +27,4 @@ public class LC325_Maximum_Size_Subarray_Sum_Equals_k {
         }
         return maxLen;
     }
-    private static void runTest(LC325_Maximum_Size_Subarray_Sum_Equals_k solver, int testId, int[] nums, int k, int expected) {
-        try {
-            int result = solver.maxSubArrayLen(nums, k);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }

@@ -90,11 +90,4 @@ public class LC3464_Maximize_The_Distance_Between_Points_On_A_Square {
         }
         return false;
     }
-
-    // Simple tests
-    private static void run(LC3464_Maximize_The_Distance_Between_Points_On_A_Square s,
-                             int id, int side, int[][] points, int k, int expected) {
-        int ans = s.maxDistance(side, points, k);
-        System.out.println("Test " + id + ": " + (ans == expected ? "PASS" : ("FAIL (got " + ans + ", expected " + expected + ")")));
-    }
 }

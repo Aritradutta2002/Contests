@@ -54,48 +54,4 @@ public class LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation {
         }
         return out;
     }
-    private static void runAllTests(
-            LC1886_Determine_Whether_Matrix_Can_Be_Obtained_By_Rotation solver, TestCase[] tests) {
-        int passed = 0;
-
-        for (int i = 0; i < tests.length; i++) {
-            TestCase tc = tests[i];
-            try {
-                boolean actual = solver.findRotation(tc.mat, tc.target);
-                boolean ok = actual == tc.expected;
-                if (ok) {
-                    passed++;
-                }
-                System.out.printf(
-                        "Test %d | mat=%s, target=%s | expected=%s, actual=%s | %s%n",
-                        i + 1,
-                        Arrays.deepToString(tc.mat),
-                        Arrays.deepToString(tc.target),
-                        tc.expected,
-                        actual,
-                        ok ? "PASS" : "FAIL");
-            } catch (UnsupportedOperationException ex) {
-                System.out.printf(
-                        "Test %d | mat=%s, target=%s | expected=%s | SKIPPED (%s)%n",
-                        i + 1,
-                        Arrays.deepToString(tc.mat),
-                        Arrays.deepToString(tc.target),
-                        tc.expected,
-                        ex.getMessage());
-            }
-        }
-
-        System.out.printf("Summary: %d/%d tests passed.%n", passed, tests.length);
-    }
-    private static class TestCase {
-        final int[][] mat;
-        final int[][] target;
-        final boolean expected;
-
-        TestCase(int[][] mat, int[][] target, boolean expected) {
-            this.mat = mat;
-            this.target = target;
-            this.expected = expected;
-        }
-    }
 }

@@ -56,20 +56,4 @@ public class LC874_Walking_Robot_Simulation {
         }
         return maxDist;
     }
-    private static void runTest(LC874_Walking_Robot_Simulation solver, int testId, int[] commands, int[][] obstacles, int expected) {
-        try {
-            int result = solver.robotSim(commands, obstacles);
-            if (result == expected) {
-                System.out.println("Test " + testId + ": PASS");
-            } else {
-                System.out.println("Test " + testId + ": FAIL");
-                System.out.println("  Expected: " + expected);
-                System.out.println("  Actual:   " + result);
-            }
-        } catch (UnsupportedOperationException e) {
-            System.out.println("Test " + testId + ": SKIPPED (Not implemented)");
-        } catch (Exception e) {
-            System.out.println("Test " + testId + ": ERROR (" + e.getMessage() + ")");
-        }
-    }
 }
