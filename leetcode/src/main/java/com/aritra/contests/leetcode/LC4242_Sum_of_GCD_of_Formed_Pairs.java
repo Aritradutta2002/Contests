@@ -1,5 +1,7 @@
 package com.aritra.contests.leetcode;
 
+import java.util.Arrays;
+
 /**
  * 4242. Sum of GCD of Formed Pairs
  *
@@ -33,6 +35,38 @@ package com.aritra.contests.leetcode;
 class LC4242_Sum_of_GCD_of_Formed_Pairs {
 
     public long gcdSum(int[] nums) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        if (nums == null || nums.length == 0) {
+            return 0L;
+        }
+
+        int[] prefixGcd = new int[nums.length];
+        int maxSoFar = nums[0];
+        prefixGcd[0] = gcd(nums[0], maxSoFar);
+
+        for (int i = 1; i < nums.length; i++) {
+            maxSoFar = Math.max(maxSoFar, nums[i]);
+            prefixGcd[i] = gcd(nums[i], maxSoFar);
+        }
+
+        Arrays.sort(prefixGcd);
+
+        long sum = 0L;
+        int left = 0;
+        int right = prefixGcd.length - 1;
+        while (left < right) {
+            sum += gcd(prefixGcd[left], prefixGcd[right]);
+            left++;
+            right--;
+        }
+        return sum;
+    }
+
+    private int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = a % b;
+            a = b;
+            b = temp;
+        }
+        return a;
     }
 }

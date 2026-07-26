@@ -3,16 +3,20 @@ package com.aritra.contests.cses;
  *   Author  : Aritra Dutta
  *   Created : Sunday, 01.09.2024  04:51 pm
  */
+ import java.io.BufferedInputStream;
+ import java.io.File;
+ import java.io.FileInputStream;
  import static java.lang.Math.max;
- import static java.lang.Math.min;
- import static java.lang.Math.abs;
  import static java.lang.System.out;
- import java.io.*;
- import java.util.*;
- import java.math.*;
+ import java.util.ArrayList;
+ import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
  public class CommonDivisors {
     static final int MAX = (int) 1e6;
-     // main Areapublic static void findLargestCommonDivisor(long[] count) {
+     // main Area
+    public static void findLargestCommonDivisor(long[] count) {
          for (int i = MAX; i >= 1; i--) {
              long multiples = 0;
              for (int j = i; j <= MAX; j += i) {
