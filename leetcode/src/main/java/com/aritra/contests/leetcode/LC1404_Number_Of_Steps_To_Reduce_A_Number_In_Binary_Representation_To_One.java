@@ -1,7 +1,5 @@
 package com.aritra.contests.leetcode;
 
-import java.util.Scanner;
-
 /*
  * 1404. Number of Steps to Reduce a Number in Binary Representation to One
  *
