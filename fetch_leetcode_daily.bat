@@ -11,8 +11,8 @@ goto :eof
 #  Double-click this .bat to:
 #   1. Fetch today's daily problem via LeetCode GraphQL API
 #   2. Generate the Java solution stub
-#   3. Generate the JUnit 5 test file
-#   4. Verify compilation with Maven
+#   3. Generate the JUnit 5 test file with real assertions
+#   4. Build & test with mvn clean install
 # ============================================================
 
 Set-StrictMode -Version Latest
@@ -58,6 +58,184 @@ function Strip-Html {
     $text = ConvertFrom-HtmlEntities $text
     $text = ($text -replace "(\r?\n){3,}", "`n`n").Trim()
     return $text
+}
+
+# ── Helper: convert LeetCode type to Java type ────────────────
+function ConvertFrom-LCType {
+    param([string]$LCType)
+    switch ($LCType) {
+        'integer'                { return 'int' }
+        'integer[]'              { return 'int[]' }
+        'integer[][]'            { return 'int[][]' }
+        'long'                   { return 'long' }
+        'long[]'                 { return 'long[]' }
+        'double'                 { return 'double' }
+        'double[]'               { return 'double[]' }
+        'float'                  { return 'float' }
+        'boolean'                { return 'boolean' }
+        'boolean[]'              { return 'boolean[]' }
+        'string'                 { return 'String' }
+        'string[]'               { return 'String[]' }
+        'string[][]'             { return 'String[][]' }
+        'character'              { return 'char' }
+        'character[]'            { return 'char[]' }
+        'list<integer>'          { return 'List<Integer>' }
+        'list<long>'             { return 'List<Long>' }
+        'list<string>'           { return 'List<String>' }
+        'list<boolean>'          { return 'List<Boolean>' }
+        'list<list<integer>>'    { return 'List<List<Integer>>' }
+        'list<list<string>>'     { return 'List<List<String>>' }
+        'TreeNode'               { return 'TreeNode' }
+        'ListNode'               { return 'ListNode' }
+        'void'                   { return 'void' }
+        default                  { return $LCType }
+    }
+}
+
+# ── Helper: convert raw LeetCode value to Java literal ────────
+function ConvertTo-JavaLiteral {
+    param([string]$RawValue, [string]$JavaType)
+    $val = $RawValue.Trim()
+    if ($val -eq 'null') { return 'null' }
+
+    switch -Exact ($JavaType) {
+        'int'       { return $val }
+        'long'      { return "${val}L" }
+        'double'    { return $val }
+        'float'     { return "${val}f" }
+        'boolean'   { return $val.ToLower() }
+        'char'      {
+            $c = $val.Trim('"', "'")
+            return "'$c'"
+        }
+        'String'    {
+            if (-not $val.StartsWith('"')) { return "`"$val`"" }
+            return $val
+        }
+        'int[]'     {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            return "new int[]{$inner}"
+        }
+        'long[]'    {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            if ($inner.Trim() -eq '') { return 'new long[]{}' }
+            $nums = ($inner -split ',') | ForEach-Object { "$($_.Trim())L" }
+            return "new long[]{$($nums -join ', ')}"
+        }
+        'double[]'  {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            return "new double[]{$inner}"
+        }
+        'boolean[]' {
+            $inner = $val.TrimStart('[').TrimEnd(']').ToLower()
+            return "new boolean[]{$inner}"
+        }
+        'char[]'    {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            if ($inner.Trim() -eq '') { return 'new char[]{}' }
+            $chars = ($inner -split ',') | ForEach-Object {
+                $c = $_.Trim().Trim('"', "'")
+                "'$c'"
+            }
+            return "new char[]{$($chars -join ', ')}"
+        }
+        'String[]'  {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            return "new String[]{$inner}"
+        }
+        'int[][]'   {
+            if ($val -eq '[]') { return 'new int[][]{}' }
+            $inner = $val.Substring(1, $val.Length - 2)
+            $inner = $inner -replace '\[', '{' -replace '\]', '}'
+            return "new int[][]{$inner}"
+        }
+        'String[][]' {
+            if ($val -eq '[]') { return 'new String[][]{}' }
+            $inner = $val.Substring(1, $val.Length - 2)
+            $inner = $inner -replace '\[', '{' -replace '\]', '}'
+            return "new String[][]{$inner}"
+        }
+        'List<Integer>' {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            if ($inner.Trim() -eq '') { return 'List.of()' }
+            return "List.of($inner)"
+        }
+        'List<Long>' {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            if ($inner.Trim() -eq '') { return 'List.of()' }
+            $nums = ($inner -split ',') | ForEach-Object { "$($_.Trim())L" }
+            return "List.of($($nums -join ', '))"
+        }
+        'List<String>' {
+            $inner = $val.TrimStart('[').TrimEnd(']')
+            if ($inner.Trim() -eq '') { return 'List.of()' }
+            return "List.of($inner)"
+        }
+        'List<Boolean>' {
+            $inner = $val.TrimStart('[').TrimEnd(']').ToLower()
+            if ($inner.Trim() -eq '') { return 'List.of()' }
+            return "List.of($inner)"
+        }
+        'List<List<Integer>>' {
+            if ($val -eq '[]') { return 'List.of()' }
+            $items = [regex]::Matches($val, '\[([^\[\]]*)\]') | ForEach-Object {
+                $csv = $_.Groups[1].Value
+                if ($csv.Trim() -eq '') { 'List.of()' } else { "List.of($csv)" }
+            }
+            return "List.of($($items -join ', '))"
+        }
+        'List<List<String>>' {
+            if ($val -eq '[]') { return 'List.of()' }
+            $items = [regex]::Matches($val, '\[([^\[\]]*)\]') | ForEach-Object {
+                $csv = $_.Groups[1].Value
+                if ($csv.Trim() -eq '') { 'List.of()' } else { "List.of($csv)" }
+            }
+            return "List.of($($items -join ', '))"
+        }
+        default     { return "/* UNSUPPORTED($JavaType): $val */" }
+    }
+}
+
+# ── Helper: pick assertion method based on return type ─────────
+function Get-AssertionCall {
+    param([string]$JavaType, [string]$ActualExpr, [string]$ExpectedExpr)
+    switch -Regex ($JavaType) {
+        '^double$'     { return "assertEquals($ExpectedExpr, $ActualExpr, 1e-5);" }
+        '^float$'      { return "assertEquals($ExpectedExpr, $ActualExpr, 1e-5f);" }
+        '^int\[\]$'    { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '^long\[\]$'   { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '^double\[\]$' { return "assertArrayEquals($ExpectedExpr, $ActualExpr, 1e-5);" }
+        '^boolean\[\]$'{ return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '^char\[\]$'   { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '^String\[\]$' { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '^int\[\]\[\]$'{ return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '^String\[\]\[\]$' { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '\[\]\[\]$'    { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        '\[\]$'        { return "assertArrayEquals($ExpectedExpr, $ActualExpr);" }
+        default      { return "assertEquals($ExpectedExpr, $ActualExpr);" }
+    }
+}
+
+# ── Helper: extract expected outputs from HTML description ────
+function Extract-ExpectedOutputs {
+    param([string]$Html)
+    $outputs = @()
+    $pattern = '(?i)<strong>\s*Output\s*:?\s*</strong>\s*(?:<span[^>]*>\s*)?(.+?)(?:</span>|</p>|</pre>|</div>|\r?\n)'
+    $ms = [regex]::Matches($Html, $pattern, [System.Text.RegularExpressions.RegexOptions]::Multiline)
+    foreach ($m in $ms) {
+        $raw = $m.Groups[1].Value.Trim()
+        $raw = $raw -replace '<[^>]+>', ''
+        $raw = ConvertFrom-HtmlEntities $raw
+        if ($raw -ne '') { $outputs += $raw }
+    }
+    return ,$outputs
+}
+
+# ── Helper: check if type is unsupported (TreeNode, etc.) ─────
+function Test-UnsupportedType {
+    param([string]$JavaType)
+    return ($JavaType -eq 'TreeNode' -or $JavaType -eq 'ListNode' -or
+            $JavaType -match 'Node' -or $JavaType -eq 'void')
 }
 
 # ────────────────────────────────────────────────────────────────
@@ -203,51 +381,157 @@ Write-Host "  Created: $srcFile" -ForegroundColor Green
 
 $testCaseLines = @()
 if ($exampleTests) {
-    $testCaseLines = ($exampleTests -split "`n") | Where-Object { $_.Trim() -ne '' }
+    $testCaseLines = @( ($exampleTests -split "`n") | Where-Object { $_.Trim() -ne '' } )
 }
 
-# Parse metaData to get method name and parameter info
+# Parse metaData to get method name, parameter types, and return type
 $methodName = "solve"
 $paramCount = 1
+$paramTypes = @()
+$returnType = "int"
+$returnJavaType = "int"
+$paramJavaTypes = @()
+$unsupported = $false
+
 try {
     $meta = $question.metaData | ConvertFrom-Json
     if ($meta.name) { $methodName = $meta.name }
-    if ($meta.params) { $paramCount = $meta.params.Count }
+    if ($meta.params) {
+        $paramCount = $meta.params.Count
+        $paramTypes = @( $meta.params | ForEach-Object { $_.type } )
+        $paramJavaTypes = @( $paramTypes | ForEach-Object { ConvertFrom-LCType $_ } )
+    }
+    if ($meta.return) {
+        $returnType = $meta.return.type
+        $returnJavaType = ConvertFrom-LCType $returnType
+    }
+    # Check for unsupported types (TreeNode, ListNode, void, etc.)
+    foreach ($pt in $paramJavaTypes) {
+        if (Test-UnsupportedType $pt) { $unsupported = $true; break }
+    }
+    if (Test-UnsupportedType $returnJavaType) { $unsupported = $true }
 } catch {
     if ($javaSnippet -match 'public\s+\S+\s+(\w+)\s*\(') {
         $methodName = $Matches[1]
     }
+    $unsupported = $true
 }
 
-# Build test methods from example test case lines
+# Extract expected outputs from HTML description
+$expectedOutputs = Extract-ExpectedOutputs $descriptionHtml
+
+Write-Host "  Method   : $methodName" -ForegroundColor DarkGray
+Write-Host "  Params   : $paramCount ($($paramJavaTypes -join ', '))" -ForegroundColor DarkGray
+Write-Host "  Returns  : $returnJavaType" -ForegroundColor DarkGray
+Write-Host "  Examples : $($expectedOutputs.Count) outputs parsed" -ForegroundColor DarkGray
+
+# Build test methods with real assertions
 $testMethods = ""
 $testIndex = 1
 
-if ($testCaseLines.Count -gt 0 -and $paramCount -gt 0) {
+if (-not $unsupported -and $testCaseLines.Count -gt 0 -and $paramCount -gt 0 -and $expectedOutputs.Count -gt 0) {
     $i = 0
-    while ($i -lt $testCaseLines.Count) {
-        $params = @()
-        for ($p = 0; $p -lt $paramCount -and ($i + $p) -lt $testCaseLines.Count; $p++) {
-            $params += "        // Input param $($p + 1): $($testCaseLines[$i + $p])"
-        }
-        $paramComments = $params -join "`n"
+    $outputIdx = 0
+    while ($i -lt $testCaseLines.Count -and $outputIdx -lt $expectedOutputs.Count) {
+        # Gather parameters for this test case
+        $javaParams = @()
+        $paramDecls = @()
+        $allParamsOk = $true
 
-        $testMethods += @"
+        for ($p = 0; $p -lt $paramCount -and ($i + $p) -lt $testCaseLines.Count; $p++) {
+            $rawVal = $testCaseLines[$i + $p]
+            if ($p -lt $paramJavaTypes.Count) {
+                $jt = $paramJavaTypes[$p]
+            } else {
+                $jt = 'int'
+            }
+            $javaLit = ConvertTo-JavaLiteral $rawVal $jt
+            if ($javaLit -match 'UNSUPPORTED') { $allParamsOk = $false; break }
+            $javaParams += $javaLit
+            $paramDecls += "        $jt param$($p + 1) = $javaLit;"
+        }
+
+        # Convert expected output
+        $rawExpected = $expectedOutputs[$outputIdx]
+        $expectedLit = ConvertTo-JavaLiteral $rawExpected $returnJavaType
+
+        if ($allParamsOk -and $expectedLit -notmatch 'UNSUPPORTED') {
+            $paramDeclBlock = $paramDecls -join "`n"
+            $paramCallArgs = @()
+            for ($p = 0; $p -lt $paramCount; $p++) {
+                $paramCallArgs += "param$($p + 1)"
+            }
+            $callArgs = $paramCallArgs -join ', '
+            $expectedDecl = "        $returnJavaType expected = $expectedLit;"
+            $actualDecl = "        $returnJavaType actual = solver.$methodName($callArgs);"
+            $assertion = Get-AssertionCall $returnJavaType 'actual' 'expected'
+
+            $testMethods += @"
 
     @Test
     public void testExample$testIndex() {
-        // Example $testIndex from LeetCode
-$paramComments
-        // TODO: set up inputs and expected output, then call solver.$methodName(...)
+$paramDeclBlock
+$expectedDecl
+$actualDecl
+        $assertion
     }
 
 "@
+        } else {
+            # Fallback to TODO stub for unsupported types
+            $paramComments = @()
+            for ($p = 0; $p -lt $paramCount -and ($i + $p) -lt $testCaseLines.Count; $p++) {
+                $paramComments += "        // Input param $($p + 1): $($testCaseLines[$i + $p])"
+            }
+            $paramCommentBlock = $paramComments -join "`n"
+            $testMethods += @"
+
+    @Test
+    public void testExample$testIndex() {
+        // Example $testIndex (unsupported type - fill in manually)
+$paramCommentBlock
+        // Expected output: $rawExpected
+        // TODO: call solver.$methodName(...)
+    }
+
+"@
+        }
+
         $testIndex++
         $i += $paramCount
+        $outputIdx++
     }
 } else {
-    for ($t = 1; $t -le 3; $t++) {
-        $testMethods += @"
+    # Fallback: generate TODO stubs when types cannot be inferred
+    if ($testCaseLines.Count -gt 0 -and $paramCount -gt 0) {
+        $i = 0
+        $outputIdx = 0
+        while ($i -lt $testCaseLines.Count) {
+            $paramComments = @()
+            for ($p = 0; $p -lt $paramCount -and ($i + $p) -lt $testCaseLines.Count; $p++) {
+                $paramComments += "        // Input param $($p + 1): $($testCaseLines[$i + $p])"
+            }
+            $paramCommentBlock = $paramComments -join "`n"
+            $expComment = ""
+            if ($outputIdx -lt $expectedOutputs.Count) {
+                $expComment = "`n        // Expected output: $($expectedOutputs[$outputIdx])"
+            }
+            $testMethods += @"
+
+    @Test
+    public void testExample$testIndex() {
+$paramCommentBlock$expComment
+        // TODO: call solver.$methodName(...)
+    }
+
+"@
+            $testIndex++
+            $i += $paramCount
+            $outputIdx++
+        }
+    } else {
+        for ($t = 1; $t -le 3; $t++) {
+            $testMethods += @"
 
     @Test
     public void testExample$t() {
@@ -256,12 +540,14 @@ $paramComments
     }
 
 "@
+        }
     }
 }
 
 $testContent = @"
 package com.aritra.contests.leetcode;
 
+import java.util.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -277,23 +563,23 @@ $testContent | Out-File -FilePath $testFile -Encoding utf8 -NoNewline
 Write-Host "  Created: $testFile" -ForegroundColor Green
 
 # ────────────────────────────────────────────────────────────────
-#  STEP 4 ─ Verify compilation
+#  STEP 4 ─ Run mvn clean install
 # ────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "[4/5] Verifying compilation..." -ForegroundColor Cyan
+Write-Host "[4/5] Running mvn clean install..." -ForegroundColor Cyan
 
 Push-Location $ROOT
 try {
-    $mvnOutput = & mvn compile -pl leetcode -q 2>&1
+    $mvnOutput = & mvn clean install -pl leetcode 2>&1
     if ($LASTEXITCODE -eq 0) {
-        Write-Host "  Compilation SUCCESSFUL" -ForegroundColor Green
+        Write-Host "  BUILD SUCCESS" -ForegroundColor Green
     } else {
-        Write-Host "  Compilation FAILED. Maven output:" -ForegroundColor Red
+        Write-Host "  BUILD FAILURE. Maven output:" -ForegroundColor Red
         $mvnOutput | ForEach-Object { Write-Host "    $_" }
     }
 } catch {
-    Write-Host "  WARNING: Maven not found or compile failed." -ForegroundColor Yellow
-    Write-Host "  You can compile manually: mvn compile -pl leetcode" -ForegroundColor Yellow
+    Write-Host "  WARNING: Maven not found or build failed." -ForegroundColor Yellow
+    Write-Host "  You can build manually: mvn clean install -pl leetcode" -ForegroundColor Yellow
 }
 Pop-Location
 
