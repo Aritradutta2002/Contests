@@ -323,8 +323,8 @@ $paddedNum  = Format-ProblemNumber $problemNum
 $titleToken = ConvertTo-FileName $problemTitle
 $className  = "LC${paddedNum}_${titleToken}"
 
-$srcDir  = Join-Path $ROOT "leetcode\src\main\java\com\aritra\contests\leetcode"
-$testDir = Join-Path $ROOT "leetcode\src\test\java\com\aritra\contests\leetcode"
+$srcDir  = Join-Path $ROOT "leetcode\src\main\java\com\leetcode"
+$testDir = Join-Path $ROOT "leetcode\src\test\java\com\leetcode"
 
 $srcFile  = Join-Path $srcDir  "${className}.java"
 $testFile = Join-Path $testDir "${className}_Test.java"
@@ -355,7 +355,7 @@ $snippetBody = [regex]::Replace(
 
 # Build the solution file
 $solutionContent = @"
-package com.aritra.contests.leetcode;
+package com.leetcode;
 import java.util.*;
 import java.io.*;
 
@@ -545,7 +545,7 @@ $paramCommentBlock$expComment
 }
 
 $testContent = @"
-package com.aritra.contests.leetcode;
+package com.leetcode;
 
 import java.util.*;
 import org.junit.jupiter.api.Test;
@@ -593,7 +593,7 @@ Write-Host "  Date       : $dateStr" -ForegroundColor White
 Write-Host "  Problem    : $problemNum. $problemTitle" -ForegroundColor White
 Write-Host "  Difficulty : $difficulty" -ForegroundColor White
 Write-Host "  Class      : $className" -ForegroundColor White
-Write-Host "  Package    : com.aritra.contests.leetcode" -ForegroundColor White
+Write-Host "  Package    : com.leetcode" -ForegroundColor White
 Write-Host "  Solution   : $srcFile" -ForegroundColor White
 Write-Host "  Test       : $testFile" -ForegroundColor White
 Write-Host "  -----------------------------------------------" -ForegroundColor DarkGray
