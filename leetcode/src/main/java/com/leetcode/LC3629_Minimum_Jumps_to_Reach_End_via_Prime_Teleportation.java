@@ -23,5 +23,41 @@ public class LC3629_Minimum_Jumps_to_Reach_End_via_Prime_Teleportation {
      * @return the minimum number of jumps needed to reach the last index
      */
     public int minimumJumps(int[] nums) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }}
+        int n = nums.length;
+        int[] distance = new int[n];
+        Arrays.fill(distance, -1);
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(0);
+        distance[0] = 0;
+        boolean[] expandedPrime = new boolean[51];
+        while (!queue.isEmpty()) {
+            int index = queue.remove();
+            if (index == n - 1) return distance[index];
+            int lastReachable = Math.min(n - 1, index + nums[index]);
+            for (int next = index + 1; next <= lastReachable; next++) {
+                if (distance[next] == -1) {
+                    distance[next] = distance[index] + 1;
+                    queue.add(next);
+                }
+            }
+            if (isPrime(nums[index]) && !expandedPrime[nums[index]]) {
+                expandedPrime[nums[index]] = true;
+                for (int next = 0; next < n; next++) {
+                    if (distance[next] == -1) {
+                        distance[next] = distance[index] + 1;
+                        queue.add(next);
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    private boolean isPrime(int value) {
+        if (value < 2) return false;
+        for (int divisor = 2; divisor * divisor <= value; divisor++) {
+            if (value % divisor == 0) return false;
+        }
+        return true;
+    }
+}

@@ -1,8 +1,6 @@
 package com.leetcode;
 
 import java.util.*;
-import java.io.*;
-
 /**
  * 3559. Number of Ways to Assign Edge Weights II
  * 
@@ -32,6 +30,68 @@ import java.io.*;
  */
 public class LC3559_Number_of_Ways_to_Assign_Edge_Weights_II {
     public int[] assignEdgeWeights(int[][] edges, int[][] queries) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        final int modulo = 1_000_000_007;
+        int n = edges.length + 1;
+        int levels = 1;
+        while ((1 << levels) <= n) levels++;
+        @SuppressWarnings("unchecked")
+        List<Integer>[] graph = (List<Integer>[]) new List<?>[n + 1];
+        for (int node = 1; node <= n; node++) graph[node] = new ArrayList<>();
+        for (int[] edge : edges) {
+            graph[edge[0]].add(edge[1]);
+            graph[edge[1]].add(edge[0]);
+        }
+        int[][] ancestor = new int[levels][n + 1];
+        int[] depth = new int[n + 1];
+        int[] queue = new int[n];
+        int head = 0;
+        int tail = 0;
+        queue[tail++] = 1;
+        while (head < tail) {
+            int node = queue[head++];
+            for (int next : graph[node]) {
+                if (next == ancestor[0][node]) continue;
+                ancestor[0][next] = node;
+                depth[next] = depth[node] + 1;
+                queue[tail++] = next;
+            }
+        }
+        for (int level = 1; level < levels; level++) {
+            for (int node = 1; node <= n; node++) {
+                ancestor[level][node] = ancestor[level - 1][ancestor[level - 1][node]];
+            }
+        }
+        int[] powersOfTwo = new int[n + 1];
+        powersOfTwo[0] = 1;
+        for (int distance = 1; distance <= n; distance++) {
+            powersOfTwo[distance] = (int) ((long) powersOfTwo[distance - 1] * 2 % modulo);
+        }
+        int[] answer = new int[queries.length];
+        for (int index = 0; index < queries.length; index++) {
+            int distance = depth[queries[index][0]] + depth[queries[index][1]]
+                    - 2 * depth[lowestCommonAncestor(queries[index][0], queries[index][1], depth, ancestor)];
+            answer[index] = distance == 0 ? 0 : powersOfTwo[distance - 1];
+        }
+        return answer;
+    }
+
+    private int lowestCommonAncestor(int first, int second, int[] depth, int[][] ancestor) {
+        if (depth[first] < depth[second]) {
+            int swap = first;
+            first = second;
+            second = swap;
+        }
+        int difference = depth[first] - depth[second];
+        for (int level = 0; difference > 0; level++, difference >>= 1) {
+            if ((difference & 1) != 0) first = ancestor[level][first];
+        }
+        if (first == second) return first;
+        for (int level = ancestor.length - 1; level >= 0; level--) {
+            if (ancestor[level][first] != ancestor[level][second]) {
+                first = ancestor[level][first];
+                second = ancestor[level][second];
+            }
+        }
+        return ancestor[0][first];
     }
 }

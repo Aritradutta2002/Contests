@@ -1,7 +1,4 @@
 package com.leetcode;
-import java.util.*;
-import java.io.*;
-
 /**
  * 1140. Stone Game II
  *
@@ -28,5 +25,20 @@ import java.io.*;
  * ...
  */
 public class LC1140_Stone_Game_II {
-    public int stoneGameII(int[] piles) { throw new UnsupportedOperationException("Not implemented yet."); }
+    public int stoneGameII(int[] piles) {
+        int n = piles.length;
+        int[] suffix = new int[n + 1];
+        for (int i = n - 1; i >= 0; i--) suffix[i] = suffix[i + 1] + piles[i];
+        int[][] dp = new int[n + 1][n + 1];
+        for (int index = n - 1; index >= 0; index--) {
+            for (int limit = n; limit >= 1; limit--) {
+                int best = 0;
+                for (int take = 1; take <= 2 * limit && index + take <= n; take++) {
+                    best = Math.max(best, suffix[index] - dp[index + take][Math.max(limit, take)]);
+                }
+                dp[index][limit] = best;
+            }
+        }
+        return dp[0][1];
+    }
 }

@@ -18,7 +18,7 @@ goto :eof
 #   1. Resolve the input to a titleSlug via LeetCode GraphQL
 #   2. Generate the Java solution stub
 #   3. Generate the JUnit 5 test file with real assertions
-#   4. Compile-check the new test class with Maven
+#   4. Build & test the leetcode module with mvn clean install
 # ============================================================
 
 Set-StrictMode -Version Latest
@@ -469,11 +469,14 @@ if ($snippetBody -match '(?s)class\s+Solution\s*\{(.+)\}\s*$') {
     $snippetBody = $Matches[1].Trim()
 }
 
-$snippetBody = [regex]::Replace(
-    $snippetBody,
-    '(\{)\s*(\})',
-    '{ throw new UnsupportedOperationException("Not implemented yet."); }'
-)
+# Inject the marker into every empty method body. The Maven workflow excludes
+# only the paired test while this throw is present.
+$methodPattern = '((?:public|private|protected)\s+(?:static\s+)?)([\w<>\[\],]+)\s+(\w+\s*\([^)]*\))(\s*throws\s+[\w\s,]+)?\s*\{\s*\}'
+$snippetBody = [regex]::Replace($snippetBody, $methodPattern, [System.Text.RegularExpressions.MatchEvaluator]{
+    param([System.Text.RegularExpressions.Match]$m)
+    $sig = "$($m.Groups[1].Value)$($m.Groups[2].Value) $($m.Groups[3].Value)$($m.Groups[4].Value)"
+    return "$sig { throw new UnsupportedOperationException(`"Not implemented yet.`"); }"
+})
 
 $solutionContent = @"
 package com.leetcode;
@@ -492,7 +495,9 @@ public class $className {
 
 if (-not (Test-Path $srcDir)) { New-Item -ItemType Directory -Path $srcDir -Force | Out-Null }
 
-$solutionContent | Out-File -FilePath $srcFile -Encoding utf8 -NoNewline
+# WriteAllText defaults to UTF-8 WITHOUT BOM (Out-File -Encoding utf8 adds a
+# BOM, which javac rejects as "illegal character: '﻿'").
+[System.IO.File]::WriteAllText($srcFile, $solutionContent)
 Write-Host "  Created: $srcFile" -ForegroundColor Green
 
 # ── 3b  JUnit test file ────────────────────────────────────────
@@ -668,29 +673,67 @@ $testMethods}
 
 if (-not (Test-Path $testDir)) { New-Item -ItemType Directory -Path $testDir -Force | Out-Null }
 
-$testContent | Out-File -FilePath $testFile -Encoding utf8 -NoNewline
+[System.IO.File]::WriteAllText($testFile, $testContent)
 Write-Host "  Created: $testFile" -ForegroundColor Green
 
 # ────────────────────────────────────────────────────────────────
-#  STEP 4 ─ Compile-check the new test class with Maven
+#  STEP 4 ─ Build & test the entire leetcode module with Maven
 # ────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "[4/4] Compiling the new test class with Maven..." -ForegroundColor Cyan
+Write-Host "[4/4] Running mvn clean install for the leetcode module..." -ForegroundColor Cyan
 
-Push-Location $ROOT
-try {
-    $mvnOutput = & mvn -q test -Dtest="${className}_Test" -pl leetcode 2>&1
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "  BUILD SUCCESS (tests will pass once you implement the solution)" -ForegroundColor Green
-    } else {
-        Write-Host "  BUILD FAILURE. Maven output:" -ForegroundColor Red
-        $mvnOutput | ForEach-Object { Write-Host "    $_" }
-    }
-} catch {
-    Write-Host "  WARNING: Maven not found or build failed." -ForegroundColor Yellow
-    Write-Host "  You can build manually: mvn test -Dtest=${className}_Test -pl leetcode" -ForegroundColor Yellow
+$excludeFile = Join-Path ([System.IO.Path]::GetTempPath()) "contest-unimplemented-tests-$([guid]::NewGuid()).txt"
+& (Join-Path $ROOT 'skip-unimplemented-tests.ps1') `
+    -ModuleRoot (Join-Path $ROOT 'leetcode') `
+    -ExcludesFile $excludeFile
+if ($LASTEXITCODE -ne 0) { throw "Failed to select tests for unimplemented solutions." }
+
+# Resolve Maven: PATH first, then MAVEN_HOME / M2_HOME, then common install
+# dirs. A double-clicked .bat inherits Explorer's environment, which is stale
+# if Maven was added to PATH after the last sign-in.
+$mvnExe = $null
+$mvnCmdInfo = Get-Command mvn -ErrorAction SilentlyContinue
+if ($mvnCmdInfo) { $mvnExe = $mvnCmdInfo.Source }
+if (-not $mvnExe -and $env:MAVEN_HOME) {
+    $cand = Join-Path $env:MAVEN_HOME 'bin\mvn.cmd'
+    if (Test-Path $cand) { $mvnExe = $cand }
 }
-Pop-Location
+if (-not $mvnExe -and $env:M2_HOME) {
+    $cand = Join-Path $env:M2_HOME 'bin\mvn.cmd'
+    if (Test-Path $cand) { $mvnExe = $cand }
+}
+if (-not $mvnExe) {
+    $cand = Get-ChildItem 'C:\*\apache-maven-*\bin\mvn.cmd' -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($cand) { $mvnExe = $cand.FullName }
+}
+
+if (-not $mvnExe) {
+    throw "Maven not found (checked PATH, MAVEN_HOME, M2_HOME, C:\*\apache-maven-*)."
+} else {
+    Write-Host "  Maven: $mvnExe" -ForegroundColor DarkGray
+    Push-Location $ROOT
+    try {
+        # Maven/JDK print harmless warnings to stderr; with
+        # $ErrorActionPreference='Stop' a 2>&1 merge would turn the first
+        # stderr line into a terminating error. Relax it just for this call.
+        $prevEAP = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+        $mvnOutput = & $mvnExe clean install -pl leetcode "-Dsurefire.excludesFile=$excludeFile" 2>&1
+        $mvnExit = $LASTEXITCODE
+        $ErrorActionPreference = $prevEAP
+        if ($mvnExit -eq 0) {
+            Write-Host "  BUILD SUCCESS (tests will pass once you implement the solution)" -ForegroundColor Green
+        } else {
+            Write-Host "  BUILD FAILURE. Maven output:" -ForegroundColor Red
+            $mvnOutput | ForEach-Object { Write-Host "    $_" }
+            throw "Maven build failed with exit code $mvnExit."
+        }
+    } catch {
+        $ErrorActionPreference = $prevEAP
+        throw "Maven invocation failed: $($_.Exception.Message)"
+    }
+    Pop-Location
+}
 
 # ────────────────────────────────────────────────────────────────
 #  Summary

@@ -1,7 +1,4 @@
-﻿package com.leetcode;
-import java.util.*;
-import java.io.*;
-
+package com.leetcode;
 /**
  * 2029. Stone Game IX
  *
@@ -35,5 +32,11 @@ import java.io.*;
  *  - 1 <= stones[i] <= 104
  */
 public class LC2029_Stone_Game_IX {
-    public boolean stoneGameIX(int[] stones) { throw new UnsupportedOperationException("Not implemented yet."); }
+    public boolean stoneGameIX(int[] stones) {
+        int[] count = new int[3];
+        for (int stone : stones) count[stone % 3]++;
+        if ((count[1] == 0 || count[2] == 0) && count[0] % 2 == 0) return false;
+        if (count[0] % 2 == 0) return count[1] > 0 && count[2] > 0;
+        return Math.abs(count[1] - count[2]) > 2;
+    }
 }

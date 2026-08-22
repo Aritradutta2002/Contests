@@ -1,7 +1,4 @@
-﻿package com.leetcode;
-import java.util.*;
-import java.io.*;
-
+package com.leetcode;
 /**
  * 3090. Maximum Length Substring With Two Occurrences
  *
@@ -21,5 +18,15 @@ import java.io.*;
  *  - s consists only of lowercase English letters.
  */
 public class LC3090_Maximum_Length_Substring_With_Two_Occurrences {
-    public int maximumLengthSubstring(String s) { throw new UnsupportedOperationException("Not implemented yet."); }
+    public int maximumLengthSubstring(String s) {
+        int[] count = new int[26];
+        int left = 0;
+        int best = 0;
+        for (int right = 0; right < s.length(); right++) {
+            count[s.charAt(right) - 'a']++;
+            while (count[s.charAt(right) - 'a'] > 2) count[s.charAt(left++) - 'a']--;
+            best = Math.max(best, right - left + 1);
+        }
+        return best;
+    }
 }

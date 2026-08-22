@@ -1,7 +1,4 @@
 package com.leetcode;
-import java.util.*;
-import java.io.*;
-
 /**
  * 1510. Stone Game IV
  *
@@ -28,5 +25,16 @@ import java.io.*;
  * ...
  */
 public class LC1510_Stone_Game_IV {
-    public boolean winnerSquareGame(int n) { throw new UnsupportedOperationException("Not implemented yet."); }
+    public boolean winnerSquareGame(int n) {
+        boolean[] winning = new boolean[n + 1];
+        for (int stones = 1; stones <= n; stones++) {
+            for (int square = 1; square * square <= stones; square++) {
+                if (!winning[stones - square * square]) {
+                    winning[stones] = true;
+                    break;
+                }
+            }
+        }
+        return winning[n];
+    }
 }
