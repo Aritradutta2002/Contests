@@ -1,6 +1,7 @@
 package com.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 3559. Number of Ways to Assign Edge Weights II
  * 

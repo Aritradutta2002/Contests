@@ -1,5 +1,6 @@
 package com.leetcode;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 3069. Distribute Elements Into Two Arrays I
  *

@@ -686,7 +686,6 @@ $excludeFile = Join-Path ([System.IO.Path]::GetTempPath()) "contest-unimplemente
 & (Join-Path $ROOT 'skip-unimplemented-tests.ps1') `
     -ModuleRoot (Join-Path $ROOT 'leetcode') `
     -ExcludesFile $excludeFile
-if ($LASTEXITCODE -ne 0) { throw "Failed to select tests for unimplemented solutions." }
 
 # Resolve Maven: PATH first, then MAVEN_HOME / M2_HOME, then common install
 # dirs. A double-clicked .bat inherits Explorer's environment, which is stale

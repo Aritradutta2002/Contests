@@ -1,7 +1,7 @@
 package com.leetcode;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LC3090_Maximum_Length_Substring_With_Two_Occurrences_Test {
 

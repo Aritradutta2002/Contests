@@ -1,7 +1,7 @@
 package com.leetcode;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LC2029_Stone_Game_IX_Test {
 

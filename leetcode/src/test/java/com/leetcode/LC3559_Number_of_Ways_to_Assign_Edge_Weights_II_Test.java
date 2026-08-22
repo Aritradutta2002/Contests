@@ -1,7 +1,7 @@
 package com.leetcode;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LC3559_Number_of_Ways_to_Assign_Edge_Weights_II_Test {
 

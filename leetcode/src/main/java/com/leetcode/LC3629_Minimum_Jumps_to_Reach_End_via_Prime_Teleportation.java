@@ -1,5 +1,7 @@
 package com.leetcode;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Queue;
 /**
  * LeetCode 3629. Minimum Jumps to Reach End via Prime Teleportation
  * 
