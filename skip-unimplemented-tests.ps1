@@ -2,7 +2,15 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$ModuleRoot,
     [Parameter(Mandatory = $true)]
-    [string]$ExcludesFile
+    [string]$ExcludesFile,
+    # Optional: when supplied, writes "skipped", "selected", "total" (one per line)
+    # so a caller such as fetch_leetcode.bat can report exact counts.
+    [string]$SummaryFile,
+    # Matches the generated placeholder in either form:
+    #   throw new UnsupportedOperationException("Not implemented yet.");
+    #   throw new UnsupportedOperationException();
+    # It deliberately does NOT match "catch (UnsupportedOperationException ex)".
+    [string]$MarkerPattern = 'throw\s+new\s+UnsupportedOperationException\s*\(\s*(?:"[^"]*")?\s*\)'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -23,8 +31,7 @@ function Get-RelativePath {
 if (Test-Path $sourceRoot) {
     Get-ChildItem -Path $sourceRoot -Filter '*.java' -File -Recurse | ForEach-Object {
         $source = [System.IO.File]::ReadAllText($_.FullName)
-        $placeholder = 'throw\s+new\s+UnsupportedOperationException\s*\(\s*"Not\s+implemented\s+yet\."\s*\)'
-        if ($source -match $placeholder) {
+        if ($source -match $MarkerPattern) {
             $relativeSource = Get-RelativePath $sourceRoot $_.FullName
             $relativeTest = [System.IO.Path]::ChangeExtension($relativeSource, $null)
             $relativeTest = $relativeTest.TrimEnd('.') + '_Test.java'
@@ -58,4 +65,9 @@ foreach ($test in $allTests) {
     }
 }
 
-Write-Host "Test selection: $skippedCount skipped, $($allTests.Count - $skippedCount) selected to run." -ForegroundColor Cyan
+$selectedCount = $allTests.Count - $skippedCount
+Write-Host "Test selection: $skippedCount skipped, $selectedCount selected to run." -ForegroundColor Cyan
+
+if ($SummaryFile) {
+    [System.IO.File]::WriteAllLines($SummaryFile, @("$skippedCount", "$selectedCount", "$($allTests.Count)"))
+}

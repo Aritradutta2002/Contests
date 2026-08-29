@@ -125,4 +125,6 @@ agent.md
 .aider.*
 .claude/
 .claude.*
+.workbuddy/
+.workbuddy-ai/
 

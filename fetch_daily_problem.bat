@@ -7,24 +7,18 @@ goto :eof
 : end batch / begin PowerShell #>
 
 # ============================================================
-#  LeetCode Problem Fetcher (by link or title)
-#  Double-click this .bat and enter one of:
-#   - Full URL        (e.g. https://leetcode.com/problems/two-sum/)
-#   - Problem number  (e.g. 1 or 0001)
-#   - Problem slug    (e.g. two-sum)
-#   - Problem title   (e.g. "Two Sum")
-#
-#  It will:
-#   1. Resolve the input to a titleSlug via LeetCode GraphQL
+#  LeetCode Daily Problem Fetcher
+#  Double-click this .bat to:
+#   1. Fetch today's daily problem via LeetCode GraphQL API
 #   2. Generate the Java solution stub
 #   3. Generate the JUnit 5 test file with real assertions
-#   4. Build & test the leetcode module with mvn clean install
+#   4. Build & test with mvn clean install
 # ============================================================
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-# Repo root = directory of this .bat file
+# Repo root = directory of this .bat file (passed via env var from batch trampoline)
 $ROOT = $env:SCRIPT_ROOT.TrimEnd('\')
 
 # ── Helper: normalise title to filename token ──────────────────
@@ -34,16 +28,14 @@ function ConvertTo-FileName {
     return ($tokens -join '_')
 }
 
-# ── Helper: zero-pad problem number to 4 digits ───────────────
+# ── Helper: zero-pad problem number ────────────────────────────
 function Format-ProblemNumber {
     param([int]$Num)
-    if ($Num -lt 10)   { return "000$Num" }
-    if ($Num -lt 100)  { return "00$Num" }
-    if ($Num -lt 1000) { return "0$Num" }
+    if ($Num -lt 10) { return "0$Num" }
     return "$Num"
 }
 
-# ── Helper: escape HTML entities ───────────────────────────────
+# ── Helper: escape HTML entities in description ────────────────
 function ConvertFrom-HtmlEntities {
     param([string]$Text)
     $Text = $Text -replace '&lt;', '<'
@@ -246,152 +238,49 @@ function Test-UnsupportedType {
             $JavaType -match 'Node' -or $JavaType -eq 'void')
 }
 
-# ── Helper: convert user input to a titleSlug ──────────────────
-# Strategy:
-#  1) URL       -> extract slug from /problems/<slug>/
-#  2) Number    -> page through problemsetQuestionListV2 (limit 100, skip N)
-#                   until we find a problem with that questionFrontendId
-#  3) Slug      -> use directly (later validated by the question fetch)
-#  4) Title     -> page through problemsetQuestionListV2 and find a
-#                   case-insensitive title match. If multiple, return
-#                   the closest match and list the rest.
-function Resolve-TitleSlug {
-    param([string]$UserInput)
-    $UserInput = $UserInput.Trim()
-
-    # 1) Full URL
-    if ($UserInput -match 'leetcode\.com/problems/([^/?#]+)') {
-        return $Matches[1]
-    }
-
-    # If input begins with a number followed by "." (e.g. "2958. Length of..."),
-    # strip the leading number prefix so we can match by title.
-    if ($UserInput -match '^(\d+)\.?\s+(.+)$') {
-        $UserInput = $Matches[2].Trim()
-    }
-
-    $headers = @{ 'Content-Type' = 'application/json'; 'Referer' = 'https://leetcode.com' }
-
-    # 2) Pure integer (after possibly stripping a prefix)
-    if ($UserInput -match '^\d+$') {
-        $queryNum = [int]$UserInput
-        return Search-ById -Id $queryNum -Headers $headers
-    }
-
-    # 3) Already looks like a slug
-    if ($UserInput -match '^[a-z0-9][a-z0-9-]*$') {
-        return $UserInput
-    }
-
-    # 4) Title search (page through the full list)
-    return Search-ByTitle -Title $UserInput -Headers $headers
-}
-
-# ── Helper: find a problem by questionFrontendId via paginated search ──
-function Search-ById {
-    param([int]$Id, [hashtable]$Headers)
-    $pageSize = 100
-    $skip     = 0
-    while ($skip -lt 5000) {
-        $body = ('{{ "query": "query {{ problemsetQuestionListV2(limit: {0}, skip: {1}) {{ questions {{ questionFrontendId title titleSlug }} }} }}" }}' -f $pageSize, $skip)
-        $bytes = [System.Text.Encoding]::UTF8.GetBytes($body)
-        try {
-            $resp = Invoke-RestMethod -Uri 'https://leetcode.com/graphql' -Method Post `
-                -Body $bytes -Headers $Headers -UseBasicParsing
-        } catch {
-            Write-Host "  ERROR: paginated search failed." -ForegroundColor Red
-            return $null
-        }
-        $page = @($resp.data.problemsetQuestionListV2.questions)
-        if ($page.Count -eq 0) { break }
-        foreach ($q in $page) {
-            if ([int]$q.questionFrontendId -eq $Id) { return $q.titleSlug }
-        }
-        $skip += $pageSize
-        if ($page.Count -lt $pageSize) { break }
-    }
-    Write-Host "  ERROR: no problem found with id $Id." -ForegroundColor Red
-    return $null
-}
-
-# ── Helper: find a problem by (case-insensitive) title match ───
-function Search-ByTitle {
-    param([string]$Title, [hashtable]$Headers)
-    $pageSize   = 100
-    $skip       = 0
-    $exactMatch = $null
-    $weakMatch  = $null
-    $searchKey  = ($Title.ToLower() -replace '[^a-z0-9 ]', ' ').Trim() -replace '\s+', ' '
-
-    while ($skip -lt 5000) {
-        $body = ('{{ "query": "query {{ problemsetQuestionListV2(limit: {0}, skip: {1}) {{ questions {{ questionFrontendId title titleSlug }} }} }}" }}' -f $pageSize, $skip)
-        $bytes = [System.Text.Encoding]::UTF8.GetBytes($body)
-        try {
-            $resp = Invoke-RestMethod -Uri 'https://leetcode.com/graphql' -Method Post `
-                -Body $bytes -Headers $Headers -UseBasicParsing
-        } catch {
-            Write-Host "  ERROR: paginated search failed." -ForegroundColor Red
-            return $null
-        }
-        $page = @($resp.data.problemsetQuestionListV2.questions)
-        if ($page.Count -eq 0) { break }
-        $found = $false
-        foreach ($q in $page) {
-            $tNorm = ($q.title.ToLower() -replace '[^a-z0-9 ]', ' ').Trim() -replace '\s+', ' '
-            if ($tNorm -eq $searchKey) {
-                $exactMatch = $q
-                $found = $true
-                break
-            }
-            if (-not $weakMatch -and $tNorm -like "*$searchKey*") {
-                $weakMatch = $q
-            }
-        }
-        if ($found) { break }
-        $skip += $pageSize
-        if ($page.Count -lt $pageSize) { break }
-    }
-    if ($exactMatch) { return $exactMatch.titleSlug }
-    if ($weakMatch)  { return $weakMatch.titleSlug }
-    Write-Host "  ERROR: no problem found matching '$Title'." -ForegroundColor Red
-    return $null
-}
-
 # ────────────────────────────────────────────────────────────────
-#  STEP 1 ─ Prompt the user
+#  STEP 1 ─ Fetch the daily problem slug
 # ────────────────────────────────────────────────────────────────
-Write-Host "==========================================" -ForegroundColor Cyan
-Write-Host " LeetCode Problem Fetcher (by link/title)" -ForegroundColor Cyan
-Write-Host "==========================================" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "Enter one of:" -ForegroundColor White
-Write-Host "  - Full URL   (e.g. https://leetcode.com/problems/two-sum/)"
-Write-Host "  - Slug       (e.g. two-sum)"
-Write-Host "  - Number     (e.g. 1)"
-Write-Host "  - Title      (e.g. Two Sum)"
-Write-Host ""
+Write-Host "[1/5] Fetching today's daily problem..." -ForegroundColor Cyan
 
-$userInput = Read-Host "Problem link / number / slug / title"
-if ([string]::IsNullOrWhiteSpace($userInput)) {
-    Write-Host "No input provided. Exiting." -ForegroundColor Yellow
+$dailyQuery = '{"query":"query questionOfToday { activeDailyCodingChallengeQuestion { date link question { questionFrontendId title titleSlug difficulty } } }"}'
+$dailyBytes = [System.Text.Encoding]::UTF8.GetBytes($dailyQuery)
+
+$headers = @{
+    'Content-Type' = 'application/json'
+    'Referer'      = 'https://leetcode.com'
+}
+
+try {
+    $dailyResp = Invoke-RestMethod -Uri 'https://leetcode.com/graphql' `
+        -Method Post -Body $dailyBytes -Headers $headers -UseBasicParsing
+} catch {
+    Write-Host "ERROR: Failed to fetch daily problem. Check your internet connection." -ForegroundColor Red
+    Write-Host $_.Exception.Message
     return
 }
 
+$daily = $dailyResp.data.activeDailyCodingChallengeQuestion
+$problemNum   = [int]$daily.question.questionFrontendId
+$problemTitle = $daily.question.title
+$titleSlug    = $daily.question.titleSlug
+$difficulty   = $daily.question.difficulty
+$dateStr      = $daily.date
+
+Write-Host "  Date      : $dateStr" -ForegroundColor Green
+Write-Host "  Problem # : $problemNum" -ForegroundColor Green
+Write-Host "  Title     : $problemTitle" -ForegroundColor Green
+Write-Host "  Difficulty: $difficulty" -ForegroundColor Green
+Write-Host "  Slug      : $titleSlug" -ForegroundColor Green
+
 # ────────────────────────────────────────────────────────────────
-#  STEP 2 ─ Resolve input and fetch problem details
+#  STEP 2 ─ Fetch full problem details (description, code, tests)
 # ────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "[1/4] Resolving problem..." -ForegroundColor Cyan
+Write-Host "[2/5] Fetching problem details..." -ForegroundColor Cyan
 
-$titleSlug = Resolve-TitleSlug $userInput
-if (-not $titleSlug) { return }
-
-Write-Host ""
-Write-Host "[2/4] Fetching problem details for slug '$titleSlug'..." -ForegroundColor Cyan
-
-$detailQueryBody = '{"query":"query questionData($titleSlug: String!) { question(titleSlug: $titleSlug) { questionFrontendId title content codeSnippets { lang langSlug code } exampleTestcases metaData difficulty } }","variables":{"titleSlug":"' + $titleSlug + '"}}'
+$detailQueryBody = '{"query":"query questionData($titleSlug: String!) { question(titleSlug: $titleSlug) { questionFrontendId title content codeSnippets { lang langSlug code } exampleTestcases metaData } }","variables":{"titleSlug":"' + $titleSlug + '"}}'
 $detailBytes = [System.Text.Encoding]::UTF8.GetBytes($detailQueryBody)
-$headers = @{ 'Content-Type' = 'application/json'; 'Referer' = 'https://leetcode.com' }
 
 try {
     $detailResp = Invoke-RestMethod -Uri 'https://leetcode.com/graphql' `
@@ -403,46 +292,32 @@ try {
 }
 
 $question = $detailResp.data.question
-if (-not $question) {
-    Write-Host "ERROR: LeetCode returned no data for '$titleSlug'." -ForegroundColor Red
-    return
-}
 
-$problemNum   = [int]$question.questionFrontendId
-$problemTitle = $question.title
-$difficulty   = $question.difficulty
-
-Write-Host "  Problem # : $problemNum" -ForegroundColor Green
-Write-Host "  Title     : $problemTitle" -ForegroundColor Green
-Write-Host "  Difficulty: $difficulty" -ForegroundColor Green
-
+# Extract Java code snippet
 $javaSnippet = ($question.codeSnippets | Where-Object { $_.langSlug -eq 'java' }).code
+
 if (-not $javaSnippet) {
     Write-Host "WARNING: No Java code snippet found. Generating minimal stub." -ForegroundColor Yellow
     $javaSnippet = "// No Java snippet available on LeetCode for this problem."
 }
 
+# Extract description text (strip HTML)
 $descriptionHtml = $question.content
 $descriptionText = Strip-Html $descriptionHtml
 
-# Build the Javadoc description block. Keep ALL non-empty lines so the
-# problem statement, examples, and constraints survive intact. Prefix
-# every line with " * " so it renders correctly inside /** ... */.
+# Truncate description for the comment block (first 20 lines)
 $descLines = $descriptionText -split "`n"
-$nonEmptyDescLines = @($descLines | Where-Object { $_.Trim() -ne '' })
-if ($nonEmptyDescLines.Count -gt 0) {
-    $shortDesc = ($nonEmptyDescLines | ForEach-Object { " * $_" }) -join "`n"
-} else {
-    $shortDesc = " * (No description available.)"
-}
+$shortDesc = ($descLines | Select-Object -First 20) -join "`n * "
+if ($descLines.Count -gt 20) { $shortDesc += "`n * ..." }
 
+# Extract example test cases
 $exampleTests = $question.exampleTestcases
 
 # ────────────────────────────────────────────────────────────────
-#  STEP 3 ─ Build file/class names and generate files
+#  STEP 3 ─ Build file/class names
 # ────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "[3/4] Generating files..." -ForegroundColor Cyan
+Write-Host "[3/5] Generating files..." -ForegroundColor Cyan
 
 $paddedNum  = Format-ProblemNumber $problemNum
 $titleToken = ConvertTo-FileName $problemTitle
@@ -454,17 +329,19 @@ $testDir = Join-Path $ROOT "leetcode\src\test\java\com\leetcode"
 $srcFile  = Join-Path $srcDir  "${className}.java"
 $testFile = Join-Path $testDir "${className}_Test.java"
 
+# Check if files already exist
 if (Test-Path $srcFile) {
     Write-Host "  Solution file already exists: $srcFile" -ForegroundColor Yellow
-    $overwrite = Read-Host "  Overwrite? (y/N)"
-    if ($overwrite -ne 'y' -and $overwrite -ne 'Y') {
-        Write-Host "  Skipping generation." -ForegroundColor Yellow
-        return
-    }
+    Write-Host "  Skipping generation. Delete the file first to regenerate." -ForegroundColor Yellow
+    return
 }
 
-# ── 3a  Solution stub ──────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────
+#  STEP 3a ─ Generate the solution stub
+# ────────────────────────────────────────────────────────────────
+
 $snippetBody = $javaSnippet
+# Remove the outer "class Solution {" wrapper if present
 if ($snippetBody -match '(?s)class\s+Solution\s*\{(.+)\}\s*$') {
     $snippetBody = $Matches[1].Trim()
 }
@@ -478,6 +355,7 @@ $snippetBody = [regex]::Replace($snippetBody, $methodPattern, [System.Text.Regul
     return "$sig { throw new UnsupportedOperationException(`"Not implemented yet.`"); }"
 })
 
+# Build the solution file
 $solutionContent = @"
 package com.leetcode;
 import java.util.*;
@@ -486,13 +364,14 @@ import java.io.*;
 /**
  * $problemNum. $problemTitle
  *
-$shortDesc
+ * $shortDesc
  */
 public class $className {
     $snippetBody
 }
 "@
 
+# Ensure directory exists
 if (-not (Test-Path $srcDir)) { New-Item -ItemType Directory -Path $srcDir -Force | Out-Null }
 
 # WriteAllText defaults to UTF-8 WITHOUT BOM (Out-File -Encoding utf8 adds a
@@ -500,12 +379,16 @@ if (-not (Test-Path $srcDir)) { New-Item -ItemType Directory -Path $srcDir -Forc
 [System.IO.File]::WriteAllText($srcFile, $solutionContent)
 Write-Host "  Created: $srcFile" -ForegroundColor Green
 
-# ── 3b  JUnit test file ────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────
+#  STEP 3b ─ Generate the JUnit 5 test file
+# ────────────────────────────────────────────────────────────────
+
 $testCaseLines = @()
 if ($exampleTests) {
     $testCaseLines = @( ($exampleTests -split "`n") | Where-Object { $_.Trim() -ne '' } )
 }
 
+# Parse metaData to get method name, parameter types, and return type
 $methodName = "solve"
 $paramCount = 1
 $paramTypes = @()
@@ -526,6 +409,7 @@ try {
         $returnType = $meta.return.type
         $returnJavaType = ConvertFrom-LCType $returnType
     }
+    # Check for unsupported types (TreeNode, ListNode, void, etc.)
     foreach ($pt in $paramJavaTypes) {
         if (Test-UnsupportedType $pt) { $unsupported = $true; break }
     }
@@ -537,6 +421,7 @@ try {
     $unsupported = $true
 }
 
+# Extract expected outputs from HTML description
 $expectedOutputs = Extract-ExpectedOutputs $descriptionHtml
 
 Write-Host "  Method   : $methodName" -ForegroundColor DarkGray
@@ -544,6 +429,7 @@ Write-Host "  Params   : $paramCount ($($paramJavaTypes -join ', '))" -Foregroun
 Write-Host "  Returns  : $returnJavaType" -ForegroundColor DarkGray
 Write-Host "  Examples : $($expectedOutputs.Count) outputs parsed" -ForegroundColor DarkGray
 
+# Build test methods with real assertions
 $testMethods = ""
 $testIndex = 1
 
@@ -551,6 +437,7 @@ if (-not $unsupported -and $testCaseLines.Count -gt 0 -and $paramCount -gt 0 -an
     $i = 0
     $outputIdx = 0
     while ($i -lt $testCaseLines.Count -and $outputIdx -lt $expectedOutputs.Count) {
+        # Gather parameters for this test case
         $javaParams = @()
         $paramDecls = @()
         $allParamsOk = $true
@@ -568,6 +455,7 @@ if (-not $unsupported -and $testCaseLines.Count -gt 0 -and $paramCount -gt 0 -an
             $paramDecls += "        $jt param$($p + 1) = $javaLit;"
         }
 
+        # Convert expected output
         $rawExpected = $expectedOutputs[$outputIdx]
         $expectedLit = ConvertTo-JavaLiteral $rawExpected $returnJavaType
 
@@ -579,8 +467,8 @@ if (-not $unsupported -and $testCaseLines.Count -gt 0 -and $paramCount -gt 0 -an
             }
             $callArgs = $paramCallArgs -join ', '
             $expectedDecl = "        $returnJavaType expected = $expectedLit;"
-            $actualDecl   = "        $returnJavaType actual = solver.$methodName($callArgs);"
-            $assertion    = Get-AssertionCall $returnJavaType 'actual' 'expected'
+            $actualDecl = "        $returnJavaType actual = solver.$methodName($callArgs);"
+            $assertion = Get-AssertionCall $returnJavaType 'actual' 'expected'
 
             $testMethods += @"
 
@@ -594,6 +482,7 @@ $actualDecl
 
 "@
         } else {
+            # Fallback to TODO stub for unsupported types
             $paramComments = @()
             for ($p = 0; $p -lt $paramCount -and ($i + $p) -lt $testCaseLines.Count; $p++) {
                 $paramComments += "        // Input param $($p + 1): $($testCaseLines[$i + $p])"
@@ -617,6 +506,7 @@ $paramCommentBlock
         $outputIdx++
     }
 } else {
+    # Fallback: generate TODO stubs when types cannot be inferred
     if ($testCaseLines.Count -gt 0 -and $paramCount -gt 0) {
         $i = 0
         $outputIdx = 0
@@ -677,15 +567,28 @@ if (-not (Test-Path $testDir)) { New-Item -ItemType Directory -Path $testDir -Fo
 Write-Host "  Created: $testFile" -ForegroundColor Green
 
 # ────────────────────────────────────────────────────────────────
-#  STEP 4 ─ Build & test the entire leetcode module with Maven
+#  STEP 4 ─ Run mvn clean install
 # ────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "[4/4] Running mvn clean install for the leetcode module..." -ForegroundColor Cyan
+Write-Host "[4/5] Running mvn clean install..." -ForegroundColor Cyan
 
 $excludeFile = Join-Path ([System.IO.Path]::GetTempPath()) "contest-unimplemented-tests-$([guid]::NewGuid()).txt"
+$summaryFile = "$excludeFile.summary"
 & (Join-Path $ROOT 'skip-unimplemented-tests.ps1') `
     -ModuleRoot (Join-Path $ROOT 'leetcode') `
-    -ExcludesFile $excludeFile
+    -ExcludesFile $excludeFile `
+    -SummaryFile $summaryFile
+
+# Read the selection counts written by the scanner (skipped / selected / total).
+$skippedCount  = 0
+$selectedCount = 0
+if (Test-Path $summaryFile) {
+    $summaryLines = @(Get-Content $summaryFile)
+    if ($summaryLines.Count -ge 2) {
+        $skippedCount  = [int]$summaryLines[0]
+        $selectedCount = [int]$summaryLines[1]
+    }
+}
 
 # Resolve Maven: PATH first, then MAVEN_HOME / M2_HOME, then common install
 # dirs. A double-clicked .bat inherits Explorer's environment, which is stale
@@ -708,45 +611,70 @@ if (-not $mvnExe) {
 
 if (-not $mvnExe) {
     throw "Maven not found (checked PATH, MAVEN_HOME, M2_HOME, C:\*\apache-maven-*)."
-} else {
-    Write-Host "  Maven: $mvnExe" -ForegroundColor DarkGray
-    Push-Location $ROOT
-    try {
-        # Maven/JDK print harmless warnings to stderr; with
-        # $ErrorActionPreference='Stop' a 2>&1 merge would turn the first
-        # stderr line into a terminating error. Relax it just for this call.
+}
+
+Write-Host "  Maven: $mvnExe" -ForegroundColor DarkGray
+
+# Maven/JDK print harmless warnings to stderr; with $ErrorActionPreference='Stop'
+# a 2>&1 merge would turn the first stderr line into a terminating error, so it
+# is relaxed only around the invocation itself.
+#
+# "clean" rewrites target/ wholesale. Files that were just written can still be
+# held by OneDrive sync or antivirus scanning when the forked JVM starts, which
+# surfaces as a transient NoClassDefFoundError during test discovery and fails
+# the whole build. A short pause and retry clears it; only a genuine failure
+# reproduces on every attempt.
+$maxAttempts = 3
+$mvnExit     = 1
+$mvnOutput   = @()
+Push-Location $ROOT
+try {
+    for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
         $prevEAP = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
         $mvnOutput = & $mvnExe clean install -pl leetcode "-Dsurefire.excludesFile=$excludeFile" 2>&1
         $mvnExit = $LASTEXITCODE
         $ErrorActionPreference = $prevEAP
-        if ($mvnExit -eq 0) {
-            Write-Host "  BUILD SUCCESS (tests will pass once you implement the solution)" -ForegroundColor Green
-        } else {
-            Write-Host "  BUILD FAILURE. Maven output:" -ForegroundColor Red
-            $mvnOutput | ForEach-Object { Write-Host "    $_" }
-            throw "Maven build failed with exit code $mvnExit."
+
+        if ($mvnExit -eq 0) { break }
+
+        if ($attempt -lt $maxAttempts) {
+            Write-Host "  Attempt $attempt of $maxAttempts failed (exit code $mvnExit)." -ForegroundColor Yellow
+            Write-Host "  Retrying in 3s (usually a transient file lock on target\)..." -ForegroundColor Yellow
+            Start-Sleep -Seconds 3
         }
-    } catch {
-        $ErrorActionPreference = $prevEAP
-        throw "Maven invocation failed: $($_.Exception.Message)"
     }
+} finally {
     Pop-Location
 }
 
+if ($mvnExit -ne 0) {
+    Write-Host "  BUILD FAILURE. Last 40 lines of Maven output:" -ForegroundColor Red
+    $mvnOutput | Select-Object -Last 40 | ForEach-Object { Write-Host "    $_" }
+    throw "Maven build failed with exit code $mvnExit after $maxAttempts attempts."
+}
+
+Write-Host "  BUILD SUCCESS" -ForegroundColor Green
+Write-Host "  Test classes run: $selectedCount; skipped (solution not implemented): $skippedCount" -ForegroundColor Green
+
 # ────────────────────────────────────────────────────────────────
-#  Summary
+#  STEP 5 ─ Summary
 # ────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "Summary" -ForegroundColor Cyan
+Write-Host "[5/5] Summary" -ForegroundColor Cyan
 Write-Host "  -----------------------------------------------" -ForegroundColor DarkGray
+Write-Host "  Date       : $dateStr" -ForegroundColor White
 Write-Host "  Problem    : $problemNum. $problemTitle" -ForegroundColor White
 Write-Host "  Difficulty : $difficulty" -ForegroundColor White
-Write-Host "  Slug       : $titleSlug" -ForegroundColor White
 Write-Host "  Class      : $className" -ForegroundColor White
 Write-Host "  Package    : com.leetcode" -ForegroundColor White
 Write-Host "  Solution   : $srcFile" -ForegroundColor White
 Write-Host "  Test       : $testFile" -ForegroundColor White
+if ($skippedCount -gt 0) {
+    Write-Host "  Skipped    : $skippedCount test class(es) - solution still throws" -ForegroundColor Yellow
+    Write-Host "               UnsupportedOperationException, so its test is excluded." -ForegroundColor Yellow
+    Write-Host "               Remove the throw to bring the test back into the build." -ForegroundColor Yellow
+}
 Write-Host "  -----------------------------------------------" -ForegroundColor DarkGray
 Write-Host ""
 Write-Host "  Happy coding! Now go implement your solution." -ForegroundColor Magenta
